@@ -4,22 +4,31 @@ import "leaflet/dist/leaflet.css";
 import Object from "./Object";
 import { Button } from "@mui/material";
 import mapImg from "./map.png";
+import L from 'leaflet';
+import marker from './icon.png';
+
+const myIcon = new L.Icon({
+    iconUrl: marker,
+    iconRetinaUrl: marker,
+    popupAnchor:  [-0, -0],
+    iconSize: [30,40],     
+});
+
 
 export default function SmallMap({coords}) {
   const [zoom, setZoom] = useState(9);
 
 
-  console.log(coords.lat, coords.long)
 
   return (
     <MapContainer
     center={[coords.lat, coords.long]}
     zoom={12}
-      style={{ width: `150px`, height: `170px` }}
+      style={{ width: `100%`, height: `170px` }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      <Marker position={[coords.lat, coords.long]}>
+      <Marker position={[coords.lat, coords.long]} icon={myIcon}>
 
                 </Marker>
     </MapContainer>

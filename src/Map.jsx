@@ -5,6 +5,15 @@ import Object from "./Object";
 import { Button } from "@mui/material";
 import mapImg from "./map.png";
 import SmallMap from "./smallMap";
+import L from 'leaflet';
+import marker from './icon.png';
+
+const myIcon = new L.Icon({
+    iconUrl: marker,
+    iconRetinaUrl: marker,
+    popupAnchor:  [-0, -0],
+    iconSize: [30,40],     
+});
 
 export default function Map() {
   const [Postcodes, setPostcodes] = useState([]);
@@ -77,12 +86,12 @@ export default function Map() {
             <MapContainer
               center={[55.95005, -3.21494]}
               zoom={11}
-              style={{ width: `400px`, height: `420px` }}
+              style={{ width: `100%`, height: `420px`, margin: "0 auto" }}
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
               {latlongs.map((latlong, idx) => (
-                <Marker position={[latlong.lat, latlong.long]}>
+                <Marker position={[latlong.lat, latlong.long]} icon={myIcon}>
                   <Popup>
                     <div style={{ maxWidth: "100px" }}>
                       {applications[idx + 1]["Premises address"]}
@@ -98,11 +107,7 @@ export default function Map() {
             </MapContainer>
           </center>
         ) : (
-          <div className={mapClass} onClick={() => setMapClass("mapBig")}>
-            <center>
-              <SmallMap coords={selectedCoords} />
-            </center>
-          </div>
+          <></>
         )}
       </div>
 
@@ -111,9 +116,18 @@ export default function Map() {
           <h3>Select an application to begin your objection</h3>
         </center>
       ) : (
-        <div onClick={() => setMapClass("mapSmall")}>
+        <>
+          <div style={{ textAlign: "right" }}>
+            <Button size="small"
+              variant="contained"
+              sx={{ margin: 1 }}
+              onClick={() => setMapClass("mapBig")}
+            >
+              Back to applications
+            </Button>
+          </div>
           <Object selected={applications[selected]} coords={selectedCoords} />
-        </div>
+        </>
       )}
     </>
   );
