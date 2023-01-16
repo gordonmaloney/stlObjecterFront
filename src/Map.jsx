@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Object from "./Object";
-
-const center = [55.95005, -3.21493];
+import { Button } from "@mui/material";
+import mapImg from "./map.png";
+import SmallMap from "./smallMap";
 
 export default function Map() {
   const [Postcodes, setPostcodes] = useState([]);
@@ -51,28 +52,68 @@ export default function Map() {
     }
   }, [Postcodes, latlongs.length]);
 
+  const [mapClass, setMapClass] = useState("mapBig");
+
+  const toggleMap = () => {
+    mapClass == "mapBig" ? setMapClass("mapSmall") : setMapClass("mapBig");
+  };
+
+  const [selectedCoords, setSelectedCoords] = useState({
+    lat: "55.95005",
+    long: "-3.21494",
+  });
+
+  const selectLicense = (idx, coords) => {
+    setSelected(idx);
+    setSelectedCoords(coords);
+    setMapClass("mapSmall");
+  };
+
   return (
     <>
-      <MapContainer
-        center={center}
-        zoom={11}
-        style={{ width: "400px", height: "400px" }}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <div className={mapClass}>
+        {mapClass == "mapBig" ? (
+          <center>
+            <MapContainer
+              center={[55.95005, -3.21494]}
+              zoom={11}
+              style={{ width: `400px`, height: `420px` }}
+            >
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        {latlongs.map((latlong, idx) => (
-          <Marker position={[latlong.lat, latlong.long]}>
-            <Popup>
-              <button onClick={() => setSelected(idx + 1)}>Object</button>
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+              {latlongs.map((latlong, idx) => (
+                <Marker position={[latlong.lat, latlong.long]}>
+                  <Popup>
+                    <div style={{ maxWidth: "100px" }}>
+                      {applications[idx + 1]["Premises address"]}
+                      <br />
+                      <br />
+                      <button onClick={() => selectLicense(idx + 1, latlong)}>
+                        Object
+                      </button>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          </center>
+        ) : (
+          <div className={mapClass} onClick={() => setMapClass("mapBig")}>
+            <center>
+              <SmallMap coords={selectedCoords} />
+            </center>
+          </div>
+        )}
+      </div>
 
-      {!selected ? (
-        <h3>Select an application to begin your objection</h3>
+      {mapClass == "mapBig" ? (
+        <center>
+          <h3>Select an application to begin your objection</h3>
+        </center>
       ) : (
-        <Object selected={applications[selected]} />
+        <div onClick={() => setMapClass("mapSmall")}>
+          <Object selected={applications[selected]} coords={selectedCoords} />
+        </div>
       )}
     </>
   );

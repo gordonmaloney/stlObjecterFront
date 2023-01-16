@@ -5,7 +5,7 @@ import Map from "./Map";
 
 const App = () => {
   return (
-    <div>
+    <div className="container">
       <BrowserRouter>
         <Routes>
           <Route path="/map" exact element={<Map />} />
