@@ -2,13 +2,36 @@ import { FormLabel, Grid, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import SmallMap from "./smallMap";
+import {Councillors} from './Councillors'
 
 const Object = ({ selected, coords }) => {
-  console.log(selected);
 
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [signOff, setSignOff] = useState("Regards,\n");
+
+  const [councillors, setCouncillors] = useState([])
+  const [cc, setCC] = useState('')
+
+  const fetchWard = async () => {
+    const response = await fetch(
+      `https://api.postcodes.io/postcodes/${selected['Postcode']}`
+    );
+    const data = await response.json();
+
+    setCouncillors(Councillors.filter(clr=>clr.ward == data.result.admin_ward))
+
+  };
+
+  useEffect(() => {
+    fetchWard()
+  }, [selected])
+
+  useEffect(() => {
+    setCC(councillors.map(cllr => cllr.email).join(','))
+  }, [councillors.length])
+
+  console.log('cc: ', cc)
 
   useEffect(() => {
     setBody(
@@ -22,13 +45,10 @@ const Object = ({ selected, coords }) => {
     );
   }, [selected["Application reference number"]]);
 
-  console.log(coords);
 
   return (
     <div>
-      <Grid container spacing={2} flexDirection='row-reverse'>
-        
-
+      <Grid container spacing={2} flexDirection="row-reverse">
         <Grid item xs={12} sm={4}>
           <div style={{ height: "150px", width: "100%", overflow: "hidden" }}>
             <center>
@@ -128,7 +148,7 @@ const Object = ({ selected, coords }) => {
             <Grid container justifyContent="space-around">
               {" "}
               <Button
-                href={`mailto:council@edinburgh.com?subject=${subject}&bcc=stlbjections@livingrent.com&body=${
+                href={`mailto:council@edinburgh.com?subject=${subject}&cc=${cc}&bcc=stlbjections@livingrent.com&body=${
                   body.replace(/\n/g, "%0A") +
                   "%0A%0A" +
                   signOff.replace(/\n/g, "%0A")
@@ -145,7 +165,7 @@ const Object = ({ selected, coords }) => {
                 //disabled={signOff == "Regards,\n"}
                 size="large"
                 variant="contained"
-                href={`https://mail.google.com/mail/?view=cm&fs=1&to=council@edinburgh.com&su=${subject}&bcc=stlbjections@livingrent.com&body=${
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=council@edinburgh.com&su=${subject}&cc=${cc}&bcc=stlbjections@livingrent.com&body=${
                   body.replace(/\n/g, "%0A") +
                   "%0A%0A" +
                   signOff.replace(/\n/g, "%0A")
