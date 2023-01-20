@@ -106,6 +106,14 @@ body {
   padding: 10px;
   border-radius: 0;
   margin-top: 10px;
+  display: flex;
+}
+
+.loading {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mapBig {

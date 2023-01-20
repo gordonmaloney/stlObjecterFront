@@ -8,6 +8,7 @@ import SmallMap from "./smallMap";
 import L from "leaflet";
 import marker from "./icon.png";
 import { BtnStyle } from "./Shared";
+import { Loading } from 'react-loading-dot'
 
 const myIcon = new L.Icon({
   iconUrl: marker,
@@ -118,65 +119,82 @@ export default function Map() {
 
   return (
     <div>
-        <div className={mapClass == "mapBig" ? 'mapContainer' : 'mapContainerCollapsed'}>
-          
-          {mapClass == "mapBig" && 
+      <div
+        className={
+          mapClass == "mapBig" ? "mapContainer" : "mapContainerCollapsed"
+        }
+      >
+        {mapClass == "mapBig" && (
           <>
-          <center>
-            <span
-              className="header header3 bebas"
-              style={{
-                backgroundColor: "rgba(0, 66, 25, 0.9)",
-                padding: "5px 10px 1px 6px",
-              }}
-            >
-              Select an application to begin your objection
-            </span>
-          </center>
+            <center>
+              <span
+                className="header header3 bebas"
+                style={{
+                  backgroundColor: "rgba(0, 66, 25, 0.9)",
+                  padding: "5px 10px 1px 6px",
+                }}
+              >
+                Select an application to begin your objection
+              </span>
+            </center>
 
-          <div className="mapInner">
-            <div className={mapClass}>
-            {mapClass == "mapBig" ?
-              <center>
-                {loading && <h1>Loading...</h1>}
+            <div className="mapInner">
+              <div className={mapClass}>
+                {mapClass == "mapBig" ? (
+                  <center>
+                    {loading ? (
+                      <div className="loading">
+                        <Loading size={'1rem'} dots={3} background={'rgb(255,255,255)'}/>
+                        <h1 className="bebas header header3">Loading - this may take a few moments</h1>
+                      </div>
+                    ) : (
+                      <MapContainer
+                        center={[55.95005, -3.21494]}
+                        zoom={11}
+                        style={{
+                          width: `100%`,
+                          height: `420px`,
+                          margin: "0 auto",
+                        }}
+                      >
+                        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-                <MapContainer
-                  center={[55.95005, -3.21494]}
-                  zoom={11}
-                  style={{ width: `100%`, height: `420px`, margin: "0 auto" }}
-                >
-                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-                  {latlongs.map((latlong, idx) => (
-                    <Marker
-                      position={[latlong.lat, latlong.long]}
-                      icon={myIcon}
-                    >
-                      <Popup>
-                        <div style={{ maxWidth: "100px" }}>
-                          {applications[idx + 1]["Premises address"]}
-                          <br />
-                          <br />
-                          <center>
-                            <Button
-                              onClick={() => selectLicense(idx + 1, latlong)}
-                              variant="contained"
-                              style={BtnStyle}
-                            >
-                              Object
-                            </Button>
-                          </center>
-                        </div>
-                      </Popup>
-                    </Marker>
-                  ))}
-                </MapContainer>
-              </center>
-              : <div></div>}
+                        {latlongs.map((latlong, idx) => (
+                          <Marker
+                            position={[latlong.lat, latlong.long]}
+                            icon={myIcon}
+                          >
+                            <Popup>
+                              <div style={{ maxWidth: "100px" }}>
+                                {applications[idx + 1]["Premises address"]}
+                                <br />
+                                <br />
+                                <center>
+                                  <Button
+                                    onClick={() =>
+                                      selectLicense(idx + 1, latlong)
+                                    }
+                                    variant="contained"
+                                    style={BtnStyle}
+                                  >
+                                    Object
+                                  </Button>
+                                </center>
+                              </div>
+                            </Popup>
+                          </Marker>
+                        ))}
+                      </MapContainer>
+                    )}
+                  </center>
+                ) : (
+                  <div></div>
+                )}
+              </div>
             </div>
-          </div>
-          </>}
-        </div>
+          </>
+        )}
+      </div>
 
       {mapClass == "mapSmall" && (
         <>
@@ -186,7 +204,7 @@ export default function Map() {
               variant="contained"
               sx={{ margin: 1 }}
               onClick={() => setMapClass("mapBig")}
-              style={{...BtnStyle, fontSize: '1.4em'}}
+              style={{ ...BtnStyle, fontSize: "1.4em" }}
             >
               Back to applications
             </Button>
