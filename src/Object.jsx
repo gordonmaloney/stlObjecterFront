@@ -66,7 +66,7 @@ const Object = ({ selected, coords }) => {
             </div>
 
             <div className="talkingPoints" style={{textAlign: 'left'}}>
-              <span className="bebas header3 header" style={{ color: "black"}}>
+              <span className="bebas header3 header" style={{ color: "black", marginLeft: '10px'}}>
                 Writing a great objection
               </span>
               <ul style={{textAlign: 'left'}}>

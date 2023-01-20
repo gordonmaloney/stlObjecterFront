@@ -35,6 +35,8 @@ code {
   font-size: 2em;
 }
 
+
+
 .outerContainer {
   margin: 0 !important;
   position: absolute;
@@ -53,6 +55,7 @@ code {
 
 body {
   background-image: url('/src/bg.jpeg');
+  background-attachment: fixed;
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
@@ -188,4 +191,30 @@ transition: font-size 1s 1s, opacity 1s 2s;
   opacity: 0;
 font-size: 0px;
 transition: transform 1s 1a, opacity 2s 2s;
+}
+
+
+@media screen and (max-width: 480px) {
+  .header1 {
+    font-size: 5.5em;
+    line-height: 1em !important
+  }
+  .header2 {
+    font-size: 2.5em;
+  }
+  .header {
+    line-height: 1.2em;
+  }
+  .landing {
+    font-size: small;
+  }
+  .email {
+    font-size: small;
+  }
+  .talkingPoints {
+    font-size: small;
+  }
+  .objectCont {
+    margin-top: 0
+  }
 }
