@@ -5,17 +5,23 @@ import Map from "./Map";
 import { Header } from "./Header";
 import { Home } from "./Home";
 
-
 const App = () => {
   return (
-    <div className="container">
+    <div className="outerContainer">
       <BrowserRouter>
-      <Header />
-
         <Routes>
-        <Route path="/" exact element={<Home />} />
+          <Route path="/" exact element={<Home />} />
 
-          <Route path="/map" exact element={<Map />} />
+          <Route
+            path="/map"
+            exact
+            element={
+              <div className="outerContainer">
+                <Header />
+                <Map />
+              </div>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

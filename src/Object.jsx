@@ -2,36 +2,37 @@ import { FormLabel, Grid, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import SmallMap from "./smallMap";
-import {Councillors} from './Councillors'
+import { Councillors } from "./Councillors";
+import { BtnStyleSmall } from "./Shared";
 
 const Object = ({ selected, coords }) => {
-
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [signOff, setSignOff] = useState("Regards,\n");
 
-  const [councillors, setCouncillors] = useState([])
-  const [cc, setCC] = useState('')
+  const [councillors, setCouncillors] = useState([]);
+  const [cc, setCC] = useState("");
 
   const fetchWard = async () => {
     const response = await fetch(
-      `https://api.postcodes.io/postcodes/${selected['Postcode']}`
+      `https://api.postcodes.io/postcodes/${selected["Postcode"]}`
     );
     const data = await response.json();
 
-    setCouncillors(Councillors.filter(clr=>clr.ward == data.result.admin_ward))
-
+    setCouncillors(
+      Councillors.filter((clr) => clr.ward == data.result.admin_ward)
+    );
   };
 
   useEffect(() => {
-    fetchWard()
-  }, [selected])
+    fetchWard();
+  }, [selected]);
 
   useEffect(() => {
-    setCC(councillors.map(cllr => cllr.email).join(','))
-  }, [councillors.length])
+    setCC(councillors.map((cllr) => cllr.email).join(","));
+  }, [councillors.length]);
 
-  console.log('cc: ', cc)
+  console.log("cc: ", cc);
 
   useEffect(() => {
     setBody(
@@ -45,77 +46,101 @@ const Object = ({ selected, coords }) => {
     );
   }, [selected["Application reference number"]]);
 
-
   return (
-    <div>
-      <Grid container spacing={2} flexDirection="row-reverse">
+    <div className="objectCont">
+      <Grid container spacing={3} flexDirection="row-reverse">
         <Grid item xs={12} sm={4}>
-          <div style={{ height: "150px", width: "100%", overflow: "hidden" }}>
-            <center>
-              <SmallMap coords={coords} />
-            </center>
-          </div>
-
-          <h3>Writing a great objection</h3>
-
-          <ul>
-            <li>
-              You can use the buttons below to add paragraphs about specific
-              issues to your objection.
-            </li>
-            <li>
-              You <em>can</em> use the template text,{" "}
-              <b>
-                but your objection will be more impactful if you personalise the
-                text.
-              </b>
-            </li>
-            <li>
-              Remember to be civil - don't give officials a reason to throw your
-              objection out!
-            </li>
-            <li>
-              If you are local to the application, make sure you mention that -
-              the more it would personally impact you, the more weight your
-              objection will have.
-            </li>
-          </ul>
-
-          <center>
-            <Button
-              variant="contained"
-              sx={{ margin: 1 }}
-              onClick={() =>
-                setBody((body) => body + "\n\nDraft paragraph about noise.")
-              }
+            <div
+              style={{
+                height: "150px",
+                width: "100%",
+                padding: "5px",
+                backgroundColor: "rgba(0, 66, 25, 0.9)",
+              }}
             >
-              Noise
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ margin: 1 }}
-              onClick={() =>
-                setBody((body) => body + "\n\nDraft paragraph about amenities.")
-              }
-            >
-              Amenities
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ margin: 1 }}
-              onClick={() =>
-                setBody((body) => body + "\n\nDraft paragraph about supply.")
-              }
-            >
-              Supply
-            </Button>
-          </center>
+              <div
+                style={{ height: "150px", width: "100%", overflow: "hidden" }}
+              >
+                <SmallMap coords={coords} />
+              </div>
+            </div>
+
+            <div className="talkingPoints" style={{textAlign: 'left'}}>
+              <span className="bebas header3 header" style={{ color: "black"}}>
+                Writing a great objection
+              </span>
+              <ul style={{textAlign: 'left'}}>
+                <li>
+                  You can use the buttons below to add paragraphs about specific
+                  issues to your objection.
+                </li>
+                <li>
+                  You <em>can</em> use the template text,{" "}
+                  <b>
+                    but your objection will be more impactful if you personalise
+                    the text.
+                  </b>
+                </li>
+                <li>
+                  Remember to be civil - don't give officials a reason to throw
+                  your objection out!
+                </li>
+                <li>
+                  If you are local to the application, make sure you mention
+                  that - the more it would personally impact you, the more
+                  weight your objection will have.
+                </li>
+              </ul>
+
+              <center>
+                <Button
+                  variant="contained"
+                  sx={{ margin: 1 }}
+                  onClick={() =>
+                    setBody((body) => body + "\n\nDraft paragraph about noise.")
+                  }
+                  style={BtnStyleSmall}
+                >
+                  Noise
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{ margin: 1 }}
+                  onClick={() =>
+                    setBody(
+                      (body) => body + "\n\nDraft paragraph about amenities."
+                    )
+                  }
+                  style={BtnStyleSmall}
+                >
+                  Amenities
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{ margin: 1 }}
+                  onClick={() =>
+                    setBody(
+                      (body) => body + "\n\nDraft paragraph about supply."
+                    )
+                  }
+                  style={BtnStyleSmall}
+                >
+                  Supply
+                </Button>
+              </center>
+            </div>
         </Grid>
 
         <Grid item xs={12} sm={8}>
           <div className="email">
-            <h3>Your objection</h3>
-
+            <br />
+            <span
+              className="bebas header3 header"
+              style={{ color: "black", marginLeft: "10px" }}
+            >
+              Your objection
+            </span>
+            <br /> <br />
             <FormLabel>Subject:</FormLabel>
             <br />
             <TextField
@@ -144,7 +169,6 @@ const Object = ({ selected, coords }) => {
               minRows={2}
               helperText="Make sure you include your address so they know you're an Edinburgh resident!"
             />
-
             <Grid container justifyContent="space-around">
               {" "}
               <Button
@@ -156,12 +180,11 @@ const Object = ({ selected, coords }) => {
                 //disabled={signOff == "Regards,\n"}
                 size="large"
                 variant="contained"
-                style={{ margin: 2 }}
+                style={{ ...BtnStyleSmall, margin: 2 }}
               >
                 Send your objection
               </Button>
               <Button
-                style={{ margin: 2 }}
                 //disabled={signOff == "Regards,\n"}
                 size="large"
                 variant="contained"
@@ -171,6 +194,7 @@ const Object = ({ selected, coords }) => {
                   signOff.replace(/\n/g, "%0A")
                 }`}
                 target="_blank"
+                style={{ ...BtnStyleSmall, margin: 2 }}
               >
                 Send via Gmail
               </Button>
