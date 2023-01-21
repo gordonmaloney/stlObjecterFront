@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import Object from "./Object";
+import Object from "./Object-Old";
 import { Button, ButtonBase } from "@mui/material";
 import mapImg from "./map.png";
 import SmallMap from "./smallMap";
@@ -90,13 +90,10 @@ export default function Map() {
   });
 
   const selectLicense = (postcode, coords) => {
-    setSelected(
-      applications.filter((app) => app.Postcode == postcode)
-    );
+    setSelected(applications.filter((app) => app.Postcode == postcode));
     setSelectedCoords(coords);
     setMapClass("mapSmall");
   };
-
 
   return (
     <div>
@@ -153,9 +150,11 @@ export default function Map() {
                           >
                             <Popup>
                               <div style={{ maxWidth: "100px" }}>
-
-
-                                {applications.filter(app => app.Postcode == latlong.postcode)[0]["Premises address"]}
+                                {
+                                  applications.filter(
+                                    (app) => app.Postcode == latlong.postcode
+                                  )[0]["Premises address"]
+                                }
                                 <br />
                                 <br />
                                 <center>

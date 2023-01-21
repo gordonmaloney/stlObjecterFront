@@ -193,6 +193,15 @@ font-size: 0px;
 transition: transform 1s 1a, opacity 2s 2s;
 }
 
+.divBig {
+  height: 300px;
+  transition: 0.7s
+}
+.divSmall {
+  height: 0;
+  transition: 0.7s
+}
+
 
 @media screen and (max-width: 480px) {
   .header1 {
@@ -217,5 +226,11 @@ transition: transform 1s 1a, opacity 2s 2s;
   }
   .objectCont {
     margin-top: 0
+  }
+  .hideOnMob {
+    visibility: hidden;
+  }
+  .hideMargOnMob {
+    margin-bottom: -30px !important;
   }
 }
