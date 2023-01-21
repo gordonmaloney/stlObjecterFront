@@ -201,7 +201,9 @@ transition: transform 1s 1a, opacity 2s 2s;
   height: 0;
   transition: 0.7s
 }
-
+.showOnMob {
+  visibility: hidden;
+}
 
 @media screen and (max-width: 480px) {
   .header1 {
@@ -229,6 +231,9 @@ transition: transform 1s 1a, opacity 2s 2s;
   }
   .hideOnMob {
     visibility: hidden;
+  }
+  .showOnMob {
+    visibility: visible;
   }
   .hideMargOnMob {
     margin-bottom: -30px !important;

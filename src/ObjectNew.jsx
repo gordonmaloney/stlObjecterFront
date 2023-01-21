@@ -7,6 +7,11 @@ import { BtnStyleSmall } from "./Shared";
 import { useNavigate, useParams } from "react-router-dom";
 import { BtnStyle, CheckBoxStyle } from "./Shared";
 import { ModalContent } from "./ModalContent";
+import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+import { HashLink } from 'react-router-hash-link';
+
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 //modal imports
 import Box from "@mui/material/Box";
@@ -16,6 +21,11 @@ import Modal from "@mui/material/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { getApplications, reset, isError, isLoading } from "./Redux/Slice";
 
+
+
+    
+
+  
 //modal style
 const style = {
   position: "absolute",
@@ -31,6 +41,26 @@ const style = {
 };
 
 const Object = () => {
+
+
+    //Scroll Position
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+    };
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+  
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+    console.log(scrollPosition)
+
+
+   
+
   const [selected, setSelected] = useState(0, 0);
   const [coords, setCoords] = useState(null);
 
@@ -60,6 +90,8 @@ const Object = () => {
 
   const [councillors, setCouncillors] = useState([]);
   const [cc, setCC] = useState("");
+
+
 
   useEffect(() => {
     if (selected?.Applicant) {
@@ -110,8 +142,33 @@ const Object = () => {
     }, 500);
   };
 
+
+
   return (
     <>
+      <div
+      className="showOnMob"
+        style={{
+            visibility: scrollPosition > 150 && 'hidden',
+          position: "fixed",
+          bottom: 0,
+          display: "inline-block",
+          position: "fixed",
+          left: "50%",
+          transform: "translate(-50%, 0)",
+          zIndex: 5,
+          backgroundColor: "rgba(255,255,255,0.5)",
+          paddingTop: "1px",
+          borderRadius: "50px",
+        }}
+      >
+        <HashLink to="./#objection">
+        <ExpandCircleDownIcon
+          style={{ fontSize: "80px", color: "green", marginBottom: "-5px" }}
+        />
+        </HashLink>
+      </div>
+
       <div className={collapse}></div>
       <div style={{ textAlign: "right" }}>
         <Button
@@ -119,7 +176,7 @@ const Object = () => {
           variant="contained"
           sx={{ margin: 1 }}
           onClick={() => navigate("../map")}
-          style={{ ...BtnStyle, fontSize: "1.4em", marginBottom: "-10px" }}
+          style={{ ...BtnStyle, fontSize: "1.4em", marginBottom: "0px" }}
         >
           Back to applications
         </Button>
@@ -215,6 +272,7 @@ const Object = () => {
             <div className="email">
               <br />
               <span
+              id="objection"
                 className="bebas header3 header"
                 style={{ color: "black", marginLeft: "10px" }}
               >
@@ -249,21 +307,23 @@ const Object = () => {
                 minRows={2}
                 helperText="Make sure you include your address so they know you're an Edinburgh resident!"
               />
-              <Grid container>
-                <Grid item xs={1}>
-                  <Checkbox
-                    sx={CheckBoxStyle}
-                    value={optIn}
-                    onChange={() => setOptIn(!optIn)}
-                  />
-                </Grid>
-                <Grid item xs={10}>
-                  <span style={{ fontSize: "12px" }}>
-                    I agree to Living Rent contacting me by email about this
-                    campaign and others like it.
-                  </span>
-                </Grid>
-              </Grid>
+              <FormGroup sx={{ width: "95%", margin: "1px 2.5% 7px 2.5%" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      sx={CheckBoxStyle}
+                      value={optIn}
+                      onChange={() => setOptIn(!optIn)}
+                    />
+                  }
+                  label={
+                    <p style={{ fontSize: "12px", lineHeight: "14px" }}>
+                      I agree to Living Rent contacting me by email about this
+                      campaign and others like it.
+                    </p>
+                  }
+                />
+              </FormGroup>
               <Grid container justifyContent="space-around">
                 {" "}
                 <Button
@@ -283,7 +343,6 @@ const Object = () => {
                   onClick={() => {
                     openModal();
                   }}
-                  className="hideMargOnMob"
                 >
                   Send your objection
                 </Button>

@@ -11,6 +11,10 @@ import { BtnStyle } from "./Shared";
 import { Loading } from "react-loading-dot";
 import { useNavigate } from "react-router-dom";
 
+//redux imports
+import { useSelector, useDispatch } from "react-redux";
+import { getApplications, reset, isError, isLoading } from "./Redux/Slice";
+
 const myIcon = new L.Icon({
   iconUrl: marker,
   iconRetinaUrl: marker,
@@ -19,29 +23,23 @@ const myIcon = new L.Icon({
 });
 
 export default function Map() {
-  const [loading, setLoading] = useState(true);
   const [Postcodes, setPostcodes] = useState([]);
   const [applications, setApplications] = useState([]);
   const [selected, setSelected] = useState(0);
   const navigate = useNavigate();
 
-  const fetchPostcodes = async () => {
-    const response = await fetch("https://stlfetcher.onrender.com/read/");
-
-    const data = await response.json();
-
-    setApplications(data.data);
-    setLoading(false);
-  };
+  //redux handling
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
 
   useEffect(() => {
-    try {
-      fetchPostcodes();
-    } catch {
-      console.log("error - retrying");
-      fetchPostcodes();
-    }
+    dispatch(getApplications());
   }, []);
+
+  
+  useEffect(() =>{
+    setApplications(state.applications.applications);
+  }, [state.applications])
 
   useEffect(() => {
     setPostcodes(applications.map((app) => app.Postcode));
@@ -120,7 +118,7 @@ export default function Map() {
               <div className={mapClass}>
                 {mapClass == "mapBig" ? (
                   <center>
-                    {loading ? (
+                    {state.applications.isLoading ? (
                       <div className="loading">
                         <Loading
                           size={"1rem"}

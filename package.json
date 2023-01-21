@@ -5,7 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.11.4",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.5",
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -18,6 +19,7 @@
     "react-loading-dot": "^1.0.6",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
+    "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
