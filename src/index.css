@@ -8,6 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 code {
@@ -203,6 +204,20 @@ transition: transform 1s 1a, opacity 2s 2s;
 }
 .showOnMob {
   visibility: hidden;
+}
+
+.scrollBtn {
+  animation-name: bounce;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+@keyframes bounce {
+  0% {padding-bottom: 0;}
+  40% {padding-bottom: 0;}
+  50% {padding-bottom: 20px;}
+  65% {padding-bottom: 0;}
+  100% {padding-bottom: 0;}
 }
 
 @media screen and (max-width: 480px) {

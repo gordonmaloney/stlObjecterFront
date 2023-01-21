@@ -147,10 +147,11 @@ const Object = () => {
   return (
     <>
       <div
-      className="showOnMob"
+      className="scrollBtn showOnMob"
         style={{
             visibility: scrollPosition > 150 && 'hidden',
-          position: "fixed",
+            opacity: 1 - ((scrollPosition-100)/50),
+            position: "fixed",
           bottom: 0,
           display: "inline-block",
           position: "fixed",
