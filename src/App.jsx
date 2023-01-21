@@ -4,6 +4,7 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Map from "./Map";
 import { Header } from "./Header";
 import { Home } from "./Home";
+import Object from "./ObjectNew";
 
 const App = () => {
   return (
@@ -19,6 +20,15 @@ const App = () => {
               <div className="outerContainer">
                 <Header />
                 <Map />
+              </div>
+            }
+          />
+          <Route
+            path="/object/:postcode"
+            element={
+              <div className="outerContainer">
+                <Header />
+                <Object />
               </div>
             }
           />

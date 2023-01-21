@@ -204,6 +204,7 @@ transition: transform 1s 1a, opacity 2s 2s;
   }
   .header {
     line-height: 1.2em;
+    font-weight: 400;
   }
   .landing {
     font-size: small;

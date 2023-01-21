@@ -3,10 +3,28 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { BtnStyle } from "./Shared";
 
+//redux imports
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getApplications,
+  reset,
+  isError,
+  isLoading,
+} from "./Redux/Slice";
+
 export const Home = () => {
   const [h1Show, setH1Show] = useState(false);
   const [h2Show, setH2Show] = useState(false);
   const [parShow, setParShow] = useState(false);
+
+//redux handling
+  const dispatch = useDispatch();
+  useEffect(() => {
+   dispatch(getApplications());
+  }, []);
+  const state = useSelector((state) => state);
+  console.log(state.applications.applications)
+
 
   useEffect(() => {
     setH1Show(true);

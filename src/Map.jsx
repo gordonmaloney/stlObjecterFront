@@ -8,7 +8,8 @@ import SmallMap from "./smallMap";
 import L from "leaflet";
 import marker from "./icon.png";
 import { BtnStyle } from "./Shared";
-import { Loading } from 'react-loading-dot'
+import { Loading } from "react-loading-dot";
+import { useNavigate } from "react-router-dom";
 
 const myIcon = new L.Icon({
   iconUrl: marker,
@@ -22,6 +23,7 @@ export default function Map() {
   const [Postcodes, setPostcodes] = useState([]);
   const [applications, setApplications] = useState([]);
   const [selected, setSelected] = useState(0);
+  const navigate = useNavigate();
 
   const fetchPostcodes = async () => {
     const response = await fetch("https://stlfetcher.onrender.com/read/");
@@ -59,37 +61,13 @@ export default function Map() {
         ...latlongs,
         {
           index: index,
+          postcode: data.result.postcode,
           lat: data.result.latitude,
           long: data.result.longitude,
         },
       ]);
     }
   };
-
-  {
-    ///
-    const batchFetch = async () => {
-      const config = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(Postcodes),
-      };
-      const postCodeArray = await fetch(
-        `https://api.postcodes.io/postcodes`,
-        config
-      );
-      console.log(config);
-      console.log(postCodeArray.status);
-    };
-
-    useEffect(() => {
-      batchFetch();
-    }, [Postcodes]);
-    ///
-  }
 
   useEffect(() => {
     if (Postcodes?.length > latlongs.length + 1) {
@@ -111,11 +89,14 @@ export default function Map() {
     long: "-3.21494",
   });
 
-  const selectLicense = (idx, coords) => {
-    setSelected(idx);
+  const selectLicense = (postcode, coords) => {
+    setSelected(
+      applications.filter((app) => app.Postcode == postcode)
+    );
     setSelectedCoords(coords);
     setMapClass("mapSmall");
   };
+
 
   return (
     <div>
@@ -144,8 +125,14 @@ export default function Map() {
                   <center>
                     {loading ? (
                       <div className="loading">
-                        <Loading size={'1rem'} dots={3} background={'rgb(255,255,255)'}/>
-                        <h1 className="bebas header header3">Loading - this may take a few moments</h1>
+                        <Loading
+                          size={"1rem"}
+                          dots={3}
+                          background={"rgb(255,255,255)"}
+                        />
+                        <h1 className="bebas header header3">
+                          Loading - this may take a few moments
+                        </h1>
                       </div>
                     ) : (
                       <MapContainer
@@ -166,13 +153,15 @@ export default function Map() {
                           >
                             <Popup>
                               <div style={{ maxWidth: "100px" }}>
-                                {applications[idx + 1]["Premises address"]}
+
+
+                                {applications.filter(app => app.Postcode == latlong.postcode)[0]["Premises address"]}
                                 <br />
                                 <br />
                                 <center>
                                   <Button
                                     onClick={() =>
-                                      selectLicense(idx + 1, latlong)
+                                      navigate(`../object/${latlong.postcode}`)
                                     }
                                     variant="contained"
                                     style={BtnStyle}
@@ -209,7 +198,7 @@ export default function Map() {
               Back to applications
             </Button>
           </div>
-          <Object selected={applications[selected]} coords={selectedCoords} />
+          <Object selected={selected[0]} coords={selectedCoords} />
         </>
       )}
     </div>

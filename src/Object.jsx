@@ -4,8 +4,34 @@ import { Button } from "@mui/material";
 import SmallMap from "./smallMap";
 import { Councillors } from "./Councillors";
 import { BtnStyleSmall } from "./Shared";
+import { useParams } from "react-router-dom";
 
-const Object = ({ selected, coords }) => {
+//redux imports
+import { useSelector, useDispatch } from "react-redux";
+import { getApplications, reset, isError, isLoading } from "./Redux/Slice";
+
+const Object = ({ coords }) => {
+  const [selected, setSelected] = useState(null);
+
+  //redux handling
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getApplications());
+  }, []);
+  const state = useSelector((state) => state);
+  console.log(state.applications.applications);
+
+  useEffect(() => {
+    setSelected(
+      state.applications.applications.filter(
+        (app) => app.Postcode.replace(" ", "") == params.postcode
+      )[0]
+    );
+  }, [state]);
+
+  const params = useParams();
+  console.log(params.postcode);
+
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [signOff, setSignOff] = useState("Regards,\n");
@@ -13,20 +39,23 @@ const Object = ({ selected, coords }) => {
   const [councillors, setCouncillors] = useState([]);
   const [cc, setCC] = useState("");
 
-  const fetchWard = async () => {
-    const response = await fetch(
-      `https://api.postcodes.io/postcodes/${selected["Postcode"]}`
-    );
-    const data = await response.json();
-
-    setCouncillors(
-      Councillors.filter((clr) => clr.ward == data.result.admin_ward)
-    );
-  };
-
   useEffect(() => {
-    fetchWard();
-  }, [selected]);
+    if (selected["Postcode"]) {
+      const fetchWard = async () => {
+        const response = await fetch(
+          `https://api.postcodes.io/postcodes/${selected["Postcode"]}`
+        );
+        const data = await response.json();
+
+        setCouncillors(
+          Councillors.filter((clr) => clr.ward == data.result.admin_ward)
+        );
+      };
+      fetchWard();
+    }
+  }, [state]);
+
+
 
   useEffect(() => {
     setCC(councillors.map((cllr) => cllr.email).join(","));
@@ -35,100 +64,103 @@ const Object = ({ selected, coords }) => {
   console.log("cc: ", cc);
 
   useEffect(() => {
-    setBody(
-      `To whom it may concern,\n\nI am writing to object to application number ${selected["Application reference number"]} for a short-term let license, in the name of ${selected["Applicant"]} at ${selected["Premises address"]}.`
-    );
-  }, [selected["Applicant"]]);
+    if (selected["Applicant"]) {
+      setBody(
+        `To whom it may concern,\n\nI am writing to object to application number ${selected["Application reference number"]} for a short-term let license, in the name of ${selected["Applicant"]} at ${selected["Premises address"]}.`
+      );
+    }
+  }, [selected]);
 
   useEffect(() => {
-    setSubject(
-      `Objecting to STL application ${selected["Application reference number"]}`
-    );
-  }, [selected["Application reference number"]]);
+    if (selected["Application reference number"]) {
+      setSubject(
+        `Objecting to STL application ${selected["Application reference number"]}`
+      );
+    }
+  }, [selected]);
 
   return (
     <div className="objectCont">
       <Grid container spacing={3} flexDirection="row-reverse">
         <Grid item xs={12} sm={4} md={5}>
-            <div
-              style={{
-                height: "150px",
-                width: "100%",
-                padding: "5px",
-                backgroundColor: "rgba(0, 66, 25, 0.9)",
-              }}
+          <div
+            style={{
+              height: "150px",
+              width: "100%",
+              padding: "5px",
+              backgroundColor: "rgba(0, 66, 25, 0.9)",
+            }}
+          >
+            <div style={{ height: "150px", width: "100%", overflow: "hidden" }}>
+              <SmallMap coords={coords} />
+            </div>
+          </div>
+
+          <div className="talkingPoints" style={{ textAlign: "left" }}>
+            <span
+              className="bebas header3 header"
+              style={{ color: "black", marginLeft: "10px" }}
             >
-              <div
-                style={{ height: "150px", width: "100%", overflow: "hidden" }}
+              Writing a great objection
+            </span>
+            <ul style={{ textAlign: "left" }}>
+              <li>
+                You can use the buttons below to add paragraphs about specific
+                issues to your objection.
+              </li>
+              <li>
+                You <em>can</em> use the template text,{" "}
+                <b>
+                  but your objection will be more impactful if you personalise
+                  the text.
+                </b>
+              </li>
+              <li>
+                Remember to be civil - don't give officials a reason to throw
+                your objection out!
+              </li>
+              <li>
+                If you are local to the application, make sure you mention that
+                - the more it would personally impact you, the more weight your
+                objection will have.
+              </li>
+            </ul>
+
+            <center>
+              <Button
+                variant="contained"
+                sx={{ margin: 1 }}
+                onClick={() =>
+                  setBody((body) => body + "\n\nDraft paragraph about noise.")
+                }
+                style={BtnStyleSmall}
               >
-                <SmallMap coords={coords} />
-              </div>
-            </div>
-
-            <div className="talkingPoints" style={{textAlign: 'left'}}>
-              <span className="bebas header3 header" style={{ color: "black", marginLeft: '10px'}}>
-                Writing a great objection
-              </span>
-              <ul style={{textAlign: 'left'}}>
-                <li>
-                  You can use the buttons below to add paragraphs about specific
-                  issues to your objection.
-                </li>
-                <li>
-                  You <em>can</em> use the template text,{" "}
-                  <b>
-                    but your objection will be more impactful if you personalise
-                    the text.
-                  </b>
-                </li>
-                <li>
-                  Remember to be civil - don't give officials a reason to throw
-                  your objection out!
-                </li>
-                <li>
-                  If you are local to the application, make sure you mention
-                  that - the more it would personally impact you, the more
-                  weight your objection will have.
-                </li>
-              </ul>
-
-              <center>
-                <Button
-                  variant="contained"
-                  sx={{ margin: 1 }}
-                  onClick={() =>
-                    setBody((body) => body + "\n\nDraft paragraph about noise.")
-                  }
-                  style={BtnStyleSmall}
-                >
-                  Noise
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{ margin: 1 }}
-                  onClick={() =>
-                    setBody(
-                      (body) => body + "\n\nDraft paragraph about amenities."
-                    )
-                  }
-                  style={BtnStyleSmall}
-                >
-                  Amenities
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{ margin: 1 }}
-                  onClick={() =>
-                    setBody(
-                      (body) => body + "\n\nDraft paragraph about supply."
-                    )
-                  }
-                  style={BtnStyleSmall}
-                >
-                  Supply
-                </Button>
-              </center>
-            </div>
+                Noise
+              </Button>
+              <Button
+                variant="contained"
+                sx={{ margin: 1 }}
+                onClick={() =>
+                  setBody(
+                    (body) => body + "\n\nDraft paragraph about amenities."
+                  )
+                }
+                style={BtnStyleSmall}
+              >
+                Amenities
+              </Button>
+              <Button
+                variant="contained"
+                sx={{ margin: 1 }}
+                onClick={() =>
+                  setBody((body) => body + "\n\nDraft paragraph about supply.")
+                }
+                style={BtnStyleSmall}
+              >
+                Supply
+              </Button>
+            </center>
+          </div>
         </Grid>
 
         <Grid item xs={12} sm={8} md={7}>
