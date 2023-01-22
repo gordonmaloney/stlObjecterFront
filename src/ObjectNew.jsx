@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { BtnStyle, CheckBoxStyle } from "./Shared";
 import { ModalContent } from "./ModalContent";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-import { HashLink } from 'react-router-hash-link';
+import { HashLink } from "react-router-hash-link";
 
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -21,11 +21,12 @@ import Modal from "@mui/material/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { getApplications, reset, isError, isLoading } from "./Redux/Slice";
 
+//accordion imports
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-
-    
-
-  
 //modal style
 const style = {
   position: "absolute",
@@ -41,25 +42,20 @@ const style = {
 };
 
 const Object = () => {
+  //Scroll Position
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-
-    //Scroll Position
-    const [scrollPosition, setScrollPosition] = useState(0);
-    const handleScroll = () => {
-      const position = window.pageYOffset;
-      setScrollPosition(position);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
-    useEffect(() => {
-      window.addEventListener("scroll", handleScroll, { passive: true });
-  
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, []);
-    console.log(scrollPosition)
-
-
-   
+  }, []);
+  console.log(scrollPosition);
 
   const [selected, setSelected] = useState(0, 0);
   const [coords, setCoords] = useState(null);
@@ -90,8 +86,6 @@ const Object = () => {
 
   const [councillors, setCouncillors] = useState([]);
   const [cc, setCC] = useState("");
-
-
 
   useEffect(() => {
     if (selected?.Applicant) {
@@ -142,16 +136,16 @@ const Object = () => {
     }, 500);
   };
 
-
+  console.log(selected);
 
   return (
     <>
       <div
-      className="scrollBtn showOnMob"
+        className="scrollBtn showOnMob"
         style={{
-            visibility: scrollPosition > 150 && 'hidden',
-            opacity: 1 - ((scrollPosition-100)/50),
-            position: "fixed",
+          visibility: scrollPosition > 150 && "hidden",
+          opacity: 1 - (scrollPosition - 150) / 50,
+          position: "fixed",
           bottom: 0,
           display: "inline-block",
           position: "fixed",
@@ -164,9 +158,9 @@ const Object = () => {
         }}
       >
         <HashLink to="./#objection">
-        <ExpandCircleDownIcon
-          style={{ fontSize: "80px", color: "green", marginBottom: "-5px" }}
-        />
+          <ExpandCircleDownIcon
+            style={{ fontSize: "80px", color: "green", marginBottom: "-5px" }}
+          />
         </HashLink>
       </div>
 
@@ -200,13 +194,75 @@ const Object = () => {
               </div>
             </div>
 
-            <div className="talkingPoints" style={{ textAlign: "left" }}>
-              <div
-                className="bebas header3 header"
-                style={{ color: "black", marginLeft: "10px" }}
+            <Accordion 
+            defaultExpanded
+            className="talkingPoints" sx={{backgroundColor: 'rgba(255,255,255,0.9)'}}>
+              <AccordionSummary
+              
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="details"
+                sx={{padding: '0', marginY: '-10px'}}
               >
+                <div
+                  className="bebas header3 header"
+                  style={{ color: "black", marginLeft: "10px" }}
+                >
+                  Application details:
+                </div>{" "}
+              </AccordionSummary>
+              <AccordionDetails sx={{padding: 0, marginRight: '10px'}}>
+                {selected? 
+                <ul>
+                  <li>
+                    <b>Address:</b> {selected["Premises address"]},{" "}
+                    {selected["Postcode"]}
+                  </li>
+                  <li>
+                    <b>Premises:</b> {selected["Type of Premises"]}
+                  </li>
+                  <li>
+                    <b>Maximum occupancy:</b> {selected["Maximum Occupancy"]}
+                  </li>
+                  <li>
+                    <b>Number of bedrooms:</b> {selected["Number of Berooms"]}
+                  </li>
+                  <li>
+                    <b>Let type:</b> {selected["Short Term Let Type"]}
+                  </li>
+                  <li>
+                    <b>EPC rating:</b> {selected["EPC rating"]}
+                  </li>
+                  <li>
+                    <b>Reference no.:</b>{" "}
+                    {selected["Application reference number"]}
+                  </li>
+                  <li>
+                    <b>Applicant:</b> {selected['Applicant']}
+                  </li>
+                </ul> :<>Loading...</>}
+              </AccordionDetails>
+            </Accordion>
+
+
+            <Accordion 
+            defaultExpanded
+            className="talkingPoints" sx={{backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '0px !important'}}>
+              <AccordionSummary
+              
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="details"
+                sx={{padding: '0', marginY: '-10px'}}
+              >
+                <div
+                  className="bebas header3 header"
+                  style={{ color: "black", marginLeft: "10px" }}
+                >
                 Writing a great objection
-              </div>
+                </div>
+              </AccordionSummary>
+              <AccordionDetails sx={{padding: 0, marginRight: '10px'}}>
               <ul style={{ textAlign: "left" }}>
                 <li>
                   You can use the buttons below to add paragraphs about specific
@@ -266,14 +322,16 @@ const Object = () => {
                   Supply
                 </Button>
               </center>
-            </div>
+              </AccordionDetails>
+            </Accordion>
+            
           </Grid>
 
           <Grid item xs={12} sm={8} md={7}>
             <div className="email">
               <br />
               <span
-              id="objection"
+                id="objection"
                 className="bebas header3 header"
                 style={{ color: "black", marginLeft: "10px" }}
               >

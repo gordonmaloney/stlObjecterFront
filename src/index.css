@@ -8,12 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  scroll-behavior: smooth !important;
 }
 
 .bebas {
@@ -220,7 +215,7 @@ transition: transform 1s 1a, opacity 2s 2s;
   100% {padding-bottom: 0;}
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .header1 {
     font-size: 5.5em;
     line-height: 1em !important
@@ -251,6 +246,9 @@ transition: transform 1s 1a, opacity 2s 2s;
     visibility: visible;
   }
   .hideMargOnMob {
-    margin-bottom: -30px !important;
+    margin-bottom: -20px !important;
+  }
+  .objectCont {
+    margin-bottom: 100px;
   }
 }
