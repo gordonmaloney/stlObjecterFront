@@ -16,7 +16,8 @@ body {
 }
 
 .header {
-  font-weight: 600;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;  font-weight: 500;
   line-height: 0.95em;
   color: white;
 }
@@ -26,9 +27,12 @@ body {
 }
 .header2 {
   font-size: 3.5em;
+
 }
 .header3 {
   font-size: 2em;
+  line-height: 1.43em !important;
+
 }
 
 
@@ -65,7 +69,6 @@ body {
   width: 80%;
   min-width: 250px;
   max-width: 700px;
-
 }
 
 .navBar {
@@ -87,8 +90,9 @@ body {
   margin: 0, auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  padding-top: 30px
 }
 
 .mapContainerCollapsed {
@@ -116,7 +120,7 @@ body {
 }
 
 .mapBig {
-  height: 400px;
+  height: 300px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -222,6 +226,12 @@ transition: transform 1s 1a, opacity 2s 2s;
   }
   .header2 {
     font-size: 2.5em;
+  }
+  .header3 {
+    font-size: 1.5em;
+  }
+  .navBar {
+    height: 40px
   }
   .header {
     line-height: 1.2em;

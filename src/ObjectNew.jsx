@@ -1,15 +1,22 @@
-import { Checkbox, FormLabel, Grid, TextField } from "@mui/material";
+import {
+  Checkbox,
+  FormControl,
+  FormLabel,
+  Grid,
+  TextField,
+} from "@mui/material";
+import { Loading } from "react-loading-dot/lib";
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, RadioGroup, Radio } from "@mui/material";
 import SmallMap from "./smallMap";
 import { Councillors } from "./Councillors";
-import { BtnStyleSmall } from "./Shared";
+import { BtnStyleSmall, RadioStyle } from "./Shared";
 import { useNavigate, useParams } from "react-router-dom";
 import { BtnStyle, CheckBoxStyle } from "./Shared";
 import { ModalContent } from "./ModalContent";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import { HashLink } from "react-router-hash-link";
-
+import axios from "axios";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
@@ -72,7 +79,7 @@ const Object = () => {
   useEffect(() => {
     setSelected(
       state.applications.applications.filter(
-        (app) => app.Postcode == params.postcode
+        (app) => app["Application reference number"] == params.postcode
       )[0]
     );
   }, [state]);
@@ -82,7 +89,8 @@ const Object = () => {
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [signOff, setSignOff] = useState("Regards,\n");
-  const [optIn, setOptIn] = useState(false);
+  const [optIn, setOptIn] = useState();
+  const [email, setEmail] = useState("");
 
   const [councillors, setCouncillors] = useState([]);
   const [cc, setCC] = useState("");
@@ -90,7 +98,22 @@ const Object = () => {
   useEffect(() => {
     if (selected?.Applicant) {
       setBody(
-        `To whom it may concern,\n\nI am writing to object to application number ${selected["Application reference number"]} for a short-term let license, in the name of ${selected["Applicant"]} at ${selected["Premises address"]}.`
+        `To whom it may concern,\n\nI am writing to object to application number ${selected["Application reference number"]} for a short-term let licence, in the name of ${selected["Applicant"]} at ${selected["Premises address"]}.
+
+Our city is in the midst of a catastrophic housing crisis, and I believe that every holiday let is one less home for ordinary residents to live in. This development would exacerbate the crisis for all residents of the city, displacing people from their communities, driving up rents, and further reducing the desperately needed numbers of homes in the city. Planning decisions should first and foremost cater for the needs and interests of the city’s residents, and this proposed development runs counter to that.
+
+Moreover, I believe that this development is incompatible with planning and development policies at both a local and national level.
+
+The Edinburgh City Plan 2030 states that “[p]roposals which would result in the loss of residential dwellings through demolition or a change of use will not be permitted”. Every proposed holiday let could be a residential dwelling, and I do not believe that granting this application is in keeping with the policies outlined in the City Plan.
+
+The plan goes on to state that “[d]evelopments, including change of use which would have a materially detrimental effect on the living conditions of nearby residents, will not be permitted.” The impact of high concentrations of holiday lets on nearby rent levels is well documented, and I believe that granting this application will exacerbate the hardship faced by tenants in the community, and therefore is not in keeping with the City Plan.
+
+The Scottish Government's National Planning Framework 4 states:
+“Development proposals for the reuse of existing buildings for short term holiday letting should not be supported if it would result in:
+• an unacceptable impact on the local amenity or character of a neighbourhood or area; or
+• the loss of residential accommodation where such loss is not outweighed by local economic benefits.”
+
+I strongly maintain that this development would have detrimental effects on the local amenity and character of the area, by removing what should be residential accommodation from local supply. I see no evidence that any local economic benefits outweigh this loss. It also seems clear to me that this development will place a significant burden on local services such as rubbish collection and public transport, negatively impacting all local residents within the community.`
       );
       setSubject(
         `Objecting to STL application ${selected["Application reference number"]}`
@@ -137,6 +160,43 @@ const Object = () => {
   };
 
   console.log(selected);
+
+  const [highlight, setHighlight] = useState(false);
+
+  const handleOptin = async () => {
+    console.log("opting in: ", optIn);
+    if (optIn) {
+      const body = {
+        email: email,
+        msg: "Are you happy for Living Rent to contact you by email about this campaign and others like it? - Yes",
+        source: window.location["href"].toString(),
+      };
+
+      console.log(body);
+      const response = await axios.post(
+        "https://long-ruby-narwhal-sock.cyclic.app/api/optin",
+        body
+      );
+      console.log(response);
+    } else {
+      console.log("not opted in");
+    }
+  };
+
+  if (state.applications.isLoading) {
+    return (
+      <div className="landing">
+        <div className="landingContainer">
+          <div className="loading">
+            <Loading size={"1rem"} dots={3} background={"rgb(255,255,255)"} />
+            <h1 className="bebas header header3">
+              Loading - this may take a few seconds
+            </h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -194,15 +254,102 @@ const Object = () => {
               </div>
             </div>
 
-            <Accordion 
-            defaultExpanded
-            className="talkingPoints" sx={{backgroundColor: 'rgba(255,255,255,0.9)'}}>
+            <Accordion
+              defaultExpanded
+              className="talkingPoints"
+              sx={{
+                backgroundColor: "rgba(255,255,255,0.9)",
+                borderRadius: "0px !important",
+              }}
+            >
               <AccordionSummary
-              
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="details"
-                sx={{padding: '0', marginY: '-10px'}}
+                sx={{ padding: "0", marginY: "-10px" }}
+              >
+                <div
+                  className="bebas header3 header"
+                  style={{ color: "black", marginLeft: "10px" }}
+                >
+                  Writing a great objection
+                </div>
+              </AccordionSummary>
+              <AccordionDetails sx={{ padding: 0, marginRight: "10px" }}>
+                <ul style={{ textAlign: "left" }}>
+                  <li style={{ display: "none" }}>
+                    You can use the buttons below to add paragraphs about
+                    specific issues to your objection.
+                  </li>
+                  <li>
+                    There is a template letter that you can use,{" "}
+                    <b>
+                      but your objection will be more impactful if you
+                      personalise the text and add your own reasons for opposing
+                      the licence.
+                    </b>
+                  </li>
+                  <li>
+                    Remember to be civil - don't give officials a reason to
+                    throw your objection out!
+                  </li>
+                  <li>
+                    If you are local to the application, make sure you mention
+                    that - the more it would personally impact you, the more
+                    weight your objection will have.
+                  </li>
+                </ul>
+
+                <center style={{ display: "none" }}>
+                  <Button
+                    variant="contained"
+                    sx={{ margin: 1 }}
+                    onClick={() =>
+                      setBody(
+                        (body) => body + "\n\nDraft paragraph about noise."
+                      )
+                    }
+                    style={BtnStyleSmall}
+                  >
+                    Noise
+                  </Button>
+                  <Button
+                    variant="contained"
+                    sx={{ margin: 1 }}
+                    onClick={() =>
+                      setBody(
+                        (body) => body + "\n\nDraft paragraph about amenities."
+                      )
+                    }
+                    style={BtnStyleSmall}
+                  >
+                    Amenities
+                  </Button>
+                  <Button
+                    variant="contained"
+                    sx={{ margin: 1 }}
+                    onClick={() =>
+                      setBody(
+                        (body) => body + "\n\nDraft paragraph about supply."
+                      )
+                    }
+                    style={BtnStyleSmall}
+                  >
+                    Supply
+                  </Button>
+                </center>
+              </AccordionDetails>
+            </Accordion>
+
+            <Accordion
+              className="talkingPoints"
+              sx={{ backgroundColor: "rgba(255,255,255,0.9)" }}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="details"
+                sx={{ padding: "0", marginY: "-10px" }}
               >
                 <div
                   className="bebas header3 header"
@@ -211,120 +358,41 @@ const Object = () => {
                   Application details:
                 </div>{" "}
               </AccordionSummary>
-              <AccordionDetails sx={{padding: 0, marginRight: '10px'}}>
-                {selected? 
-                <ul>
-                  <li>
-                    <b>Address:</b> {selected["Premises address"]},{" "}
-                    {selected["Postcode"]}
-                  </li>
-                  <li>
-                    <b>Premises:</b> {selected["Type of Premises"]}
-                  </li>
-                  <li>
-                    <b>Maximum occupancy:</b> {selected["Maximum Occupancy"]}
-                  </li>
-                  <li>
-                    <b>Number of bedrooms:</b> {selected["Number of Berooms"]}
-                  </li>
-                  <li>
-                    <b>Let type:</b> {selected["Short Term Let Type"]}
-                  </li>
-                  <li>
-                    <b>EPC rating:</b> {selected["EPC rating"]}
-                  </li>
-                  <li>
-                    <b>Reference no.:</b>{" "}
-                    {selected["Application reference number"]}
-                  </li>
-                  <li>
-                    <b>Applicant:</b> {selected['Applicant']}
-                  </li>
-                </ul> :<>Loading...</>}
+              <AccordionDetails sx={{ padding: 0, marginRight: "10px" }}>
+                {selected ? (
+                  <ul>
+                    <li>
+                      <b>Address:</b> {selected["Premises address"]},{" "}
+                      {selected["Postcode"]}
+                    </li>
+                    <li>
+                      <b>Premises:</b> {selected["Type of Premises"]}
+                    </li>
+                    <li>
+                      <b>Maximum occupancy:</b> {selected["Maximum Occupancy"]}
+                    </li>
+                    <li>
+                      <b>Number of bedrooms:</b> {selected["Number of Berooms"]}
+                    </li>
+                    <li>
+                      <b>Let type:</b> {selected["Short Term Let Type"]}
+                    </li>
+                    <li>
+                      <b>EPC rating:</b> {selected["EPC rating"]}
+                    </li>
+                    <li>
+                      <b>Reference no.:</b>{" "}
+                      {selected["Application reference number"]}
+                    </li>
+                    <li>
+                      <b>Applicant:</b> {selected["Applicant"]}
+                    </li>
+                  </ul>
+                ) : (
+                  <>Loading...</>
+                )}
               </AccordionDetails>
             </Accordion>
-
-
-            <Accordion 
-            defaultExpanded
-            className="talkingPoints" sx={{backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '0px !important'}}>
-              <AccordionSummary
-              
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="details"
-                sx={{padding: '0', marginY: '-10px'}}
-              >
-                <div
-                  className="bebas header3 header"
-                  style={{ color: "black", marginLeft: "10px" }}
-                >
-                Writing a great objection
-                </div>
-              </AccordionSummary>
-              <AccordionDetails sx={{padding: 0, marginRight: '10px'}}>
-              <ul style={{ textAlign: "left" }}>
-                <li>
-                  You can use the buttons below to add paragraphs about specific
-                  issues to your objection.
-                </li>
-                <li>
-                  You <em>can</em> use the template text,{" "}
-                  <b>
-                    but your objection will be more impactful if you personalise
-                    the text.
-                  </b>
-                </li>
-                <li>
-                  Remember to be civil - don't give officials a reason to throw
-                  your objection out!
-                </li>
-                <li>
-                  If you are local to the application, make sure you mention
-                  that - the more it would personally impact you, the more
-                  weight your objection will have.
-                </li>
-              </ul>
-
-              <center>
-                <Button
-                  variant="contained"
-                  sx={{ margin: 1 }}
-                  onClick={() =>
-                    setBody((body) => body + "\n\nDraft paragraph about noise.")
-                  }
-                  style={BtnStyleSmall}
-                >
-                  Noise
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{ margin: 1 }}
-                  onClick={() =>
-                    setBody(
-                      (body) => body + "\n\nDraft paragraph about amenities."
-                    )
-                  }
-                  style={BtnStyleSmall}
-                >
-                  Amenities
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{ margin: 1 }}
-                  onClick={() =>
-                    setBody(
-                      (body) => body + "\n\nDraft paragraph about supply."
-                    )
-                  }
-                  style={BtnStyleSmall}
-                >
-                  Supply
-                </Button>
-              </center>
-              </AccordionDetails>
-            </Accordion>
-            
           </Grid>
 
           <Grid item xs={12} sm={8} md={7}>
@@ -356,77 +424,144 @@ const Object = () => {
                 minRows={6}
               />
               <br />
-              <FormLabel sx={{ marginLeft: "2.5%" }}>Your details:</FormLabel>
-              <br />
-              <TextField
-                sx={{ width: "95%", margin: "1px 2.5% 7px 2.5%" }}
-                value={signOff}
-                onChange={(e) => setSignOff(e.target.value)}
-                multiline
-                minRows={2}
-                helperText="Make sure you include your address so they know you're an Edinburgh resident!"
-              />
-              <FormGroup sx={{ width: "95%", margin: "1px 2.5% 7px 2.5%" }}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      sx={CheckBoxStyle}
-                      value={optIn}
-                      onChange={() => setOptIn(!optIn)}
-                    />
-                  }
-                  label={
-                    <p style={{ fontSize: "12px", lineHeight: "14px" }}>
-                      I agree to Living Rent contacting me by email about this
-                      campaign and others like it.
-                    </p>
-                  }
+              <div
+                style={{
+                  width: "95%",
+                  margin: "0px 0.5% 2px 0.5%",
+                  padding: "5px 2%",
+                  border:
+                    highlight && signOff == "Regards,\n" && "1px solid red",
+                }}
+              >
+                <FormLabel>Your details:</FormLabel>
+                <br />
+                <TextField
+                  sx={{ width: "99%", margin: "1px 0.5% 7px 0.5%" }}
+                  value={signOff}
+                  onChange={(e) => setSignOff(e.target.value)}
+                  multiline
+                  minRows={2}
+                  helperText="Make sure you include your address so they know you're an Edinburgh resident!"
                 />
-              </FormGroup>
+              </div>
+              <div
+                style={{
+                  width: "95%",
+                  margin: "0px 0.5% 2px 0.5%",
+                  padding: "5px 2%",
+                  border: highlight && email == "" && "1px solid red",
+                }}
+              >
+                <FormLabel sx={{}}>* Your email address:</FormLabel>
+                <br />
+                <TextField
+                  required
+                  sx={{
+                    width: "100%",
+                    borderRadius: "5px",
+                  }}
+                  value={email}
+                  id="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <FormControl
+                sx={{
+                  width: "95%",
+                  margin: "1px 0.5% 7px 0.5%",
+                  padding: "0 2%",
+                  border: highlight && optIn == undefined && "1px red solid",
+                }}
+              >
+                <FormLabel
+                  id="optIn"
+                  sx={{ color: "black !important", fontSize: "small" }}
+                >
+                  * Are you happy for Living Rent to contact you by email about
+                  this campaign and others like it?
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="optIn"
+                  name="radio-buttons-group"
+                  required
+                  onChange={(e) => setOptIn(e.target.value)}
+                >
+                  <FormControlLabel
+                    value={true}
+                    control={<Radio sx={RadioStyle} size="small" />}
+                    label={<span style={{ fontSize: "small" }}>Yes</span>}
+                  />
+                  <FormControlLabel
+                    value={false}
+                    control={<Radio sx={RadioStyle} size="small" />}
+                    label={<span style={{ fontSize: "small" }}>No</span>}
+                  />
+                </RadioGroup>
+              </FormControl>
+              <br />
+              <br />
               <Grid container justifyContent="space-around">
-                {" "}
-                <Button
-                  href={`mailto:council@edinburgh.com?subject=${subject}&cc=${cc}&bcc=${
-                    optIn
-                      ? "stlbjections+OptIn@livingrent.org"
-                      : "stlObjections+OptOut@livingrent.org"
-                  }&body=${
-                    body.replace(/\n/g, "%0A") +
-                    "%0A%0A" +
-                    signOff.replace(/\n/g, "%0A")
-                  }`}
-                  //disabled={signOff == "Regards,\n"}
-                  size="large"
-                  variant="contained"
-                  style={{ ...BtnStyleSmall, margin: 2 }}
-                  onClick={() => {
-                    openModal();
-                  }}
-                >
-                  Send your objection
-                </Button>
-                <Button
-                  //disabled={signOff == "Regards,\n"}
-                  className="hideOnMob"
-                  size="large"
-                  variant="contained"
-                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=council@edinburgh.com&su=${subject}&cc=${cc}&bcc=${
-                    optIn
-                      ? "stlbjections%2BOptIn@livingrent.org"
-                      : "stlObjections%2BOptOut@livingrent.org"
-                  }&body=${
-                    body.replace(/\n/g, "%0A") +
-                    "%0A%0A" +
-                    signOff.replace(/\n/g, "%0A")
-                  }`}
-                  target="_blank"
-                  onClick={() => {
-                    openModal();
-                  }}
-                  style={{ ...BtnStyleSmall, margin: 2 }}
-                >
-                  Send via Gmail
-                </Button>
+                <Grid item>
+                  <div
+                    onClick={() => {
+                      (optIn == undefined || email == "") && setHighlight(true);
+                    }}
+                  >
+                    <Button
+                      href={`mailto:licensing@edinburgh.gov.uk?subject=${subject}&cc=${cc}&bcc=${
+                        optIn
+                          ? "stlbjections+OptIn@livingrent.org"
+                          : "stlObjections+OptOut@livingrent.org"
+                      }&body=${
+                        body.replace(/\n/g, "%0A") +
+                        "%0A%0A" +
+                        signOff.replace(/\n/g, "%0A")
+                      }`}
+                      disabled={optIn == undefined || email == ""}
+                      size="large"
+                      variant="contained"
+                      style={{ ...BtnStyleSmall, margin: 2 }}
+                      onClick={() => {
+                        openModal();
+                        handleOptin();
+                      }}
+                    >
+                      Send your objection
+                    </Button>
+                  </div>
+                </Grid>
+                <Grid item sx={{ display: { xs: "none", sm: "block" } }}>
+                  <div
+                    onClick={() => {
+                      (optIn == undefined || email == "") && setHighlight(true);
+                    }}
+                  >
+                    <Button
+                      className="hideOnMob"
+                      size="large"
+                      variant="contained"
+                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=licensing@edinburgh.gov.uk&su=${subject}&cc=${cc}&bcc=${
+                        optIn
+                          ? "stlbjections%2BOptIn@livingrent.org"
+                          : "stlObjections%2BOptOut@livingrent.org"
+                      }&body=${
+                        body.replace(/\n/g, "%0A") +
+                        "%0A%0A" +
+                        signOff.replace(/\n/g, "%0A")
+                      }`}
+                      target="_blank"
+                      onClick={() => {
+                        openModal();
+                        handleOptin();
+                      }}
+                      disabled={optIn == undefined || email == ""}
+                      style={{ ...BtnStyleSmall, margin: 2 }}
+                    >
+                      Send via Gmail
+                    </Button>
+                  </div>
+                </Grid>
               </Grid>
             </div>
           </Grid>

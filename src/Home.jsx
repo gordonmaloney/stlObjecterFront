@@ -23,7 +23,6 @@ export const Home = () => {
    dispatch(getApplications());
   }, []);
   const state = useSelector((state) => state);
-  console.log(state.applications.applications)
 
 
   useEffect(() => {
@@ -45,6 +44,8 @@ export const Home = () => {
   };
   fetchData();
 
+  const arr = [1,2,3,4,5]
+
   return (
     <div className="landing">
       <div className="landingContainer">
@@ -63,6 +64,8 @@ export const Home = () => {
         <div className={parShow ? "parShow" : "parHide"}>
           <div>
             <center>
+
+              
               <p>
                 Edinburgh is facing an unprecedented housing crisis, and{" "}
                 <b>

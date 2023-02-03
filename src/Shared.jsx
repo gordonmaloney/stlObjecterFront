@@ -1,4 +1,5 @@
 import { checkboxClasses } from "@mui/material/Checkbox";
+import { radioClasses } from "@mui/material";
 
 export const BtnStyle = {
     fontFamily: "Bebas Neue, Roboto",
@@ -31,3 +32,10 @@ padding: '5px 8px 0px 10px',
     },
   };
   
+  export const RadioStyle = {
+    color: "green",
+    [`&, &.${radioClasses.checked}`]: {
+      color: 'green',
+    },
+    marginTop: '-10px', marginBottom: '-10px'
+  }
