@@ -35,14 +35,7 @@ export const Home = () => {
     }, 1000);
   }, []);
 
-  const fetchData = async () => {
-    const response = await fetch("https://stlfetcher.onrender.com/read/");
 
-    if (response) {
-      console.log("API running)");
-    }
-  };
-  fetchData();
 
   const arr = [1,2,3,4,5]
 

@@ -19,6 +19,13 @@ import { HashLink } from "react-router-hash-link";
 import axios from "axios";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import moment from "moment";
+
+
+//tooltip
+import { Tooltip, tooltipClasses } from "@mui/material";
+import { styled } from '@mui/material/styles';
+
 
 //modal imports
 import Box from "@mui/material/Box";
@@ -48,6 +55,26 @@ const style = {
   p: 4,
 };
 
+//tooltip style
+const HtmlTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.white,
+    "&::before": {
+        backgroundColor: '#f5f5f9',
+        border: "1px solid darkgreen"
+      }
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(13),
+    border: '1px solid darkgreen',
+  },
+}));
+
 const Object = () => {
   //Scroll Position
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -62,10 +89,9 @@ const Object = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  console.log(scrollPosition);
 
-  const [selected, setSelected] = useState(0, 0);
-  const [coords, setCoords] = useState(null);
+  const [selected, setSelected] = useState();
+  const [coords, setCoords] = useState(0, 0);
 
   const navigate = useNavigate();
 
@@ -75,14 +101,6 @@ const Object = () => {
     dispatch(getApplications());
   }, []);
   const state = useSelector((state) => state);
-
-  useEffect(() => {
-    setSelected(
-      state.applications.applications.filter(
-        (app) => app["Application reference number"] == params.postcode
-      )[0]
-    );
-  }, [state]);
 
   const params = useParams();
 
@@ -96,9 +114,42 @@ const Object = () => {
   const [cc, setCC] = useState("");
 
   useEffect(() => {
-    if (selected?.Applicant) {
+    let newSelected = state.applications.applications.filter(
+      (app) => app["Application reference number"] == params.postcode
+    )[0];
+
+    setSelected(newSelected);
+  }, [state]);
+
+  const [late, setLate] = useState(false);
+  //Check if date is more than 28 days ago
+  useEffect(() => {
+    if (selected) {
+      let dateToCheck = selected["Date Received"];
+      let checkDate = new Date(moment.unix((dateToCheck - 25569) * 86400)._i);
+      let today = new Date();
+      let monthAgo = new Date(
+        new Date(new Date().setDate(today.getDate() - 28))
+      );
+
+      console.log(monthAgo)
+      console.log(checkDate)
+
+      if (checkDate < monthAgo) {
+        setLate(true);
+      }
+    }
+  }, [selected]);
+
+
+  console.log(selected)
+
+  useEffect(() => {
+    if (selected) {
       setBody(
-        `To whom it may concern,\n\nI am writing to object to application number ${selected["Application reference number"]} for a short-term let licence, in the name of ${selected["Applicant"]} at ${selected["Premises address"]}.
+        `To whom it may concern,\n\nI am writing to object to application number ${
+          selected["Application reference number"]
+        } for a short-term let licence, ${selected["Applicant"] ? `in the name of ${selected["Applicant"]} ` : ''}at ${selected["Premises address"]}.
 
 Our city is in the midst of a catastrophic housing crisis, and I believe that every holiday let is one less home for ordinary residents to live in. This development would exacerbate the crisis for all residents of the city, displacing people from their communities, driving up rents, and further reducing the desperately needed numbers of homes in the city. Planning decisions should first and foremost cater for the needs and interests of the city’s residents, and this proposed development runs counter to that.
 
@@ -113,17 +164,20 @@ The Scottish Government's National Planning Framework 4 states:
 • an unacceptable impact on the local amenity or character of a neighbourhood or area; or
 • the loss of residential accommodation where such loss is not outweighed by local economic benefits.”
 
-I strongly maintain that this development would have detrimental effects on the local amenity and character of the area, by removing what should be residential accommodation from local supply. I see no evidence that any local economic benefits outweigh this loss. It also seems clear to me that this development will place a significant burden on local services such as rubbish collection and public transport, negatively impacting all local residents within the community.`
+I strongly maintain that this development would have detrimental effects on the local amenity and character of the area, by removing what should be residential accommodation from local supply. I see no evidence that any local economic benefits outweigh this loss. It also seems clear to me that this development will place a significant burden on local services such as rubbish collection and public transport, negatively impacting all local residents within the community.${
+          late
+            ? "\n\nFinally, I understand that this objection is being lodged more than 28 days after the application was received by the council. The reason for this is because the information is not well advertised or easily accessible and I have only just been made aware of the application. I trust that my objection will be considered regardless."
+            : ""
+        }`
       );
       setSubject(
         `Objecting to STL application ${selected["Application reference number"]}`
       );
       fetchData(selected.Postcode);
     }
-  }, [selected]);
+  }, [selected, late]);
 
   const fetchData = async (postcode) => {
-    console.log("fetching...", postcode);
     if (postcode) {
       const response = await fetch(
         `https://api.postcodes.io/postcodes/${postcode}`
@@ -159,12 +213,9 @@ I strongly maintain that this development would have detrimental effects on the 
     }, 500);
   };
 
-  console.log(selected);
-
   const [highlight, setHighlight] = useState(false);
 
   const handleOptin = async () => {
-    console.log("opting in: ", optIn);
     if (optIn) {
       const body = {
         email: email,
@@ -172,14 +223,49 @@ I strongly maintain that this development would have detrimental effects on the 
         source: window.location["href"].toString(),
       };
 
-      console.log(body);
       const response = await axios.post(
         "https://long-ruby-narwhal-sock.cyclic.app/api/optin",
         body
       );
-      console.log(response);
     } else {
       console.log("not opted in");
+    }
+  };
+
+  //creating IP state
+  const [ip, setIP] = useState("");
+  //creating function to load ip address from the API
+  const getIp = async () => {
+    const res = await axios.get("https://geolocation-db.com/json/");
+    setIP(res.data.IPv4);
+  };
+  useEffect(() => {
+    //passing getData method to the lifecycle method
+    getIp();
+  }, []);
+
+  const handleTracker = async () => {
+    console.log("tracking...");
+
+    const body = {
+      source: window.location.host.toString(),
+      campaign: window.location["href"].toString(),
+      hits: 1,
+      uniqueHits: ip,
+      details: {
+        channel: "email",
+        targets: cc.concat([",licensing@edinburgh.gov.uk"]),
+      },
+      optins: optIn,
+    };
+
+    try {
+      await axios.post(
+        "https://long-ruby-narwhal-sock.cyclic.app/api/tracker",
+        body
+      );
+    } catch {
+      console.log("something's gone wrong");
     }
   };
 
@@ -197,6 +283,29 @@ I strongly maintain that this development would have detrimental effects on the 
       </div>
     );
   }
+
+  const containsNumber = (string) => {
+    if (
+      string.includes("1") ||
+      string.includes("2") ||
+      string.includes("3") ||
+      string.includes("4") ||
+      string.includes("5") ||
+      string.includes("6") ||
+      string.includes("7") ||
+      string.includes("8") ||
+      string.includes("9") ||
+      string.includes("0")
+    ) {
+      return true;
+    }
+  };
+
+  const incomplete =
+    optIn == undefined ||
+    email == "" ||
+    signOff == "Regards,\n" ||
+    !containsNumber(signOff.split(""));
 
   return (
     <>
@@ -384,7 +493,7 @@ I strongly maintain that this development would have detrimental effects on the 
                       <b>Reference no.:</b>{" "}
                       {selected["Application reference number"]}
                     </li>
-                    <li>
+                    <li style={{display: 'none'}}>
                       <b>Applicant:</b> {selected["Applicant"]}
                     </li>
                   </ul>
@@ -430,19 +539,29 @@ I strongly maintain that this development would have detrimental effects on the 
                   margin: "0px 0.5% 2px 0.5%",
                   padding: "5px 2%",
                   border:
-                    highlight && signOff == "Regards,\n" && "1px solid red",
+                    highlight &&
+                    (signOff == "Regards,\n" ||
+                      !containsNumber(signOff.split(""))) &&
+                    "1px solid red",
                 }}
               >
                 <FormLabel>Your details:</FormLabel>
                 <br />
-                <TextField
-                  sx={{ width: "99%", margin: "1px 0.5% 7px 0.5%" }}
-                  value={signOff}
-                  onChange={(e) => setSignOff(e.target.value)}
-                  multiline
-                  minRows={2}
-                  helperText="Make sure you include your address so they know you're an Edinburgh resident!"
-                />
+
+                <HtmlTooltip
+                  disableHoverListener
+                  title={<>Make sure you <u>include your address</u> so they know you're an Edinburgh resident!</>}
+                  placement="top"
+                  arrow
+                >
+                  <TextField
+                    sx={{ width: "99%", margin: "1px 0.5% 7px 0.5%" }}
+                    value={signOff}
+                    onChange={(e) => setSignOff(e.target.value)}
+                    multiline
+                    minRows={2}
+                  />
+                </HtmlTooltip>
               </div>
               <div
                 style={{
@@ -505,7 +624,7 @@ I strongly maintain that this development would have detrimental effects on the 
                 <Grid item>
                   <div
                     onClick={() => {
-                      (optIn == undefined || email == "") && setHighlight(true);
+                      incomplete && setHighlight(true);
                     }}
                   >
                     <Button
@@ -518,13 +637,14 @@ I strongly maintain that this development would have detrimental effects on the 
                         "%0A%0A" +
                         signOff.replace(/\n/g, "%0A")
                       }`}
-                      disabled={optIn == undefined || email == ""}
+                      disabled={incomplete}
                       size="large"
                       variant="contained"
                       style={{ ...BtnStyleSmall, margin: 2 }}
                       onClick={() => {
                         openModal();
                         handleOptin();
+                        handleTracker();
                       }}
                     >
                       Send your objection
@@ -534,7 +654,10 @@ I strongly maintain that this development would have detrimental effects on the 
                 <Grid item sx={{ display: { xs: "none", sm: "block" } }}>
                   <div
                     onClick={() => {
-                      (optIn == undefined || email == "") && setHighlight(true);
+                      (optIn == undefined ||
+                        email == "" ||
+                        !signOff.split("").contains("1")) &&
+                        setHighlight(true);
                     }}
                   >
                     <Button
@@ -554,8 +677,9 @@ I strongly maintain that this development would have detrimental effects on the 
                       onClick={() => {
                         openModal();
                         handleOptin();
+                        handleTracker();
                       }}
-                      disabled={optIn == undefined || email == ""}
+                      disabled={incomplete}
                       style={{ ...BtnStyleSmall, margin: 2 }}
                     >
                       Send via Gmail

@@ -12,6 +12,7 @@ import { BtnStyle, BtnStyleSmall } from "./Shared";
 import { Loading } from "react-loading-dot";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import moment from "moment";
 
 //redux imports
 import { useSelector, useDispatch } from "react-redux";
@@ -105,6 +106,10 @@ export default function Map() {
     processApps();
   }, [applications.length]);
 
+
+
+
+
   //search by postcode logic
   const [userPostcode, setUserPostcode] = useState("");
   const [userLatLong, setUserLatLong] = useState([]);
@@ -123,6 +128,7 @@ export default function Map() {
     setUserLatLong([data.result.latitude, data.result.longitude]);
 
     let distanceArr = latlongs
+      .filter(app => app['Decision Date'] == null)
       .filter((latlong) => latlong.latitude != undefined)
       .map((latlong) => {
         let Entry = {
@@ -241,6 +247,7 @@ export default function Map() {
 
                           {!closest ? (
                             latlongs
+                              .filter(app=>app['Decision Date']==null)
                               .filter(
                                 (latlong) =>
                                   latlong.latitude && latlong.longitude
@@ -256,8 +263,13 @@ export default function Map() {
                                   <Popup>
                                     <div style={{ maxWidth: "100px" }}>
                                       {latlong["Premises address"]}
+                                                                            <br />
                                       <br />
-                                      <br />
+
+                                      {
+                                      //new Date(moment.unix((latlong["Date Received"] - 25569) * 86400)._i).toDateString()
+                                      }
+
                                       <center>
                                         <Button
                                           onClick={() =>
@@ -287,7 +299,7 @@ export default function Map() {
 
                           {userLatLong.length > 1 && (
                             <Marker position={[...userLatLong]} icon={youIcon}>
-                              <Popup></Popup>
+                              <Popup>Your location</Popup>
                             </Marker>
                           )}
                         </MapContainer>
@@ -295,7 +307,7 @@ export default function Map() {
                     )}
                   </center>
                 ) : (
-                  <div></div>
+                  <></>
                 )}
               </div>
             </div>
@@ -342,8 +354,6 @@ export default function Map() {
             </Button>
           )}
         </div></div>
-        <br />
-        <br />
       </center>
       </div>
 
