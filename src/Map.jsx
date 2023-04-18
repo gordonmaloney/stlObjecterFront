@@ -7,12 +7,15 @@ import mapImg from "./map.png";
 import SmallMap from "./smallMap";
 import L from "leaflet";
 import marker from "./icon.png";
+import markerRed from './iconred.png'
 import youMarker from "./youIcon.png";
 import { BtnStyle, BtnStyleSmall } from "./Shared";
 import { Loading } from "react-loading-dot";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import moment from "moment";
+
+import { PlanningApps } from "./PlanningApplications";
 
 //redux imports
 import { useSelector, useDispatch } from "react-redux";
@@ -22,6 +25,13 @@ import { DashboardCustomizeSharp } from "@mui/icons-material";
 const myIcon = new L.Icon({
   iconUrl: marker,
   iconRetinaUrl: marker,
+  popupAnchor: [-0, -0],
+  iconSize: [30, 40],
+});
+
+const myIconRed = new L.Icon({
+  iconUrl: markerRed,
+  iconRetinaUrl: markerRed,
   popupAnchor: [-0, -0],
   iconSize: [30, 40],
 });
@@ -87,6 +97,7 @@ export default function Map() {
         const data = await response.json();
         newApps[i].latitude = data.result.latitude;
         newApps[i].longitude = data.result.longitude;
+        newApps[i].TYPE = "licensing"
 
         setLatlongs((existingItems) => {
           return [
@@ -108,6 +119,39 @@ export default function Map() {
 
 
 
+  const [planningAppsProcessed, setPlanningappsProcessed] = useState([])
+  let newPlanningApps = [...PlanningApps];
+
+  const processPlanningApps = () => {
+    for (let i = 0; i < PlanningApps.length - 1; i++) {
+      newPlanningApps[i] = { ...PlanningApps[i] };
+      const processPlanningApps = async (i) => {
+        const response = await fetch(
+          `https://api.postcodes.io/postcodes/${PlanningApps[i].postcode}`
+        );
+        const data = await response.json();
+        newPlanningApps[i].latitude = data.result.latitude;
+        newPlanningApps[i].longitude = data.result.longitude;
+        newPlanningApps[i].TYPE = "planning"
+
+        setPlanningappsProcessed((existingItems) => {
+          return [
+            ...existingItems.slice(0, i),
+            newPlanningApps[i],
+            ...existingItems.slice(i + 1),
+          ];
+        });
+      };
+      processPlanningApps(i);
+
+      setPlanningappsProcessed(newApps);
+    }
+  };
+
+  console.log(planningAppsProcessed)
+  useEffect(() => {
+    processPlanningApps()
+  }, [])
 
 
   //search by postcode logic
@@ -244,6 +288,41 @@ export default function Map() {
                           }}
                         >
                           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+
+                          {!closest && planningAppsProcessed.map(app => (
+                            <Marker
+                            position={[
+                              app.latitude,
+                              app.longitude,
+                            ]}
+                            icon={myIconRed}
+                          >
+                            <Popup>
+                              <div style={{ maxWidth: "100px" }}>
+                                {app["address"]}
+                                                                      <br />
+                                <br />
+
+                          
+
+                                <center>
+                                  <Button
+                                    onClick={() =>
+                                      navigate(
+                                        `../object/planning/${app["reference"]}`
+                                      )
+                                    }
+                                    variant="contained"
+                                    style={BtnStyle}
+                                  >
+                                    Object
+                                  </Button>
+                                </center>
+                              </div>
+                            </Popup>
+                          </Marker>
+                          ))}
 
                           {!closest ? (
                             latlongs
