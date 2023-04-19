@@ -5,11 +5,10 @@ import Map from "./Map";
 import { Header } from "./Header";
 import { Home } from "./Home";
 import Object from "./ObjectNew";
+import ObjectPlanning from "./ObjectPlanning";
 import axios from "axios";
 
 const App = () => {
-
-
   const handleTracker = async () => {
     const body = {
       source: window.location.host.toString(),
@@ -26,12 +25,14 @@ const App = () => {
   };
 
   useEffect(() => {
-   // handleTracker();
+    // handleTracker();
   }, []);
 
   //wake up API
   const fetchData = async () => {
-    const response = await fetch("https://stls-craper-gordonmaloney.vercel.app/read/");
+    const response = await fetch(
+      "https://stls-craper-gordonmaloney.vercel.app/read/"
+    );
 
     if (response) {
       console.log("API running)");
@@ -63,6 +64,16 @@ const App = () => {
               <div className="outerContainer">
                 <Header />
                 <Object />
+              </div>
+            }
+          />
+
+          <Route
+            path="/planningobjection/:postcode"
+            element={
+              <div className="outerContainer">
+                <Header />
+                <ObjectPlanning />
               </div>
             }
           />

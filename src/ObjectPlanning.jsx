@@ -21,6 +21,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import moment from "moment";
 
+import { PlanningApps } from "./PlanningApplications";
 
 //tooltip
 import { Tooltip, tooltipClasses } from "@mui/material";
@@ -30,10 +31,6 @@ import { styled } from '@mui/material/styles';
 //modal imports
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-
-//redux imports
-import { useSelector, useDispatch } from "react-redux";
-import { getApplications, reset, isError, isLoading } from "./Redux/Slice";
 
 //accordion imports
 import Accordion from "@mui/material/Accordion";
@@ -75,7 +72,7 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   },
 }));
 
-const Object = () => {
+const ObjectPlanning = () => {
   //Scroll Position
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
@@ -95,14 +92,9 @@ const Object = () => {
 
   const navigate = useNavigate();
 
-  //redux handling
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getApplications());
-  }, []);
-  const state = useSelector((state) => state);
-
   const params = useParams();
+
+  console.log(params.postcode)
 
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
@@ -114,12 +106,12 @@ const Object = () => {
   const [cc, setCC] = useState("");
 
   useEffect(() => {
-    let newSelected = state.applications.applications.filter(
-      (app) => app["Application reference number"] == params.postcode
-    )[0];
+   
+    let newSelected = PlanningApps.filter(app => app["reference"].replace('\/', '-').replace('\/', '-') == params.postcode)[0]
 
     setSelected(newSelected);
-  }, [state]);
+  }, []);
+
 
   const [late, setLate] = useState(false);
   //Check if date is more than 28 days ago
@@ -132,8 +124,7 @@ const Object = () => {
         new Date(new Date().setDate(today.getDate() - 28))
       );
 
-      console.log(monthAgo)
-      console.log(checkDate)
+
 
       if (checkDate < monthAgo) {
         setLate(true);
@@ -141,15 +132,13 @@ const Object = () => {
     }
   }, [selected]);
 
-
   console.log(selected)
+
 
   useEffect(() => {
     if (selected) {
       setBody(
-        `To whom it may concern,\n\nI am writing to object to application number ${
-          selected["Application reference number"]
-        } for a short-term let licence, ${selected["Applicant"] ? `in the name of ${selected["Applicant"]} ` : ''}at ${selected["Premises address"]}.
+        `To whom it may concern,\n\nI am writing to comment in opposition to application reference number ${selected["reference"]} at ${selected["address"]}.
 
 Our city is in the midst of a catastrophic housing crisis, and I believe that every holiday let is one less home for ordinary residents to live in. This development would exacerbate the crisis for all residents of the city, displacing people from their communities, driving up rents, and further reducing the desperately needed numbers of homes in the city. Planning decisions should first and foremost cater for the needs and interests of the city’s residents, and this proposed development runs counter to that.
 
@@ -171,9 +160,9 @@ I strongly maintain that this development would have detrimental effects on the 
         }`
       );
       setSubject(
-        `Objecting to STL application ${selected["Application reference number"]}`
+        `Objecting to STL application ${selected["reference"]}`
       );
-      fetchData(selected.Postcode);
+      fetchData(selected.postcode);
     }
   }, [selected, late]);
 
@@ -269,20 +258,7 @@ I strongly maintain that this development would have detrimental effects on the 
     }
   };
 
-  if (state.applications.isLoading) {
-    return (
-      <div className="landing">
-        <div className="landingContainer">
-          <div className="loading">
-            <Loading size={"1rem"} dots={3} background={"rgb(255,255,255)"} />
-            <h1 className="bebas header header3">
-              Loading - this may take a few seconds
-            </h1>
-          </div>
-        </div>
-      </div>
-    );
-  }
+
 
   const containsNumber = (string) => {
     if (
@@ -471,30 +447,14 @@ I strongly maintain that this development would have detrimental effects on the 
                 {selected ? (
                   <ul>
                     <li>
-                      <b>Address:</b> {selected["Premises address"]},{" "}
-                      {selected["Postcode"]}
+                      <b>Application summary:</b> {selected["title"]}
                     </li>
                     <li>
-                      <b>Premises:</b> {selected["Type of Premises"]}
+                      <b>Address:</b> {selected["address"]}
                     </li>
                     <li>
-                      <b>Maximum occupancy:</b> {selected["Maximum Occupancy"]}
-                    </li>
-                    <li>
-                      <b>Number of bedrooms:</b> {selected["Number of Berooms"]}
-                    </li>
-                    <li>
-                      <b>Let type:</b> {selected["Short Term Let Type"]}
-                    </li>
-                    <li>
-                      <b>EPC rating:</b> {selected["EPC rating"]}
-                    </li>
-                    <li>
-                      <b>Reference no.:</b>{" "}
-                      {selected["Application reference number"]}
-                    </li>
-                    <li style={{display: 'none'}}>
-                      <b>Applicant:</b> {selected["Applicant"]}
+                      <b>Reference: </b>
+                      {selected["reference"]}
                     </li>
                   </ul>
                 ) : (
@@ -628,7 +588,7 @@ I strongly maintain that this development would have detrimental effects on the 
                     }}
                   >
                     <Button
-                      href={`mailto:licensing@edinburgh.gov.uk?subject=${subject}&cc=${cc}&bcc=${
+                      href={`mailto:planning@edinburgh.gov.uk?subject=${subject}&cc=${cc}&bcc=${
                         optIn
                           ? "stlbjections+OptIn@livingrent.org"
                           : "stlObjections+OptOut@livingrent.org"
@@ -664,7 +624,7 @@ I strongly maintain that this development would have detrimental effects on the 
                       className="hideOnMob"
                       size="large"
                       variant="contained"
-                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=licensing@edinburgh.gov.uk&su=${subject}&cc=${cc}&bcc=${
+                      href={`https://mail.google.com/mail/?view=cm&fs=1&to= planning@edinburgh.gov.uk&su=${subject}&cc=${cc}&bcc=${
                         optIn
                           ? "stlbjections%2BOptIn@livingrent.org"
                           : "stlObjections%2BOptOut@livingrent.org"
@@ -719,4 +679,4 @@ I strongly maintain that this development would have detrimental effects on the 
   );
 };
 
-export default Object;
+export default ObjectPlanning;

@@ -310,7 +310,7 @@ export default function Map() {
                                   <Button
                                     onClick={() =>
                                       navigate(
-                                        `../object/planning/${app["reference"]}`
+                                        `../planningobjection/${app["reference"].replace('\/', '-').replace('\/', '-')}`
                                       )
                                     }
                                     variant="contained"
