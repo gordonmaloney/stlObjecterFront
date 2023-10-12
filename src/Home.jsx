@@ -3,6 +3,8 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { BtnStyle } from "./Shared";
 
+import LRlogo from './LRlogo.jpeg'
+
 //redux imports
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -101,7 +103,7 @@ export const Home = () => {
                   float: "right",
                   marginTop: "-30px",
                 }}
-                src="https://assets.nationbuilder.com/livingrent/sites/1/meta_images/original/Copy_of_Best_logo.jpg?1603281606"
+                src={LRlogo}
               />
             </a>
           </div>

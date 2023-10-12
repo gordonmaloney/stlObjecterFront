@@ -456,6 +456,9 @@ I strongly maintain that this development would have detrimental effects on the 
                       <b>Reference: </b>
                       {selected["reference"]}
                     </li>
+                    <li>
+                      <b>Link: </b> <u><a href={selected["link"]} target="_blank">Click here</a></u>
+                    </li>
                   </ul>
                 ) : (
                   <>Loading...</>

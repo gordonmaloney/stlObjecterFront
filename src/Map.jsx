@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Object from "./Object-Old";
-import { Button, ButtonBase, TextField, FormLabel} from "@mui/material";
+import { Button, ButtonBase, TextField, FormLabel } from "@mui/material";
 import mapImg from "./map.png";
 import SmallMap from "./smallMap";
 import L from "leaflet";
 import marker from "./icon.png";
-import markerRed from './iconred.png'
+import markerRed from "./iconred.png";
 import youMarker from "./youIcon.png";
 import { BtnStyle, BtnStyleSmall } from "./Shared";
 import { Loading } from "react-loading-dot";
@@ -97,7 +97,7 @@ export default function Map() {
         const data = await response.json();
         newApps[i].latitude = data.result.latitude;
         newApps[i].longitude = data.result.longitude;
-        newApps[i].TYPE = "licensing"
+        newApps[i].TYPE = "licensing";
 
         setLatlongs((existingItems) => {
           return [
@@ -114,45 +114,56 @@ export default function Map() {
   };
 
   useEffect(() => {
-    processApps();
+    //no longer processing LICENSING applications
+    //processApps();
   }, [applications.length]);
 
-
-
-  const [planningAppsProcessed, setPlanningappsProcessed] = useState([])
+  const [planningAppsProcessed, setPlanningappsProcessed] = useState([]);
   let newPlanningApps = [...PlanningApps];
 
+  console.log(newPlanningApps)
   const processPlanningApps = () => {
     for (let i = 0; i < PlanningApps.length - 1; i++) {
       newPlanningApps[i] = { ...PlanningApps[i] };
       const processPlanningApps = async (i) => {
-        const response = await fetch(
-          `https://api.postcodes.io/postcodes/${PlanningApps[i].postcode}`
-        );
-        const data = await response.json();
-        newPlanningApps[i].latitude = data.result.latitude;
-        newPlanningApps[i].longitude = data.result.longitude;
-        newPlanningApps[i].TYPE = "planning"
+        try {
+          const response = await fetch(
+            `https://api.postcodes.io/postcodes/${PlanningApps[i].postcode}`
+          );
+          const data = await response.json();
+          if (newPlanningApps[i]?.latitude)
+            newPlanningApps[i].latitude = data.result.latitude;
+          if (newPlanningApps[i]?.longitude)
+            newPlanningApps[i].longitude = data.result.longitude;
+          newPlanningApps[i].TYPE = "planning";
 
-        setPlanningappsProcessed((existingItems) => {
-          return [
-            ...existingItems.slice(0, i),
-            newPlanningApps[i],
-            ...existingItems.slice(i + 1),
-          ];
-        });
+          setPlanningappsProcessed((existingItems) => {
+            return [
+              ...existingItems.slice(0, i),
+              newPlanningApps[i],
+              ...existingItems.slice(i + 1),
+            ];
+          });
+        } catch {
+          setPlanningappsProcessed((existingItems) => {
+            return [
+              ...existingItems.slice(0, i),
+              newPlanningApps[i],
+              ...existingItems.slice(i + 1),
+            ];
+          });
+        }
       };
-      processPlanningApps(i);
+      //processPlanningApps(i);
 
-      setPlanningappsProcessed(newApps);
+      setPlanningappsProcessed(PlanningApps);
     }
   };
 
-  console.log(planningAppsProcessed)
+  console.log(planningAppsProcessed);
   useEffect(() => {
-    processPlanningApps()
-  }, [])
-
+    processPlanningApps();
+  }, []);
 
   //search by postcode logic
   const [userPostcode, setUserPostcode] = useState("");
@@ -166,13 +177,13 @@ export default function Map() {
     );
     const data = await response.json();
 
-    data?.error && setInvalid(true)
-    !data?.error && setInvalid(false)
+    data?.error && setInvalid(true);
+    !data?.error && setInvalid(false);
 
     setUserLatLong([data.result.latitude, data.result.longitude]);
 
-    let distanceArr = latlongs
-      .filter(app => app['Decision Date'] == null)
+    let distanceArr = planningAppsProcessed
+      .filter((app) => app["Decision Date"] == null)
       .filter((latlong) => latlong.latitude != undefined)
       .map((latlong) => {
         let Entry = {
@@ -260,100 +271,59 @@ export default function Map() {
               <div className={mapClass}>
                 {mapClass == "mapBig" ? (
                   <center>
-                    {state.applications.isLoading || latlongs.length == 0 ? (
-                      <div className="loading">
-                        <Loading
-                          size={"1rem"}
-                          dots={3}
-                          background={"rgb(255,255,255)"}
-                        />
-                        <h1 className="bebas header header3">
-                          Loading - this may take a few seconds
-                        </h1>
-                      </div>
-                    ) : (
-                      <>
-                        <MapContainer
-                          ref={setMap}
-                          center={
-                            userLatLong.length > 0
-                              ? userLatLong
-                              : [55.95005, -3.21494]
-                          }
-                          zoom={11}
-                          style={{
-                            width: `100%`,
-                            height: `320px`,
-                            margin: "0 auto",
-                          }}
-                        >
-                          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                    {
+                      //state.applications.isLoading ||
+                      planningAppsProcessed.length == 0 ? (
+                        <div className="loading">
+                          <Loading
+                            size={"1rem"}
+                            dots={3}
+                            background={"rgb(255,255,255)"}
+                          />
 
-
-                          {!closest && planningAppsProcessed.map(app => (
-                            <Marker
-                            position={[
-                              app.latitude,
-                              app.longitude,
-                            ]}
-                            icon={myIconRed}
+                          <h1 className="bebas header header3">
+                            Loading - this may take a few seconds
+                          </h1>
+                        </div>
+                      ) : (
+                        <>
+                          <MapContainer
+                            ref={setMap}
+                            center={
+                              userLatLong.length > 0
+                                ? userLatLong
+                                : [55.95005, -3.21494]
+                            }
+                            zoom={11}
+                            style={{
+                              width: `100%`,
+                              height: `320px`,
+                              margin: "0 auto",
+                            }}
                           >
-                            <Popup>
-                              <div style={{ maxWidth: "100px" }}>
-                                {app["address"]}
-                                                                      <br />
-                                <br />
+                            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-                          
-
-                                <center>
-                                  <Button
-                                    onClick={() =>
-                                      navigate(
-                                        `../planningobjection/${app["reference"].replace('\/', '-').replace('\/', '-')}`
-                                      )
-                                    }
-                                    variant="contained"
-                                    style={BtnStyle}
-                                  >
-                                    Object
-                                  </Button>
-                                </center>
-                              </div>
-                            </Popup>
-                          </Marker>
-                          ))}
-
-                          {!closest ? (
-                            latlongs
-                              .filter(app=>app['Decision Date']==null)
-                              .filter(
-                                (latlong) =>
-                                  latlong.latitude && latlong.longitude
-                              )
-                              .map((latlong) => (
+                            {!closest &&
+                              planningAppsProcessed.map((app) => (
                                 <Marker
-                                  position={[
-                                    latlong.latitude,
-                                    latlong.longitude,
-                                  ]}
+                                  position={[app.latitude, app.longitude]}
                                   icon={myIcon}
                                 >
                                   <Popup>
                                     <div style={{ maxWidth: "100px" }}>
-                                      {latlong["Premises address"]}
-                                                                            <br />
+                                      {app["address"]}
                                       <br />
-
-                                      {
-                                      //new Date(moment.unix((latlong["Date Received"] - 25569) * 86400)._i).toDateString()
-                                      }
+                                      <br />
 
                                       <center>
                                         <Button
                                           onClick={() =>
                                             navigate(
-                                              `../object/${latlong["Application reference number"]}`
+                                              `../planningobjection/${app[
+                                                "reference"
+                                              ]
+                                                .replace("/", "-")
+                                                .replace("/", "-")}`
                                             )
                                           }
                                           variant="contained"
@@ -365,25 +335,75 @@ export default function Map() {
                                     </div>
                                   </Popup>
                                 </Marker>
-                              ))
-                          ) : (
-                            <CustomMarker
-                              isActive
-                              map={map}
-                              data={{
-                                position: [closest.latitude, closest.longitude],
-                              }}
-                            />
-                          )}
+                              ))}
 
-                          {userLatLong.length > 1 && (
-                            <Marker position={[...userLatLong]} icon={youIcon}>
-                              <Popup>Your location</Popup>
-                            </Marker>
-                          )}
-                        </MapContainer>
-                      </>
-                    )}
+                            {!closest ? (
+                              latlongs
+                                .filter((app) => app["Decision Date"] == null)
+                                .filter(
+                                  (latlong) =>
+                                    latlong.latitude && latlong.longitude
+                                )
+                                .map((latlong) => (
+                                  <Marker
+                                    position={[
+                                      latlong.latitude,
+                                      latlong.longitude,
+                                    ]}
+                                    icon={myIcon}
+                                  >
+                                    <Popup>
+                                      <div style={{ maxWidth: "100px" }}>
+                                        {latlong["Premises address"]}
+                                        <br />
+                                        <br />
+
+                                        {
+                                          //new Date(moment.unix((latlong["Date Received"] - 25569) * 86400)._i).toDateString()
+                                        }
+
+                                        <center>
+                                          <Button
+                                            onClick={() =>
+                                              navigate(
+                                                `../object/${latlong["Application reference number"]}`
+                                              )
+                                            }
+                                            variant="contained"
+                                            style={BtnStyle}
+                                          >
+                                            Object
+                                          </Button>
+                                        </center>
+                                      </div>
+                                    </Popup>
+                                  </Marker>
+                                ))
+                            ) : (
+                              <CustomMarker
+                                isActive
+                                map={map}
+                                data={{
+                                  position: [
+                                    closest.latitude,
+                                    closest.longitude,
+                                  ],
+                                }}
+                              />
+                            )}
+
+                            {userLatLong.length > 1 && (
+                              <Marker
+                                position={[...userLatLong]}
+                                icon={youIcon}
+                              >
+                                <Popup>Your location</Popup>
+                              </Marker>
+                            )}
+                          </MapContainer>
+                        </>
+                      )
+                    }
                   </center>
                 ) : (
                   <></>
@@ -393,50 +413,61 @@ export default function Map() {
           </>
         )}
 
-<center>
-        <div
-          className="objectCont"
-          style={{ marginTop: "10px", maxWidth: "300px", borderRadius: '10px' }}
-        >
-          <div className="email" style={{padding: '10px', borderRadius: '2px'}}>
-   
-          <FormLabel> 
-          Or enter your postcode to find the closest application to you:
-          </FormLabel>
-          <TextField
-            id="Postcode"
-            placeholder="Your postcode..."
-            sx={{
-              borderRadius: "5px",
-              marginY: "10px",
+        <center>
+          <div
+            className="objectCont"
+            style={{
+              marginTop: "10px",
+              maxWidth: "300px",
+              borderRadius: "10px",
             }}
-            value={userPostcode}
-            onChange={(e) => setUserPostcode(e.target.value)}
-            helperText={invalid && <span style={{color: 'red'}}>Invalid postcode! Try again</span>}
-          />
-          <Button
-            sx={{...BtnStyleSmall, display: 'block'}}
-            onClick={() => searchByPostcode(userPostcode)}
           >
-            Search
-          </Button>
-          {closest && (
-            <Button
-              sx={{ ...BtnStyleSmall, marginY: "10px" }}
-              onClick={() => {
-                setClosest("");
-                setUserLatLong([]);
-                setUserPostcode("");
-              }}
+            <div
+              className="email"
+              style={{ padding: "10px", borderRadius: "2px" }}
             >
-              Show all applications
-            </Button>
-          )}
-        </div></div>
-      </center>
+              <FormLabel>
+                Or enter your postcode to find the closest application to you:
+              </FormLabel>
+              <TextField
+                id="Postcode"
+                placeholder="Your postcode..."
+                sx={{
+                  borderRadius: "5px",
+                  marginY: "10px",
+                }}
+                value={userPostcode}
+                onChange={(e) => setUserPostcode(e.target.value)}
+                helperText={
+                  invalid && (
+                    <span style={{ color: "red" }}>
+                      Invalid postcode! Try again
+                    </span>
+                  )
+                }
+              />
+              <Button
+                sx={{ ...BtnStyleSmall, display: "block" }}
+                onClick={() => searchByPostcode(userPostcode)}
+              >
+                Search
+              </Button>
+              {closest && (
+                <Button
+                  sx={{ ...BtnStyleSmall, marginY: "10px" }}
+                  onClick={() => {
+                    setClosest("");
+                    setUserLatLong([]);
+                    setUserPostcode("");
+                  }}
+                >
+                  Show all applications
+                </Button>
+              )}
+            </div>
+          </div>
+        </center>
       </div>
-
-     
     </div>
   );
 }
