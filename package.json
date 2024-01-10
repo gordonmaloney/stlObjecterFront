@@ -26,11 +26,17 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "google-auth-library": "^9.4.1",
+    "googleapis": "^129.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "get-applications": "node ./scripts/getApplications.mjs"
   },
   "eslintConfig": {
     "extends": [
