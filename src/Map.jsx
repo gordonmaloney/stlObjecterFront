@@ -15,8 +15,6 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import moment from "moment";
 
-import { PlanningApps } from "./PlanningApplications";
-
 //redux imports
 import { useSelector, useDispatch } from "react-redux";
 import { getApplications, reset, isError, isLoading } from "./Redux/Slice";
@@ -85,86 +83,6 @@ export default function Map() {
     setMapClass("mapSmall");
   };
 
-  let newApps = [...applications];
-
-  const processApps = () => {
-    for (let i = 0; i < applications.length - 1; i++) {
-      newApps[i] = { ...applications[i] };
-      const processApp = async (i) => {
-        const response = await fetch(
-          `https://api.postcodes.io/postcodes/${applications[i].Postcode}`
-        );
-        const data = await response.json();
-        newApps[i].latitude = data.result.latitude;
-        newApps[i].longitude = data.result.longitude;
-        newApps[i].TYPE = "licensing";
-
-        setLatlongs((existingItems) => {
-          return [
-            ...existingItems.slice(0, i),
-            newApps[i],
-            ...existingItems.slice(i + 1),
-          ];
-        });
-      };
-      processApp(i);
-
-      setLatlongs(newApps);
-    }
-  };
-
-  useEffect(() => {
-    //no longer processing LICENSING applications
-    //processApps();
-  }, [applications.length]);
-
-  const [planningAppsProcessed, setPlanningappsProcessed] = useState([]);
-  let newPlanningApps = [...PlanningApps];
-
-  console.log(newPlanningApps)
-  const processPlanningApps = () => {
-    for (let i = 0; i < PlanningApps.length - 1; i++) {
-      newPlanningApps[i] = { ...PlanningApps[i] };
-      const processPlanningApps = async (i) => {
-        try {
-          const response = await fetch(
-            `https://api.postcodes.io/postcodes/${PlanningApps[i].postcode}`
-          );
-          const data = await response.json();
-          if (newPlanningApps[i]?.latitude)
-            newPlanningApps[i].latitude = data.result.latitude;
-          if (newPlanningApps[i]?.longitude)
-            newPlanningApps[i].longitude = data.result.longitude;
-          newPlanningApps[i].TYPE = "planning";
-
-          setPlanningappsProcessed((existingItems) => {
-            return [
-              ...existingItems.slice(0, i),
-              newPlanningApps[i],
-              ...existingItems.slice(i + 1),
-            ];
-          });
-        } catch {
-          setPlanningappsProcessed((existingItems) => {
-            return [
-              ...existingItems.slice(0, i),
-              newPlanningApps[i],
-              ...existingItems.slice(i + 1),
-            ];
-          });
-        }
-      };
-      //processPlanningApps(i);
-
-      setPlanningappsProcessed(PlanningApps);
-    }
-  };
-
-  console.log(planningAppsProcessed);
-  useEffect(() => {
-    processPlanningApps();
-  }, []);
-
   //search by postcode logic
   const [userPostcode, setUserPostcode] = useState("");
   const [userLatLong, setUserLatLong] = useState([]);
@@ -182,16 +100,17 @@ export default function Map() {
 
     setUserLatLong([data.result.latitude, data.result.longitude]);
 
-    let distanceArr = planningAppsProcessed
-      .filter((app) => app["Decision Date"] == null)
-      .filter((latlong) => latlong.latitude != undefined)
+    let distanceArr = state.applications.applications
+      // .filter((app) => app["Decision Date"] == null)
+      .filter((latlong) => latlong.lat != undefined)
       .map((latlong) => {
         let Entry = {
           ...latlong,
           distance:
-            Math.pow(latlong.latitude - data.result.latitude, 2) +
-            Math.pow(latlong.longitude - data.result.longitude, 2),
+            Math.pow(latlong.lat - data.result.latitude, 2) +
+            Math.pow(latlong.lon - data.result.longitude, 2),
         };
+        console.log(Entry)
         return Entry;
       });
     setClosest(
@@ -224,14 +143,14 @@ export default function Map() {
           }}
         >
           <div style={{ maxWidth: "100px" }}>
-            {closest["Premises address"]}
+            {closest.address}
             <br />
             <br />
             <center>
               <Button
                 onClick={() =>
                   navigate(
-                    `../object/${closest["Application reference number"]}`
+                    `../planningobjection/${closest.slug}`
                   )
                 }
                 variant="contained"
@@ -273,7 +192,7 @@ export default function Map() {
                   <center>
                     {
                       //state.applications.isLoading ||
-                      planningAppsProcessed.length == 0 ? (
+                      state.applications.length == 0 ? (
                         <div className="loading">
                           <Loading
                             size={"1rem"}
@@ -304,14 +223,15 @@ export default function Map() {
                             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
                             {!closest &&
-                              planningAppsProcessed.map((app) => (
+                              state.applications.applications.map((app) => (
                                 <Marker
-                                  position={[app.latitude, app.longitude]}
+                                  position={[app.lat, app.lon]}
                                   icon={myIcon}
+                                  key={app.refNo}
                                 >
                                   <Popup>
                                     <div style={{ maxWidth: "100px" }}>
-                                      {app["address"]}
+                                      {app.address}
                                       <br />
                                       <br />
 
@@ -319,11 +239,7 @@ export default function Map() {
                                         <Button
                                           onClick={() =>
                                             navigate(
-                                              `../planningobjection/${app[
-                                                "reference"
-                                              ]
-                                                .replace("/", "-")
-                                                .replace("/", "-")}`
+                                              `../planningobjection/${app.slug}`
                                             )
                                           }
                                           variant="contained"
@@ -339,22 +255,22 @@ export default function Map() {
 
                             {!closest ? (
                               latlongs
-                                .filter((app) => app["Decision Date"] == null)
+                                // .filter((app) => app["Decision Date"] == null)
                                 .filter(
                                   (latlong) =>
-                                    latlong.latitude && latlong.longitude
+                                    latlong.lat && latlong.lon
                                 )
                                 .map((latlong) => (
                                   <Marker
                                     position={[
-                                      latlong.latitude,
-                                      latlong.longitude,
+                                      latlong.lat,
+                                      latlong.lon,
                                     ]}
                                     icon={myIcon}
                                   >
                                     <Popup>
                                       <div style={{ maxWidth: "100px" }}>
-                                        {latlong["Premises address"]}
+                                        {latlong.address}
                                         <br />
                                         <br />
 
@@ -366,7 +282,7 @@ export default function Map() {
                                           <Button
                                             onClick={() =>
                                               navigate(
-                                                `../object/${latlong["Application reference number"]}`
+                                                `../object/${latlong.slug}`
                                               )
                                             }
                                             variant="contained"
@@ -385,8 +301,8 @@ export default function Map() {
                                 map={map}
                                 data={{
                                   position: [
-                                    closest.latitude,
-                                    closest.longitude,
+                                    closest.lat,
+                                    closest.lon,
                                   ],
                                 }}
                               />
