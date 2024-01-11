@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { Loading } from "react-loading-dot/lib";
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Button, RadioGroup, Radio } from "@mui/material";
 import SmallMap from "./smallMap";
 import { Councillors } from "./Councillors";
@@ -20,8 +21,7 @@ import axios from "axios";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import moment from "moment";
-
-import { PlanningApps } from "./PlanningApplications";
+import { getApplications } from "./Redux/Slice";
 
 //tooltip
 import { Tooltip, tooltipClasses } from "@mui/material";
@@ -96,6 +96,12 @@ const ObjectPlanning = () => {
 
   console.log(params.postcode)
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getApplications());
+  }, []);
+  const state = useSelector((state) => state);
+
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [signOff, setSignOff] = useState("Regards,\n");
@@ -106,25 +112,24 @@ const ObjectPlanning = () => {
   const [cc, setCC] = useState("");
 
   useEffect(() => {
-   
-    let newSelected = PlanningApps.filter(app => app["reference"].replace('\/', '-').replace('\/', '-') == params.postcode)[0]
+    let newSelected = state.applications.applications.filter(
+      (app) => app.slug == params.postcode
+    )[0];
 
+    console.log('newSelected', newSelected);
     setSelected(newSelected);
-  }, []);
+  }, [state]);
 
 
   const [late, setLate] = useState(false);
   //Check if date is more than 28 days ago
   useEffect(() => {
     if (selected) {
-      let dateToCheck = selected["Date Received"];
-      let checkDate = new Date(moment.unix((dateToCheck - 25569) * 86400)._i);
+      const checkDate = moment(selected.received, "DD-MM-YYYY").toDate()
       let today = new Date();
       let monthAgo = new Date(
         new Date(new Date().setDate(today.getDate() - 28))
       );
-
-
 
       if (checkDate < monthAgo) {
         setLate(true);
@@ -138,7 +143,7 @@ const ObjectPlanning = () => {
   useEffect(() => {
     if (selected) {
       setBody(
-        `To whom it may concern,\n\nI am writing to comment in opposition to application reference number ${selected["reference"]} at ${selected["address"]}.
+        `To whom it may concern,\n\nI am writing to comment in opposition to application reference number ${selected.refNo} at ${selected.address}.
 
 Our city is in the midst of a catastrophic housing crisis, and I believe that every holiday let is one less home for ordinary residents to live in. This development would exacerbate the crisis for all residents of the city, displacing people from their communities, driving up rents, and further reducing the desperately needed numbers of homes in the city. Planning decisions should first and foremost cater for the needs and interests of the city’s residents, and this proposed development runs counter to that.
 
@@ -160,7 +165,7 @@ I strongly maintain that this development would have detrimental effects on the 
         }`
       );
       setSubject(
-        `Objecting to STL application ${selected["reference"]}`
+        `Objecting to STL application ${selected.refNo}`
       );
       fetchData(selected.postcode);
     }
@@ -447,17 +452,17 @@ I strongly maintain that this development would have detrimental effects on the 
                 {selected ? (
                   <ul>
                     <li>
-                      <b>Application summary:</b> {selected["title"]}
+                      <b>Application summary:</b> {selected.proposal}
                     </li>
                     <li>
-                      <b>Address:</b> {selected["address"]}
+                      <b>Address:</b> {selected.address}
                     </li>
                     <li>
                       <b>Reference: </b>
-                      {selected["reference"]}
+                      {selected.refNo}
                     </li>
                     <li>
-                      <b>Link: </b> <u><a href={selected["link"]} target="_blank">Click here</a></u>
+                      <b>Link: </b> <u><a href={selected.url} target="_blank">Click here</a></u>
                     </li>
                   </ul>
                 ) : (

@@ -1,10 +1,15 @@
 //fetch all applications
 const getApplications = async () => {
-  const response = await fetch("https://stls-craper-gordonmaloney.vercel.app/read/");
+  const response = await fetch("/applications.json");
 
   const data = await response.json();
 
-  return data.data;
+  return data.map(app => {
+    return {
+      ...app,
+      slug: app.refNo.replaceAll('/', '-')
+    }
+  });
 };
 
 const service = {

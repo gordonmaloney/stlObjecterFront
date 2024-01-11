@@ -115,7 +115,7 @@ const Object = () => {
 
   useEffect(() => {
     let newSelected = state.applications.applications.filter(
-      (app) => app["Application reference number"] == params.postcode
+      (app) => app.slug == params.postcode
     )[0];
 
     setSelected(newSelected);
@@ -125,15 +125,11 @@ const Object = () => {
   //Check if date is more than 28 days ago
   useEffect(() => {
     if (selected) {
-      let dateToCheck = selected["Date Received"];
-      let checkDate = new Date(moment.unix((dateToCheck - 25569) * 86400)._i);
+      const checkDate = moment(selected.received, "DD-MM-YYYY").toDate()
       let today = new Date();
       let monthAgo = new Date(
         new Date(new Date().setDate(today.getDate() - 28))
       );
-
-      console.log(monthAgo)
-      console.log(checkDate)
 
       if (checkDate < monthAgo) {
         setLate(true);
@@ -142,14 +138,12 @@ const Object = () => {
   }, [selected]);
 
 
-  console.log(selected)
-
   useEffect(() => {
     if (selected) {
       setBody(
         `To whom it may concern,\n\nI am writing to object to application number ${
-          selected["Application reference number"]
-        } for a short-term let licence, ${selected["Applicant"] ? `in the name of ${selected["Applicant"]} ` : ''}at ${selected["Premises address"]}.
+          selected.refNo
+        } for a short-term let licence, ${selected["Applicant"] ? `in the name of ${selected["Applicant"]} ` : ''}at ${selected.address}.
 
 Our city is in the midst of a catastrophic housing crisis, and I believe that every holiday let is one less home for ordinary residents to live in. This development would exacerbate the crisis for all residents of the city, displacing people from their communities, driving up rents, and further reducing the desperately needed numbers of homes in the city. Planning decisions should first and foremost cater for the needs and interests of the city’s residents, and this proposed development runs counter to that.
 
@@ -171,9 +165,9 @@ I strongly maintain that this development would have detrimental effects on the 
         }`
       );
       setSubject(
-        `Objecting to STL application ${selected["Application reference number"]}`
+        `Objecting to STL application ${selected.refNo}`
       );
-      fetchData(selected.Postcode);
+      fetchData(selected.postcode);
     }
   }, [selected, late]);
 
@@ -471,8 +465,8 @@ I strongly maintain that this development would have detrimental effects on the 
                 {selected ? (
                   <ul>
                     <li>
-                      <b>Address:</b> {selected["Premises address"]},{" "}
-                      {selected["Postcode"]}
+                      <b>Address:</b> {selected.address},{" "}
+                      {selected.postcode}
                     </li>
                     <li>
                       <b>Premises:</b> {selected["Type of Premises"]}
@@ -491,7 +485,7 @@ I strongly maintain that this development would have detrimental effects on the 
                     </li>
                     <li>
                       <b>Reference no.:</b>{" "}
-                      {selected["Application reference number"]}
+                      {selected.refNo}
                     </li>
                     <li style={{display: 'none'}}>
                       <b>Applicant:</b> {selected["Applicant"]}
