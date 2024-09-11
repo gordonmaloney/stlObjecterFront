@@ -183,7 +183,7 @@ export default function Map() {
 
     setUserLatLong([data.result.latitude, data.result.longitude]);
 
-    let distanceArr = planningAppsProcessed
+    let distanceArr = PlanningApps
       .filter((app) => app["Decision Date"] == null)
       .filter((latlong) => latlong.latitude != undefined)
       .map((latlong) => {
@@ -224,14 +224,18 @@ export default function Map() {
           }}
         >
           <div style={{ maxWidth: "100px" }}>
-            {closest["Premises address"]}
+            {closest["address"]}
             <br />
             <br />
             <center>
               <Button
                 onClick={() =>
                   navigate(
-                    `../object/${closest["Application reference number"]}`
+                    `../planningobjection/${closest["reference"]
+                    .replace("/", "-")
+                    .replace("/", "-")
+                  
+                  }`
                   )
                 }
                 variant="contained"
@@ -424,7 +428,7 @@ export default function Map() {
           >
             <div
               className="email"
-              style={{ padding: "10px", borderRadius: "2px", display: 'none' }}
+              style={{ padding: "10px", borderRadius: "2px", display: 'block' }}
             >
               <FormLabel>
                 Or enter your postcode to find the closest application to you:

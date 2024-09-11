@@ -70,11 +70,11 @@ export const Home = () => {
                 <br />
                 <br />
                 Despite that,{" "}
-                <b>the council continue to approve new licenses</b> -
+                <b>the council continue to approve new holiday lets</b> -
                 exacerbating the crisis for the rest of us.
                 <br />
                 <br />
-                They say that the public are welcome to object to new
+                They say that the public are welcome to object to new planning
                 applications, but{" "}
                 <b>they've made it as difficult as possible</b> for people to
                 actually do that - hiding the information away where no one can
