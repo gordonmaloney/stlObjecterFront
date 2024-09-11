@@ -21,7 +21,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import moment from "moment";
 
-import { PlanningApps } from "./PlanningApplications";
+import { PlanningApps } from "./NewData";
 
 //tooltip
 import { Tooltip, tooltipClasses } from "@mui/material";
@@ -123,8 +123,6 @@ const ObjectPlanning = () => {
       let monthAgo = new Date(
         new Date(new Date().setDate(today.getDate() - 28))
       );
-
-
 
       if (checkDate < monthAgo) {
         setLate(true);
