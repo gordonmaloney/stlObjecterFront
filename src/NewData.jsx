@@ -9,8 +9,8 @@
     "received": "Received: Mon 09 Sep 2024",
     "validated": "Validated: Mon 09 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.96445,
-    "lon": -3.175124
+    "lat": "55.96445",
+    "lon": "-3.175124"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJC6O5EWKPH00&activeTab=summary",
@@ -21,8 +21,8 @@
     "received": "Received: Thu 05 Sep 2024",
     "validated": "Validated: Thu 05 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.954672,
-    "lon": -3.169591
+    "lat": "55.954672",
+    "lon": "-3.169591"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJCDJTEWKQI00&activeTab=summary",
@@ -33,8 +33,8 @@
     "received": "Received: Thu 05 Sep 2024",
     "validated": "Validated: Thu 05 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.950586,
-    "lon": -3.186331
+    "lat": "55.950586",
+    "lon": "-3.186331"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJCDKAEWKQT00&activeTab=summary",
@@ -45,8 +45,8 @@
     "received": "Received: Thu 05 Sep 2024",
     "validated": "Validated: Thu 05 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.949401,
-    "lon": -3.194062
+    "lat": "55.949401",
+    "lon": "-3.194062"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJCDK5EWKQQ00&activeTab=summary",
@@ -57,8 +57,8 @@
     "received": "Received: Thu 05 Sep 2024",
     "validated": "Validated: Thu 05 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.946935,
-    "lon": -3.234161
+    "lat": "55.946935",
+    "lon": "-3.234161"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJA27NEWKEX00&activeTab=summary",
@@ -69,8 +69,8 @@
     "received": "Received: Wed 04 Sep 2024",
     "validated": "Validated: Wed 04 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.96674,
-    "lon": -3.177084
+    "lat": "55.96674",
+    "lon": "-3.177084"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJAIW7EWKJU00&activeTab=summary",
@@ -81,8 +81,8 @@
     "received": "Received: Wed 04 Sep 2024",
     "validated": "Validated: Wed 04 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.947832,
-    "lon": -3.195535
+    "lat": "55.947832",
+    "lon": "-3.195535"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJAIWEEWKJX00&activeTab=summary",
@@ -93,8 +93,8 @@
     "received": "Received: Wed 04 Sep 2024",
     "validated": "Validated: Wed 04 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.951426,
-    "lon": -3.204341
+    "lat": "55.951426",
+    "lon": "-3.204341"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJAIVCEWKJC00&activeTab=summary",
@@ -105,8 +105,8 @@
     "received": "Received: Wed 04 Sep 2024",
     "validated": "Validated: Thu 05 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.987054,
-    "lon": -3.188521
+    "lat": "55.987054",
+    "lon": "-3.188521"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJ87ITEWK5C00&activeTab=summary",
@@ -117,8 +117,8 @@
     "received": "Received: Tue 03 Sep 2024",
     "validated": "Validated: Tue 03 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.946971,
-    "lon": -3.18662
+    "lat": "55.946971",
+    "lon": "-3.18662"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJ8O7AEWKAU00&activeTab=summary",
@@ -129,8 +129,8 @@
     "received": "Received: Tue 03 Sep 2024",
     "validated": "Validated: Thu 05 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.957572,
-    "lon": -3.205333
+    "lat": "55.957572",
+    "lon": "-3.205333"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJ8O7FEWKB000&activeTab=summary",
@@ -141,8 +141,8 @@
     "received": "Received: Tue 03 Sep 2024",
     "validated": "Validated: Tue 03 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.958112,
-    "lon": -3.207079
+    "lat": "55.958112",
+    "lon": "-3.207079"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJ8O78EWKAR00&activeTab=summary",
@@ -153,8 +153,8 @@
     "received": "Received: Tue 03 Sep 2024",
     "validated": "Validated: Tue 03 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.959904,
-    "lon": -3.194673
+    "lat": "55.959904",
+    "lon": "-3.194673"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SJ0SVIEWJQE00&activeTab=summary",
@@ -165,8 +165,8 @@
     "received": "Received: Fri 30 Aug 2024",
     "validated": "Validated: Fri 30 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.961242,
-    "lon": -3.199392
+    "lat": "55.961242",
+    "lon": "-3.199392"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SINU6XEWISG00&activeTab=summary",
@@ -177,8 +177,8 @@
     "received": "Received: Fri 23 Aug 2024",
     "validated": "Validated: Tue 27 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.966234,
-    "lon": -3.168001
+    "lat": "55.966234",
+    "lon": "-3.168001"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SILZJFEWIM600&activeTab=summary",
@@ -189,8 +189,8 @@
     "received": "Received: Thu 22 Aug 2024",
     "validated": "Validated: Thu 22 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.956747,
-    "lon": -3.197284
+    "lat": "55.956747",
+    "lon": "-3.197284"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SIMG9PEWIQ600&activeTab=summary",
@@ -201,8 +201,8 @@
     "received": "Received: Thu 22 Aug 2024",
     "validated": "Validated: Wed 04 Sep 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.952338,
-    "lon": -3.180731
+    "lat": "55.952338",
+    "lon": "-3.180731"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SIIJYREWICA00&activeTab=summary",
@@ -213,8 +213,8 @@
     "received": "Received: Tue 20 Aug 2024",
     "validated": "Validated: Wed 21 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.959016,
-    "lon": -3.18425
+    "lat": "55.959016",
+    "lon": "-3.18425"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SIGFJQEWI3500&activeTab=summary",
@@ -225,8 +225,8 @@
     "received": "Received: Mon 19 Aug 2024",
     "validated": "Validated: Mon 19 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.966265,
-    "lon": -3.186394
+    "lat": "55.966265",
+    "lon": "-3.186394"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SI94Z4EWHQW00&activeTab=summary",
@@ -237,8 +237,8 @@
     "received": "Received: Thu 15 Aug 2024",
     "validated": "Validated: Thu 15 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.942827,
-    "lon": -3.22444
+    "lat": "55.942827",
+    "lon": "-3.22444"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SI9HJEEWHTT00&activeTab=summary",
@@ -249,8 +249,8 @@
     "received": "Received: Thu 15 Aug 2024",
     "validated": "Validated: Fri 16 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.942639,
-    "lon": -3.217117
+    "lat": "55.942639",
+    "lon": "-3.217117"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SI3GVOEWH9500&activeTab=summary",
@@ -261,8 +261,8 @@
     "received": "Received: Mon 12 Aug 2024",
     "validated": "Validated: Mon 12 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.948217,
-    "lon": -3.194297
+    "lat": "55.948217",
+    "lon": "-3.194297"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SI3GVGEWH8Z00&activeTab=summary",
@@ -273,8 +273,8 @@
     "received": "Received: Mon 12 Aug 2024",
     "validated": "Validated: Mon 12 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.941983,
-    "lon": -3.296366
+    "lat": "55.941983",
+    "lon": "-3.296366"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SI3GV2EWH8I00&activeTab=summary",
@@ -285,8 +285,8 @@
     "received": "Received: Mon 12 Aug 2024",
     "validated": "Validated: Mon 12 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.953451,
-    "lon": -3.204485
+    "lat": "55.953451",
+    "lon": "-3.204485"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHXWV6EWH1R00&activeTab=summary",
@@ -297,8 +297,8 @@
     "received": "Received: Fri 09 Aug 2024",
     "validated": "Validated: Fri 09 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.952043,
-    "lon": -3.17675
+    "lat": "55.952043",
+    "lon": "-3.17675"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHXWV2EWH1O00&activeTab=summary",
@@ -309,8 +309,8 @@
     "received": "Received: Fri 09 Aug 2024",
     "validated": "Validated: Tue 13 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.928472,
-    "lon": -3.191032
+    "lat": "55.928472",
+    "lon": "-3.191032"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHW27CEWGWB00&activeTab=summary",
@@ -321,8 +321,8 @@
     "received": "Received: Thu 08 Aug 2024",
     "validated": "Validated: Fri 09 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.918217,
-    "lon": -3.136091
+    "lat": "55.918217",
+    "lon": "-3.136091"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHU7KMEWGQZ00&activeTab=summary",
@@ -333,8 +333,8 @@
     "received": "Received: Wed 07 Aug 2024",
     "validated": "Validated: Wed 07 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.963846,
-    "lon": -3.16016
+    "lat": "55.963846",
+    "lon": "-3.16016"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHSTJAEWGOB00&activeTab=summary",
@@ -345,8 +345,8 @@
     "received": "Received: Tue 06 Aug 2024",
     "validated": "Validated: Wed 07 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.949401,
-    "lon": -3.194062
+    "lat": "55.949401",
+    "lon": "-3.194062"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHJK6YEWG6700&activeTab=summary",
@@ -357,8 +357,8 @@
     "received": "Received: Thu 01 Aug 2024",
     "validated": "Validated: Thu 08 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.964142,
-    "lon": -3.198632
+    "lat": "55.964142",
+    "lon": "-3.198632"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHJK75EWG6I00&activeTab=summary",
@@ -369,8 +369,8 @@
     "received": "Received: Thu 01 Aug 2024",
     "validated": "Validated: Wed 21 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.945418,
-    "lon": -3.182698
+    "lat": "55.945418",
+    "lon": "-3.182698"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHJ3J3EWG2X00&activeTab=summary",
@@ -381,8 +381,8 @@
     "received": "Received: Thu 01 Aug 2024",
     "validated": "Validated: Tue 06 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.960292,
-    "lon": -3.172389
+    "lat": "55.960292",
+    "lon": "-3.172389"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHHPJREWFZU00&activeTab=summary",
@@ -393,8 +393,8 @@
     "received": "Received: Wed 31 Jul 2024",
     "validated": "Validated: Mon 12 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.948138,
-    "lon": -3.083371
+    "lat": "55.948138",
+    "lon": "-3.083371"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHDJIUEWFK300&activeTab=summary",
@@ -405,8 +405,8 @@
     "received": "Received: Mon 29 Jul 2024",
     "validated": "Validated: Tue 13 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.947406,
-    "lon": -3.190845
+    "lat": "55.947406",
+    "lon": "-3.190845"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SHDJIKEWFJP00&activeTab=summary",
@@ -417,8 +417,8 @@
     "received": "Received: Mon 29 Jul 2024",
     "validated": "Validated: Wed 31 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.958297,
-    "lon": -3.191213
+    "lat": "55.958297",
+    "lon": "-3.191213"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SH0KVWEWMII00&activeTab=summary",
@@ -429,8 +429,8 @@
     "received": "Received: Mon 22 Jul 2024",
     "validated": "Validated: Fri 09 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.958112,
-    "lon": -3.207079
+    "lat": "55.958112",
+    "lon": "-3.207079"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SGV0WDEWMC800&activeTab=summary",
@@ -441,8 +441,8 @@
     "received": "Received: Fri 19 Jul 2024",
     "validated": "Validated: Tue 06 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.953318,
-    "lon": -3.211158
+    "lat": "55.953318",
+    "lon": "-3.211158"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SGNM8FEWLPQ00&activeTab=summary",
@@ -453,8 +453,8 @@
     "received": "Received: Mon 15 Jul 2024",
     "validated": "Validated: Thu 08 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.93248,
-    "lon": -3.16468
+    "lat": "55.93248",
+    "lon": "-3.16468"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SGGHDYEWLGG00&activeTab=summary",
@@ -465,8 +465,8 @@
     "received": "Received: Thu 11 Jul 2024",
     "validated": "Validated: Tue 30 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.957251,
-    "lon": -3.195824
+    "lat": "55.957251",
+    "lon": "-3.195824"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SGECWKEWL8Q00&activeTab=summary",
@@ -477,8 +477,8 @@
     "received": "Received: Wed 10 Jul 2024",
     "validated": "Validated: Thu 11 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.954101,
-    "lon": -3.20601
+    "lat": "55.954101",
+    "lon": "-3.20601"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SGECWVEWL8Y00&activeTab=summary",
@@ -489,8 +489,8 @@
     "received": "Received: Wed 10 Jul 2024",
     "validated": "Validated: Thu 01 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.950187,
-    "lon": -3.184813
+    "lat": "55.950187",
+    "lon": "-3.184813"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SG1E7LEWKFW00&activeTab=summary",
@@ -501,8 +501,8 @@
     "received": "Received: Wed 03 Jul 2024",
     "validated": "Validated: Mon 19 Aug 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.939079,
-    "lon": -3.409444
+    "lat": "55.939079",
+    "lon": "-3.409444"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SFSEMNEWJZD00&activeTab=summary",
@@ -513,8 +513,8 @@
     "received": "Received: Fri 28 Jun 2024",
     "validated": "Validated: Wed 10 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.924373,
-    "lon": -3.383719
+    "lat": "55.924373",
+    "lon": "-3.383719"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SFS4VHEWJWL00&activeTab=summary",
@@ -525,8 +525,8 @@
     "received": "Received: Fri 28 Jun 2024",
     "validated": "Validated: Mon 15 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.959116,
-    "lon": -3.208216
+    "lat": "55.959116",
+    "lon": "-3.208216"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SFMUNMEWJGP00&activeTab=summary",
@@ -537,8 +537,8 @@
     "received": "Received: Tue 25 Jun 2024",
     "validated": "Validated: Tue 25 Jun 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.950169,
-    "lon": -3.189026
+    "lat": "55.950169",
+    "lon": "-3.189026"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SFA2V6EWILS00&activeTab=summary",
@@ -549,8 +549,8 @@
     "received": "Received: Tue 18 Jun 2024",
     "validated": "Validated: Tue 18 Jun 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.950955,
-    "lon": -3.182916
+    "lat": "55.950955",
+    "lon": "-3.182916"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SF9M89EWIJ800&activeTab=summary",
@@ -561,8 +561,8 @@
     "received": "Received: Tue 18 Jun 2024",
     "validated": "Validated: Mon 15 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.953847,
-    "lon": -3.199387
+    "lat": "55.953847",
+    "lon": "-3.199387"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SELJKXEWGY200&activeTab=summary",
@@ -573,8 +573,8 @@
     "received": "Received: Wed 05 Jun 2024",
     "validated": "Validated: Wed 05 Jun 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.955603,
-    "lon": -3.192458
+    "lat": "55.955603",
+    "lon": "-3.192458"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SEHUCEEWGJG00&activeTab=summary",
@@ -585,8 +585,8 @@
     "received": "Received: Mon 03 Jun 2024",
     "validated": "Validated: Wed 10 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.952603,
-    "lon": -3.199813
+    "lat": "55.952603",
+    "lon": "-3.199813"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SEHUCCEWGJD00&activeTab=summary",
@@ -597,8 +597,8 @@
     "received": "Received: Mon 03 Jun 2024",
     "validated": "Validated: Mon 15 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.952603,
-    "lon": -3.199813
+    "lat": "55.952603",
+    "lon": "-3.199813"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SEHUCAEWGJA00&activeTab=summary",
@@ -609,8 +609,8 @@
     "received": "Received: Mon 03 Jun 2024",
     "validated": "Validated: Wed 10 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.952603,
-    "lon": -3.199813
+    "lat": "55.952603",
+    "lon": "-3.199813"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SEHUC6EWGJ400&activeTab=summary",
@@ -621,8 +621,8 @@
     "received": "Received: Mon 03 Jun 2024",
     "validated": "Validated: Mon 03 Jun 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.952036,
-    "lon": -3.200788
+    "lat": "55.952036",
+    "lon": "-3.200788"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SDZS7DEWFG600&activeTab=summary",
@@ -633,8 +633,8 @@
     "received": "Received: Fri 24 May 2024",
     "validated": "Validated: Tue 09 Jul 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.929168,
-    "lon": -3.206307
+    "lat": "55.929168",
+    "lon": "-3.206307"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SDZBJDEWN0Z00&activeTab=summary",
@@ -645,8 +645,8 @@
     "received": "Received: Fri 24 May 2024",
     "validated": "Validated: Tue 28 May 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.936731,
-    "lon": -3.181058
+    "lat": "55.936731",
+    "lon": "-3.181058"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SDZBJMEWN1D00&activeTab=summary",
@@ -657,8 +657,8 @@
     "received": "Received: Fri 24 May 2024",
     "validated": "Validated: Fri 24 May 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.957572,
-    "lon": -3.205333
+    "lat": "55.957572",
+    "lon": "-3.205333"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SDZBJQEWN1I00&activeTab=summary",
@@ -669,8 +669,8 @@
     "received": "Received: Fri 24 May 2024",
     "validated": "Validated: Mon 27 May 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.936731,
-    "lon": -3.181058
+    "lat": "55.936731",
+    "lon": "-3.181058"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SDXQMHEWMY000&activeTab=summary",
@@ -681,8 +681,8 @@
     "received": "Received: Thu 23 May 2024",
     "validated": "Validated: Thu 23 May 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.949815,
-    "lon": -3.193995
+    "lat": "55.949815",
+    "lon": "-3.193995"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SDMMLKEWM8400&activeTab=summary",
@@ -693,8 +693,8 @@
     "received": "Received: Fri 17 May 2024",
     "validated": "Validated: Tue 21 May 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.952762,
-    "lon": -3.179032
+    "lat": "55.952762",
+    "lon": "-3.179032"
   },
   {
     "url": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SDMMMCEWM8O00&activeTab=summary",
@@ -705,8 +705,8 @@
     "received": "Received: Fri 17 May 2024",
     "validated": "Validated: Wed 22 May 2024",
     "status": "Status: Awaiting Assessment",
-    "lat": 55.958794,
-    "lon": -3.189066
+    "lat": "55.958794",
+    "lon": "-3.189066"
   }
 ];
   
