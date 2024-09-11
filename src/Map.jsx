@@ -15,8 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import moment from "moment";
 
-import { PlanningApps } from "./PlanningApplications";
-import { PlanningApps2 } from "./NewData";
+//import { PlanningApps } from "./PlanningApplications";
+import { PlanningApps } from "./NewData";
 
 
 //redux imports
@@ -46,10 +46,6 @@ const youIcon = new L.Icon({
 });
 
 export default function Map() {
-
-
-  console.log(PlanningApps[0])
-  console.log(PlanningApps2[0])
 
   const [Postcodes, setPostcodes] = useState([]);
   const [applications, setApplications] = useState([]);
