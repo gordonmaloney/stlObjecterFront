@@ -424,7 +424,7 @@ export default function Map() {
           >
             <div
               className="email"
-              style={{ padding: "10px", borderRadius: "2px" }}
+              style={{ padding: "10px", borderRadius: "2px", display: 'none' }}
             >
               <FormLabel>
                 Or enter your postcode to find the closest application to you:
