@@ -16,7 +16,8 @@ import { useRef } from "react";
 import moment from "moment";
 
 import { PlanningApps } from "./PlanningApplications";
-//import { PlanningApps } from "./NewData";
+import { PlanningApps2 } from "./NewData";
+
 
 //redux imports
 import { useSelector, useDispatch } from "react-redux";
@@ -45,6 +46,11 @@ const youIcon = new L.Icon({
 });
 
 export default function Map() {
+
+
+  console.log(PlanningApps[0])
+  console.log(PlanningApps2[0])
+
   const [Postcodes, setPostcodes] = useState([]);
   const [applications, setApplications] = useState([]);
   const [selected, setSelected] = useState(0);
@@ -122,7 +128,6 @@ export default function Map() {
   const [planningAppsProcessed, setPlanningappsProcessed] = useState([]);
   let newPlanningApps = [...PlanningApps];
 
-  console.log(newPlanningApps)
   const processPlanningApps = () => {
     for (let i = 0; i < PlanningApps.length - 1; i++) {
       newPlanningApps[i] = { ...PlanningApps[i] };
@@ -161,7 +166,6 @@ export default function Map() {
     }
   };
 
-  console.log(planningAppsProcessed);
   useEffect(() => {
     processPlanningApps();
   }, []);
@@ -206,7 +210,6 @@ export default function Map() {
   const [map, setMap] = useState(null);
 
   const CustomMarker = ({ isActive, data, map }) => {
-    console.log(data);
     const [refReady, setRefReady] = useState(false);
     let popupRef = useRef();
 
