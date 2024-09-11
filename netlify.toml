@@ -4,3 +4,5 @@
 
 [build.environment]
   NODE_VERSION = "20.11.0"
+
+CI=false npm run build
