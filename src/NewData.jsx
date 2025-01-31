@@ -1,6 +1,7 @@
 
   export const PlanningApps = [
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SQL3N2EWMC700&activeTab=summary",
     "address": "Flat 1 21B Abercromby Place Edinburgh EH3 6QE",
     "postcode": "EH3 6QE",
     "received": "Received: Fri 24 Jan 2025",
@@ -12,6 +13,7 @@
     "title": "Application is to confirm change of use from residential to short term let for an existing and established short term let business operating since 2018."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SQJQROEWMAD00&activeTab=summary",
     "address": "4 Hope Street Edinburgh EH2 4DB",
     "postcode": "EH2 4DB",
     "received": "Received: Thu 23 Jan 2025",
@@ -23,6 +25,7 @@
     "title": "Alterations and change of use from offices to 7 short term let flats."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SQDYSQEWLS000&activeTab=summary",
     "address": "78B Queen Street Edinburgh EH2 4NF",
     "postcode": "EH2 4NF",
     "received": "Received: Mon 20 Jan 2025",
@@ -34,6 +37,7 @@
     "title": "Retrospective change of use from residential to short term let (sui generis)."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SQ16ZQEWKUH00&activeTab=summary",
     "address": "/1, 7A James' Court 493 Lawnmarket Edinburgh EH1 2PB",
     "postcode": "EH1 2PB",
     "received": "Received: Mon 13 Jan 2025",
@@ -45,6 +49,7 @@
     "title": "Property in use as short term let for over 10 years."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SQ170JEWKUZ00&activeTab=summary",
     "address": "41 London Street Edinburgh EH3 6LX",
     "postcode": "EH3 6LX",
     "received": "Received: Mon 13 Jan 2025",
@@ -56,6 +61,7 @@
     "title": "Proposed change of use of former licenced sauna (Sui Generis) to short term let (Sui Generis)."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SPRGZ7EWK7I00&activeTab=summary",
     "address": "6 Gilmerton Dykes Gardens Edinburgh EH17 8JL",
     "postcode": "EH17 8JL",
     "received": "Received: Wed 08 Jan 2025",
@@ -67,6 +73,7 @@
     "title": "Short term let, secondary letting."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SPO1G2EWJXI00&activeTab=summary",
     "address": "2F4 9 Home Street Edinburgh EH3 9JR",
     "postcode": "EH3 9JR",
     "received": "Received: Mon 06 Jan 2025",
@@ -78,6 +85,7 @@
     "title": "Change of use to short term let (sui generis)."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SOZYOREWJLY00&activeTab=summary",
     "address": "1F2 8 North Bank Street Edinburgh EH1 2LP",
     "postcode": "EH1 2LP",
     "received": "Received: Tue 24 Dec 2024",
@@ -89,6 +97,7 @@
     "title": "Existing use of property for short term let accommodation."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SOP1NAEWIYS00&activeTab=summary",
     "address": "140 Braid Road Edinburgh EH10 6JB",
     "postcode": "EH10 6JB",
     "received": "Received: Wed 18 Dec 2024",
@@ -100,6 +109,7 @@
     "title": "Proposed change of use from single occupancy domestic dwelling, to single occupancy short term let. First floor flat property with private access, and access to shared garden area."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SOCKV1EWHZK00&activeTab=summary",
     "address": "412 Webster's Land Edinburgh EH1 2RX",
     "postcode": "EH1 2RX",
     "received": "Received: Wed 11 Dec 2024",
@@ -111,6 +121,7 @@
     "title": "Existing use of property for short term let accommodation."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SNWSZIEWGMN00&activeTab=summary",
     "address": "Flat 2 50 North Castle Street New Town Edinburgh EH2 3LU",
     "postcode": "EH2 3LU",
     "received": "Received: Tue 03 Dec 2024",
@@ -122,6 +133,7 @@
     "title": "Continued use as a Short Term Let."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SNX9NJEWGR300&activeTab=summary",
     "address": "2F3 15 St Mary's Street Old Town Edinburgh EH1 1TA",
     "postcode": "EH1 1TA",
     "received": "Received: Tue 03 Dec 2024",
@@ -133,6 +145,7 @@
     "title": "To continue operating as a short term let."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SNX9NDEWGQX00&activeTab=summary",
     "address": "2 Dean Path Dean Edinburgh EH4 3BA",
     "postcode": "EH4 3BA",
     "received": "Received: Tue 03 Dec 2024",
@@ -144,6 +157,7 @@
     "title": "Extension and change of use from office to short term let (sui generis)."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SNVF1XEWGK900&activeTab=summary",
     "address": "2F 2 Albyn Place Edinburgh EH2 4NG",
     "postcode": "EH2 4NG",
     "received": "Received: Mon 02 Dec 2024",
@@ -155,6 +169,7 @@
     "title": "Application is to confirm change of use from residential to short term let for an existing and established short term let business operating since 2018 and currently legally licenced to operate as a short term let under Licence Number EH-69520-F."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SNVF0AEWGJY00&activeTab=summary",
     "address": "1F10 2 Commercial Street North Leith Edinburgh EH6 6JA",
     "postcode": "EH6 6JA",
     "received": "Received: Mon 02 Dec 2024",
@@ -166,6 +181,7 @@
     "title": "Alterations for change of use from office to serviced short term let apartments within units 1F10 and 1F20."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SNHZOZEWFLJ00&activeTab=summary",
     "address": "32 Redhall Road Kingsknowe Edinburgh EH14 2HN",
     "postcode": "EH14 2HN",
     "received": "Received: Mon 25 Nov 2024",
@@ -177,6 +193,7 @@
     "title": "Change of use from residential to a short term let from 1st to 14th August and 24th to 31st December."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SNCWB5EWFH300&activeTab=summary",
     "address": "3F1 113 Broughton Street Broughton Edinburgh EH1 3RZ",
     "postcode": "EH1 3RZ",
     "received": "Received: Fri 22 Nov 2024",
@@ -188,6 +205,7 @@
     "title": "Use as short term let."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SO13L4EW0AS00&activeTab=summary",
     "address": "7 Lindean Place Lochend Edinburgh EH6 8AY",
     "postcode": "EH6 8AY",
     "received": "Received: Fri 22 Nov 2024",
@@ -199,6 +217,7 @@
     "title": "Short term let (STL),"
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SN96ZSEWMTN00&activeTab=summary",
     "address": "1F2 45 Frederick Street New Town Edinburgh EH2 1EP",
     "postcode": "EH2 1EP",
     "received": "Received: Wed 20 Nov 2024",
@@ -210,6 +229,7 @@
     "title": "Proposed internal alterations to form short term let accommodation."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SN96ZJEWMTK00&activeTab=summary",
     "address": "1F2 45 Frederick Street New Town Edinburgh EH2 1EP",
     "postcode": "EH2 1EP",
     "received": "Received: Wed 20 Nov 2024",
@@ -221,6 +241,7 @@
     "title": "Proposed change of use from offices to short term let accommodation."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SN510UEWMCI00&activeTab=summary",
     "address": "55 Atholl Crescent Lane Edinburgh EH3 8ET",
     "postcode": "EH3 8ET",
     "received": "Received: Mon 18 Nov 2024",
@@ -232,6 +253,7 @@
     "title": "Property is operating as a short term let."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SMZH0MEWM6A00&activeTab=summary",
     "address": "Flat 27 50 North Bridge Edinburgh EH1 1QN",
     "postcode": "EH1 1QN",
     "received": "Received: Fri 15 Nov 2024",
@@ -243,6 +265,7 @@
     "title": "Short term let."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SMVRNEEWLUL00&activeTab=summary",
     "address": "Flat 9 41 Lochrin Place Tollcross Edinburgh EH3 9RB",
     "postcode": "EH3 9RB",
     "received": "Received: Wed 13 Nov 2024",
@@ -254,6 +277,7 @@
     "title": "Short term letting."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SMS2BLEWLK300&activeTab=summary",
     "address": "Flat 4 31 Lochrin Place Tollcross Edinburgh EH3 9RB",
     "postcode": "EH3 9RB",
     "received": "Received: Mon 11 Nov 2024",
@@ -265,6 +289,7 @@
     "title": "Short term letting."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SMKNOOEWL6X00&activeTab=summary",
     "address": "Flat 4 41 Lochrin Place Tollcross Edinburgh EH3 9RB",
     "postcode": "EH3 9RB",
     "received": "Received: Thu 07 Nov 2024",
@@ -276,6 +301,7 @@
     "title": "Short term letting."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SLJJKCEWIOG00&activeTab=summary",
     "address": "Flat 10 41 Lochrin Place Tollcross Edinburgh EH3 9RB",
     "postcode": "EH3 9RB",
     "received": "Received: Fri 18 Oct 2024",
