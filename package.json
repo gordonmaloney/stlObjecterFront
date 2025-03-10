@@ -28,7 +28,9 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
+"scripts": {
+  "update": "cd cypress && npm run search-and-save && cd .. && git add . && git commit -m \"data push\" && git push",
+
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
