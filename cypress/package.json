@@ -4,10 +4,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "save": "node ./scripts/setLatLon.js && node ./scripts/saveNewApplications.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+"scripts": {
+  "search": "cypress run",           
+  "save": "node ./scripts/setLatLon.js && node ./scripts/saveNewApplications.js",  
+  "search-and-save": "npm run search && npm run save", 
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
+
   "keywords": [],
   "author": "",
   "license": "ISC",

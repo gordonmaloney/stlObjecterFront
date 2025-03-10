@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-console.log('setting lat long)')
+console.log('setting lat long')
 
 const URL_POSTCODE_LOOKUP = `https://api.postcodes.io/postcodes/`
 

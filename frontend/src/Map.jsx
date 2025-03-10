@@ -47,6 +47,7 @@ const youIcon = new L.Icon({
 
 export default function Map() {
 
+
   const [Postcodes, setPostcodes] = useState([]);
   const [applications, setApplications] = useState([]);
   const [selected, setSelected] = useState(0);
