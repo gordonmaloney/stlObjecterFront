@@ -1,0 +1,6 @@
+run this in the cypress folder:
+npx cypress run --spec cypress/e2e/search.cy.js --env days=30
+
+
+run this in the main folder:
+npm run-script start
