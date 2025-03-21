@@ -257,6 +257,8 @@ I strongly maintain that this development would have detrimental effects on the 
   };
 
 
+  console.log(optIn)
+
 
   const containsNumber = (string) => {
     if (
@@ -565,8 +567,8 @@ I strongly maintain that this development would have detrimental effects on the 
                   aria-labelledby="optIn"
                   name="radio-buttons-group"
                   required
-                  onChange={(e) => setOptIn(e.target.value)}
-                >
+                  onChange={(e) => setOptIn(e.target.value === "true")}
+                  >
                   <FormControlLabel
                     value={true}
                     control={<Radio sx={RadioStyle} size="small" />}

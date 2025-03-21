@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Use the version required by your project
+          node-version: '18'  # Use the version required by your project
 
       - name: Install dependencies in Cypress folder
         run: |
@@ -32,7 +32,7 @@ jobs:
       #    cd ..
 
       - name: Run update script
-        run: npm run update
+        run: cd cypress && npm run search-and-save && cd ..
 
       - name: Commit and push changes
         run: |
@@ -40,4 +40,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Weekly data push" || echo "No changes to commit"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/gordonmaloney/stlObjecterFront.git HEAD:main
