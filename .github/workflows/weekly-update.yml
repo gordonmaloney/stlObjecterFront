@@ -32,7 +32,7 @@ jobs:
       #    cd ..
 
       - name: Run update script
-        run: npm run update
+        run: cd cypress && npm run search-and-save && cd ..
 
       - name: Commit and push changes
         run: |
