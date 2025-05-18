@@ -1,6 +1,114 @@
 
   export const PlanningApps = [
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SW96VUEWM9F00&activeTab=summary",
+    "address": "Flat 1 2 Edmonstone's Close Old Town Edinburgh EH1 2HB",
+    "postcode": "EH1 2HB",
+    "received": "Received: Wed 14 May 2025",
+    "validated": "Validated: Wed 14 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.948108",
+    "longitude": "-3.194007",
+    "reference": "Ref. No: 25/02492/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SW6VKJEWLWX00&activeTab=summary",
+    "address": "3F4 9 Holyrood Road Edinburgh EH8 8AE",
+    "postcode": "EH8 8AE",
+    "received": "Received: Tue 13 May 2025",
+    "validated": "Validated: Tue 13 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.949407",
+    "longitude": "-3.18274",
+    "reference": "Ref. No: 25/02437/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SW6VL9EWLXF00&activeTab=summary",
+    "address": "21A Stafford Street Edinburgh EH3 7BJ",
+    "postcode": "EH3 7BJ",
+    "received": "Received: Tue 13 May 2025",
+    "validated": "Validated: Tue 13 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.950146",
+    "longitude": "-3.211636",
+    "reference": "Ref. No: 25/02441/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SW6VK8EWLWR00&activeTab=summary",
+    "address": "2F2 67 Brunswick Street Edinburgh EH7 5HT",
+    "postcode": "EH7 5HT",
+    "received": "Received: Tue 13 May 2025",
+    "validated": "Validated: Tue 13 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.959918",
+    "longitude": "-3.180113",
+    "reference": "Ref. No: 25/02435/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SW50W3EWLPM00&activeTab=summary",
+    "address": "Flat 5 7 St Mary's Street Edinburgh EH1 1TA",
+    "postcode": "EH1 1TA",
+    "received": "Received: Mon 12 May 2025",
+    "validated": "Validated: Tue 13 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.950309",
+    "longitude": "-3.184224",
+    "reference": "Ref. No: 25/02406/FULSTL",
+    "title": "Change flat from long-term to short term let."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SW5HLKEWLUD00&activeTab=summary",
+    "address": "2F3 29 Lauriston Street Edinburgh EH3 9DQ",
+    "postcode": "EH3 9DQ",
+    "received": "Received: Mon 12 May 2025",
+    "validated": "Validated: Mon 12 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.945288",
+    "longitude": "-3.200756",
+    "reference": "Ref. No: 25/02429/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SW5HJYEWLTT00&activeTab=summary",
+    "address": "1F 1 St Bernard's Crescent Edinburgh EH4 1NR",
+    "postcode": "EH4 1NR",
+    "received": "Received: Mon 12 May 2025",
+    "validated": "Validated: Thu 15 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.957751",
+    "longitude": "-3.213091",
+    "reference": "Ref. No: 25/02423/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVZGWVEWLJC00&activeTab=summary",
+    "address": "3F1 5 Spittal Street Edinburgh EH3 9DY",
+    "postcode": "EH3 9DY",
+    "received": "Received: Fri 09 May 2025",
+    "validated": "Validated: Mon 12 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.946131",
+    "longitude": "-3.203712",
+    "reference": "Ref. No: 25/02390/CLESTL",
+    "title": "Continued use as short term let."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVVRIXEWL2J00&activeTab=summary",
+    "address": "2F3 22 William Street Edinburgh EH3 7NH",
+    "postcode": "EH3 7NH",
+    "received": "Received: Wed 07 May 2025",
+    "validated": "Validated: Mon 12 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.94942",
+    "longitude": "-3.211965",
+    "reference": "Ref. No: 25/02332/CLESTL",
+    "title": "Continued use as a short term let."
+  },
+  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVW1D4EWL6D00&activeTab=summary",
     "address": "Flat 1 65 Caledonian Crescent Edinburgh EH11 2AT",
     "postcode": "EH11 2AT",
@@ -10,6 +118,18 @@
     "latitude": "55.941956",
     "longitude": "-3.218921",
     "reference": "Ref. No: 25/02354/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVVRJ2EWL2P00&activeTab=summary",
+    "address": "3F3 112A West Bow Edinburgh EH1 2HH",
+    "postcode": "EH1 2HH",
+    "received": "Received: Wed 07 May 2025",
+    "validated": "Validated: Wed 14 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.948217",
+    "longitude": "-3.194297",
+    "reference": "Ref. No: 25/02334/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -25,15 +145,39 @@
     "title": "Application for the issue of a Certificate of Lawfulness confirming its existing use and a short term let visitor accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVU6NQEWKY300&activeTab=summary",
-    "address": "2F1 2 West Norton Place Abbeyhill Edinburgh EH7 5AW",
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVU6NWEWKYC00&activeTab=summary",
+    "address": "Flat 6 9 Cables Wynd North Leith Edinburgh EH6 6DU",
+    "postcode": "EH6 6DU",
+    "received": "Received: Tue 06 May 2025",
+    "validated": "Validated: Tue 06 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.973497",
+    "longitude": "-3.175206",
+    "reference": "Ref. No: 25/02319/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVUDK6EWKZV00&activeTab=summary",
+    "address": "1F1 3 West Norton Place Abbeyhill Edinburgh EH7 5AW",
     "postcode": "EH7 5AW",
     "received": "Received: Tue 06 May 2025",
     "validated": "Validated: Tue 06 May 2025",
     "status": "Status: Awaiting Assessment",
     "latitude": "55.957284",
     "longitude": "-3.171848",
-    "reference": "Ref. No: 25/02316/FULSTL",
+    "reference": "Ref. No: 25/02327/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVUDJREWKZM00&activeTab=summary",
+    "address": "Flat 6 42 Shore Edinburgh EH6 6QU",
+    "postcode": "EH6 6QU",
+    "received": "Received: Tue 06 May 2025",
+    "validated": "Validated: Tue 06 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.975806",
+    "longitude": "-3.16954",
+    "reference": "Ref. No: 25/02325/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -46,6 +190,18 @@
     "latitude": "55.95629",
     "longitude": "-3.171852",
     "reference": "Ref. No: 25/02313/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVU6NQEWKY300&activeTab=summary",
+    "address": "2F1 2 West Norton Place Abbeyhill Edinburgh EH7 5AW",
+    "postcode": "EH7 5AW",
+    "received": "Received: Tue 06 May 2025",
+    "validated": "Validated: Tue 06 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.957284",
+    "longitude": "-3.171848",
+    "reference": "Ref. No: 25/02316/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -73,30 +229,6 @@
     "title": "Use of flat as short term let."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVJ9JFEWKDZ00&activeTab=summary",
-    "address": "Flat 4 20 Lochrin Place Tollcross Edinburgh EH3 9QS",
-    "postcode": "EH3 9QS",
-    "received": "Received: Wed 30 Apr 2025",
-    "validated": "Validated: Wed 30 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.942558",
-    "longitude": "-3.205234",
-    "reference": "Ref. No: 25/02230/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVJ2R9EWKCY00&activeTab=summary",
-    "address": "Flat 2 20 Lochrin Place Tollcross Edinburgh EH3 9QS",
-    "postcode": "EH3 9QS",
-    "received": "Received: Wed 30 Apr 2025",
-    "validated": "Validated: Wed 30 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.942558",
-    "longitude": "-3.205234",
-    "reference": "Ref. No: 25/02226/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVJ9K8EWKE800&activeTab=summary",
     "address": "30 Oxgangs Crescent Firrhill Edinburgh EH13 9HL",
     "postcode": "EH13 9HL",
@@ -109,15 +241,15 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVJ2QTEWKCS00&activeTab=summary",
-    "address": "Flat 2 4 Old Assembly Close 172 High Street Edinburgh EH1 1QX",
-    "postcode": "EH1 1QX",
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVJ9JUEWKE200&activeTab=summary",
+    "address": "Flat 1 6 Tytler Gardens Abbeyhill Edinburgh EH8 8HQ",
+    "postcode": "EH8 8HQ",
     "received": "Received: Wed 30 Apr 2025",
-    "validated": "Validated: Tue 06 May 2025",
+    "validated": "Validated: Wed 30 Apr 2025",
     "status": "Status: Awaiting Assessment",
-    "latitude": "55.949729",
-    "longitude": "-3.189411",
-    "reference": "Ref. No: 25/02224/FULSTL",
+    "latitude": "55.954672",
+    "longitude": "-3.169591",
+    "reference": "Ref. No: 25/02231/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -133,15 +265,39 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVJ9JUEWKE200&activeTab=summary",
-    "address": "Flat 1 6 Tytler Gardens Abbeyhill Edinburgh EH8 8HQ",
-    "postcode": "EH8 8HQ",
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVJ2QTEWKCS00&activeTab=summary",
+    "address": "Flat 2 4 Old Assembly Close 172 High Street Edinburgh EH1 1QX",
+    "postcode": "EH1 1QX",
+    "received": "Received: Wed 30 Apr 2025",
+    "validated": "Validated: Tue 06 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.949729",
+    "longitude": "-3.189411",
+    "reference": "Ref. No: 25/02224/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVJ2R9EWKCY00&activeTab=summary",
+    "address": "Flat 2 20 Lochrin Place Tollcross Edinburgh EH3 9QS",
+    "postcode": "EH3 9QS",
     "received": "Received: Wed 30 Apr 2025",
     "validated": "Validated: Wed 30 Apr 2025",
     "status": "Status: Awaiting Assessment",
-    "latitude": "55.954672",
-    "longitude": "-3.169591",
-    "reference": "Ref. No: 25/02231/FULSTL",
+    "latitude": "55.942558",
+    "longitude": "-3.205234",
+    "reference": "Ref. No: 25/02226/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SVJ9JFEWKDZ00&activeTab=summary",
+    "address": "Flat 4 20 Lochrin Place Tollcross Edinburgh EH3 9QS",
+    "postcode": "EH3 9QS",
+    "received": "Received: Wed 30 Apr 2025",
+    "validated": "Validated: Wed 30 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.942558",
+    "longitude": "-3.205234",
+    "reference": "Ref. No: 25/02230/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -169,18 +325,6 @@
     "title": "Short term let."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SV7OW5EWJI100&activeTab=summary",
-    "address": "Flat 12 200 Great Junction Street Edinburgh EH6 5LW",
-    "postcode": "EH6 5LW",
-    "received": "Received: Thu 24 Apr 2025",
-    "validated": "Validated: Thu 24 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.974706",
-    "longitude": "-3.177889",
-    "reference": "Ref. No: 25/02104/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SV7OW1EWJHW00&activeTab=summary",
     "address": "Flat 23 89 Holyrood Road Edinburgh EH8 8BA",
     "postcode": "EH8 8BA",
@@ -190,6 +334,18 @@
     "latitude": "55.951199",
     "longitude": "-3.176725",
     "reference": "Ref. No: 25/02103/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SV7OW5EWJI100&activeTab=summary",
+    "address": "Flat 12 200 Great Junction Street Edinburgh EH6 5LW",
+    "postcode": "EH6 5LW",
+    "received": "Received: Thu 24 Apr 2025",
+    "validated": "Validated: Thu 24 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.974706",
+    "longitude": "-3.177889",
+    "reference": "Ref. No: 25/02104/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -205,30 +361,6 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SV63Z2EWJDG00&activeTab=summary",
-    "address": "Flat 4 43 New Street Edinburgh EH8 8BH",
-    "postcode": "EH8 8BH",
-    "received": "Received: Wed 23 Apr 2025",
-    "validated": "Validated: Wed 23 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.951085",
-    "longitude": "-3.182504",
-    "reference": "Ref. No: 25/02085/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SV63ZREWJDW00&activeTab=summary",
-    "address": "1F1 100 West Bow Old Town Edinburgh EH1 2HH",
-    "postcode": "EH1 2HH",
-    "received": "Received: Wed 23 Apr 2025",
-    "validated": "Validated: Wed 23 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.948217",
-    "longitude": "-3.194297",
-    "reference": "Ref. No: 25/02089/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SV63YWEWJDA00&activeTab=summary",
     "address": "4F1 7 Johnston Terrace Edinburgh EH1 2PW",
     "postcode": "EH1 2PW",
@@ -241,6 +373,18 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SV63Z2EWJDG00&activeTab=summary",
+    "address": "Flat 4 43 New Street Edinburgh EH8 8BH",
+    "postcode": "EH8 8BH",
+    "received": "Received: Wed 23 Apr 2025",
+    "validated": "Validated: Wed 23 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.951085",
+    "longitude": "-3.182504",
+    "reference": "Ref. No: 25/02085/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SV6AW4EWJG000&activeTab=summary",
     "address": "Flat 1 11 Hart Street Broughton Edinburgh EH1 3RN",
     "postcode": "EH1 3RN",
@@ -250,6 +394,18 @@
     "latitude": "55.958428",
     "longitude": "-3.187917",
     "reference": "Ref. No: 25/02101/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SV63ZREWJDW00&activeTab=summary",
+    "address": "1F1 100 West Bow Old Town Edinburgh EH1 2HH",
+    "postcode": "EH1 2HH",
+    "received": "Received: Wed 23 Apr 2025",
+    "validated": "Validated: Wed 23 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.948217",
+    "longitude": "-3.194297",
+    "reference": "Ref. No: 25/02089/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -361,6 +517,18 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUUQ82EWIRO00&activeTab=summary",
+    "address": "Flat 1 14 Bread Street Old Town Edinburgh EH3 9AF",
+    "postcode": "EH3 9AF",
+    "received": "Received: Thu 17 Apr 2025",
+    "validated": "Validated: Wed 30 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.945652",
+    "longitude": "-3.204419",
+    "reference": "Ref. No: 25/02020/CLESTL",
+    "title": "Short term let (change of use to short term let took place within the last 10 years but is not material change of use)."
+  },
+  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUV03JEWITO00&activeTab=summary",
     "address": "6 Hillside Crescent Hillside Edinburgh EH7 5DY",
     "postcode": "EH7 5DY",
@@ -370,18 +538,6 @@
     "latitude": "55.958209",
     "longitude": "-3.180365",
     "reference": "Ref. No: 25/02026/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUV01WEWITD00&activeTab=summary",
-    "address": "2F1 122 Bruntsfield Place Bruntsfield Edinburgh EH10 4ES",
-    "postcode": "EH10 4ES",
-    "received": "Received: Thu 17 Apr 2025",
-    "validated": "Validated: Thu 17 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.93719",
-    "longitude": "-3.207405",
-    "reference": "Ref. No: 25/02023/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -409,18 +565,6 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUUQ82EWIRO00&activeTab=summary",
-    "address": "Flat 1 14 Bread Street Old Town Edinburgh EH3 9AF",
-    "postcode": "EH3 9AF",
-    "received": "Received: Thu 17 Apr 2025",
-    "validated": "Validated: Wed 30 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.945652",
-    "longitude": "-3.204419",
-    "reference": "Ref. No: 25/02020/CLESTL",
-    "title": "Short term let (change of use to short term let took place within the last 10 years but is not material change of use)."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUV06DEWIUF00&activeTab=summary",
     "address": "21A Royal Crescent Broughton Edinburgh EH3 6QA",
     "postcode": "EH3 6QA",
@@ -430,6 +574,18 @@
     "latitude": "55.959417",
     "longitude": "-3.197653",
     "reference": "Ref. No: 25/02035/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUV01WEWITD00&activeTab=summary",
+    "address": "2F1 122 Bruntsfield Place Bruntsfield Edinburgh EH10 4ES",
+    "postcode": "EH10 4ES",
+    "received": "Received: Thu 17 Apr 2025",
+    "validated": "Validated: Thu 17 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.93719",
+    "longitude": "-3.207405",
+    "reference": "Ref. No: 25/02023/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -541,18 +697,6 @@
     "title": "Retrospective change of use from dwelling to Short Term Let for both 27 & 27A Hillside Street."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUJMAYEWI3100&activeTab=summary",
-    "address": "10B Union Street Edinburgh EH1 3LU",
-    "postcode": "EH1 3LU",
-    "received": "Received: Fri 11 Apr 2025",
-    "validated": "Validated: Wed 23 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.957754",
-    "longitude": "-3.186023",
-    "reference": "Ref. No: 25/01936/FULSTL",
-    "title": "Retrospective change of use from residential flat to short term let (sui generis)."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUJMAOEWI2N00&activeTab=summary",
     "address": "6 Joppa Park Edinburgh EH15 2EP",
     "postcode": "EH15 2EP",
@@ -575,6 +719,18 @@
     "longitude": "-3.184895",
     "reference": "Ref. No: 25/01949/FULSTL",
     "title": "Change of use from office (Class 4) to short term let accommodation (sui-generis)."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUJMAYEWI3100&activeTab=summary",
+    "address": "10B Union Street Edinburgh EH1 3LU",
+    "postcode": "EH1 3LU",
+    "received": "Received: Fri 11 Apr 2025",
+    "validated": "Validated: Wed 23 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.957754",
+    "longitude": "-3.186023",
+    "reference": "Ref. No: 25/01936/FULSTL",
+    "title": "Retrospective change of use from residential flat to short term let (sui generis)."
   },
   {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUHRKXEWHUY00&activeTab=summary",
@@ -613,16 +769,16 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUGDJ5EWHRE00&activeTab=summary",
-    "address": "PF2 10 Dean Park Street Edinburgh EH4 1JW",
-    "postcode": "EH4 1JW",
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUGDIVEWHRA00&activeTab=summary",
+    "address": "3F1 37 Roseburn Terrace Edinburgh EH12 5NQ",
+    "postcode": "EH12 5NQ",
     "received": "Received: Wed 09 Apr 2025",
-    "validated": "Validated: Wed 09 Apr 2025",
+    "validated": "Validated: Mon 14 Apr 2025",
     "status": "Status: Awaiting Assessment",
-    "latitude": "55.958592",
-    "longitude": "-3.215296",
-    "reference": "Ref. No: 25/01892/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
+    "latitude": "55.945537",
+    "longitude": "-3.235094",
+    "reference": "Ref. No: 25/01891/FULSTL",
+    "title": "Retrospective change of use from residential to short term let accommodation."
   },
   {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUFWUZEWHND00&activeTab=summary",
@@ -637,18 +793,6 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUGDIVEWHRA00&activeTab=summary",
-    "address": "3F1 37 Roseburn Terrace Edinburgh EH12 5NQ",
-    "postcode": "EH12 5NQ",
-    "received": "Received: Wed 09 Apr 2025",
-    "validated": "Validated: Mon 14 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.945537",
-    "longitude": "-3.235094",
-    "reference": "Ref. No: 25/01891/FULSTL",
-    "title": "Retrospective change of use from residential to short term let accommodation."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUG6NTEWHQN00&activeTab=summary",
     "address": "67 Spottiswoode Street Edinburgh EH9 1DL",
     "postcode": "EH9 1DL",
@@ -658,6 +802,18 @@
     "latitude": "55.936699",
     "longitude": "-3.197912",
     "reference": "Ref. No: 25/01890/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUGDJ5EWHRE00&activeTab=summary",
+    "address": "PF2 10 Dean Park Street Edinburgh EH4 1JW",
+    "postcode": "EH4 1JW",
+    "received": "Received: Wed 09 Apr 2025",
+    "validated": "Validated: Wed 09 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.958592",
+    "longitude": "-3.215296",
+    "reference": "Ref. No: 25/01892/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -671,6 +827,54 @@
     "longitude": "-3.16954",
     "reference": "Ref. No: 25/01851/FULSTL",
     "title": "Change of use to short term let (in retrospect)."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SUC7LXEWH9H00&activeTab=summary",
+    "address": "1F1 6 Tarvit Street Edinburgh EH3 9JY",
+    "postcode": "EH3 9JY",
+    "received": "Received: Mon 07 Apr 2025",
+    "validated": "Validated: Fri 02 May 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.942114",
+    "longitude": "-3.201922",
+    "reference": "Ref. No: 25/01829/FULSTL",
+    "title": "Change of use to short term let for 4 weeks in August and 2 weeks over Christmas and New Year each year."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU6XBKEWH2G00&activeTab=summary",
+    "address": "Flat 1 45 Patriothall Edinburgh EH3 5AY",
+    "postcode": "EH3 5AY",
+    "received": "Received: Fri 04 Apr 2025",
+    "validated": "Validated: Fri 11 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.958435",
+    "longitude": "-3.206594",
+    "reference": "Ref. No: 25/01796/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU747UEWH3V00&activeTab=summary",
+    "address": "221 Webster's Land Edinburgh EH1 2RU",
+    "postcode": "EH1 2RU",
+    "received": "Received: Fri 04 Apr 2025",
+    "validated": "Validated: Tue 08 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.946598",
+    "longitude": "-3.199548",
+    "reference": "Ref. No: 25/01804/FULSTL",
+    "title": "Change of use from residential to short term let, (in retrospect)."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU6XAUEWH2100&activeTab=summary",
+    "address": "1 Coinyie-house Close Edinburgh EH1 1NL",
+    "postcode": "EH1 1NL",
+    "received": "Received: Fri 04 Apr 2025",
+    "validated": "Validated: Tue 08 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.949654",
+    "longitude": "-3.185101",
+    "reference": "Ref. No: 25/01792/FULSTL",
+    "title": "Retrospective change of use from office (Class 2) to short term let holiday accommodation (Sui Generis)."
   },
   {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU6XAZEWH2400&activeTab=summary",
@@ -697,42 +901,6 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU6XBKEWH2G00&activeTab=summary",
-    "address": "Flat 1 45 Patriothall Edinburgh EH3 5AY",
-    "postcode": "EH3 5AY",
-    "received": "Received: Fri 04 Apr 2025",
-    "validated": "Validated: Fri 11 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.958435",
-    "longitude": "-3.206594",
-    "reference": "Ref. No: 25/01796/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU6XAUEWH2100&activeTab=summary",
-    "address": "1 Coinyie-house Close Edinburgh EH1 1NL",
-    "postcode": "EH1 1NL",
-    "received": "Received: Fri 04 Apr 2025",
-    "validated": "Validated: Tue 08 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.949654",
-    "longitude": "-3.185101",
-    "reference": "Ref. No: 25/01792/FULSTL",
-    "title": "Retrospective change of use from office (Class 2) to short term let holiday accommodation (Sui Generis)."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU747UEWH3V00&activeTab=summary",
-    "address": "221 Webster's Land Edinburgh EH1 2RU",
-    "postcode": "EH1 2RU",
-    "received": "Received: Fri 04 Apr 2025",
-    "validated": "Validated: Tue 08 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.946598",
-    "longitude": "-3.199548",
-    "reference": "Ref. No: 25/01804/FULSTL",
-    "title": "Change of use from residential to short term let, (in retrospect)."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU2Y78EWGL000&activeTab=summary",
     "address": "Flat 5 17 Cockburn Street Edinburgh EH1 1BP",
     "postcode": "EH1 1BP",
@@ -742,18 +910,6 @@
     "latitude": "55.950732",
     "longitude": "-3.190276",
     "reference": "Ref. No: 25/01735/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU13LGEWGG300&activeTab=summary",
-    "address": "Flat 30 50 North Bridge Edinburgh EH1 1QN",
-    "postcode": "EH1 1QN",
-    "received": "Received: Tue 01 Apr 2025",
-    "validated": "Validated: Wed 02 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.95047",
-    "longitude": "-3.188057",
-    "reference": "Ref. No: 25/01722/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -767,6 +923,18 @@
     "longitude": "-3.185482",
     "reference": "Ref. No: 25/01729/FULSTL",
     "title": "Retrospective change of use from residential flat (Sui Generis) to short term let holiday accommodation (Sui Generis)."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU13LGEWGG300&activeTab=summary",
+    "address": "Flat 30 50 North Bridge Edinburgh EH1 1QN",
+    "postcode": "EH1 1QN",
+    "received": "Received: Tue 01 Apr 2025",
+    "validated": "Validated: Wed 02 Apr 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.95047",
+    "longitude": "-3.188057",
+    "reference": "Ref. No: 25/01722/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SU1K8SEWGJY00&activeTab=summary",
@@ -817,30 +985,6 @@
     "title": "Retrospective change of use from residential flat (Sui Generis) to short term let holiday accommodation (Sui Generis)."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STQIYPEWFND00&activeTab=summary",
-    "address": "67 Montgomery Street Edinburgh EH7 5HZ",
-    "postcode": "EH7 5HZ",
-    "received": "Received: Wed 26 Mar 2025",
-    "validated": "Validated: Wed 26 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.959586",
-    "longitude": "-3.179512",
-    "reference": "Ref. No: 25/01611/FULSTL",
-    "title": "Retrospective change of use from dwelling to short term let."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STQC5HEWFLS00&activeTab=summary",
-    "address": "Flat 25 3 Western Harbour Way Newhaven Edinburgh EH6 6LP",
-    "postcode": "EH6 6LP",
-    "received": "Received: Wed 26 Mar 2025",
-    "validated": "Validated: Wed 26 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.985148",
-    "longitude": "-3.192438",
-    "reference": "Ref. No: 25/01604/FULSTL",
-    "title": "Change of use from dwelling to short term let (in retrospect)."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STQC5BEWFLM00&activeTab=summary",
     "address": "3F2 8 Oxford Street Edinburgh EH8 9PJ",
     "postcode": "EH8 9PJ",
@@ -865,6 +1009,30 @@
     "title": "Change of use from dwelling to short term let. (in retrospect)."
   },
   {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STQC5HEWFLS00&activeTab=summary",
+    "address": "Flat 25 3 Western Harbour Way Newhaven Edinburgh EH6 6LP",
+    "postcode": "EH6 6LP",
+    "received": "Received: Wed 26 Mar 2025",
+    "validated": "Validated: Wed 26 Mar 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.985148",
+    "longitude": "-3.192438",
+    "reference": "Ref. No: 25/01604/FULSTL",
+    "title": "Change of use from dwelling to short term let (in retrospect)."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STQIYPEWFND00&activeTab=summary",
+    "address": "67 Montgomery Street Edinburgh EH7 5HZ",
+    "postcode": "EH7 5HZ",
+    "received": "Received: Wed 26 Mar 2025",
+    "validated": "Validated: Wed 26 Mar 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.959586",
+    "longitude": "-3.179512",
+    "reference": "Ref. No: 25/01611/FULSTL",
+    "title": "Retrospective change of use from dwelling to short term let."
+  },
+  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STOOBIEWFFL00&activeTab=summary",
     "address": "9 Aitchison's Close Tollcross Edinburgh EH1 2LB",
     "postcode": "EH1 2LB",
@@ -877,18 +1045,6 @@
     "title": "Application for the issue of a Certificate of Lawfulness confirming its existing use and a short term let visitor accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STOHLCEWN4700&activeTab=summary",
-    "address": "Flat 14 2 North Pilrig Heights Pilrig Edinburgh EH6 5FE",
-    "postcode": "EH6 5FE",
-    "received": "Received: Tue 25 Mar 2025",
-    "validated": "Validated: Thu 27 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.966885",
-    "longitude": "-3.187326",
-    "reference": "Ref. No: 25/01570/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STO7PKEWN2F00&activeTab=summary",
     "address": "Flat 8 50 North Bridge Old Town Edinburgh EH1 1QN",
     "postcode": "EH1 1QN",
@@ -899,6 +1055,18 @@
     "longitude": "-3.188057",
     "reference": "Ref. No: 25/01561/FULSTL",
     "title": "Change of use from residential flat (Sui Generis) to short term let holiday accommodation (Sui Generis) (in retrospect)."
+  },
+  {
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STOHLCEWN4700&activeTab=summary",
+    "address": "Flat 14 2 North Pilrig Heights Pilrig Edinburgh EH6 5FE",
+    "postcode": "EH6 5FE",
+    "received": "Received: Tue 25 Mar 2025",
+    "validated": "Validated: Thu 27 Mar 2025",
+    "status": "Status: Awaiting Assessment",
+    "latitude": "55.966885",
+    "longitude": "-3.187326",
+    "reference": "Ref. No: 25/01570/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STMMSLEWMYB00&activeTab=summary",
@@ -925,15 +1093,15 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STMMSIEWMY800&activeTab=summary",
-    "address": "2F 12 Raeburn Street Edinburgh EH4 1HY",
-    "postcode": "EH4 1HY",
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STMMRDEWMXA00&activeTab=summary",
+    "address": "9 - 11 Balfour Street Edinburgh EH6 5DG",
+    "postcode": "EH6 5DG",
     "received": "Received: Mon 24 Mar 2025",
-    "validated": "Validated: Mon 07 Apr 2025",
+    "validated": "Validated: Mon 31 Mar 2025",
     "status": "Status: Awaiting Assessment",
-    "latitude": "55.958538",
-    "longitude": "-3.212202",
-    "reference": "Ref. No: 25/01544/FULSTL",
+    "latitude": "55.966209",
+    "longitude": "-3.177164",
+    "reference": "Ref. No: 25/01534/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -949,15 +1117,15 @@
     "title": "Change of use from Class 4 Office to short term let and associated alterations."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STMMRDEWMXA00&activeTab=summary",
-    "address": "9 - 11 Balfour Street Edinburgh EH6 5DG",
-    "postcode": "EH6 5DG",
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STMMSIEWMY800&activeTab=summary",
+    "address": "2F 12 Raeburn Street Edinburgh EH4 1HY",
+    "postcode": "EH4 1HY",
     "received": "Received: Mon 24 Mar 2025",
-    "validated": "Validated: Mon 31 Mar 2025",
+    "validated": "Validated: Mon 07 Apr 2025",
     "status": "Status: Awaiting Assessment",
-    "latitude": "55.966209",
-    "longitude": "-3.177164",
-    "reference": "Ref. No: 25/01534/FULSTL",
+    "latitude": "55.958538",
+    "longitude": "-3.212202",
+    "reference": "Ref. No: 25/01544/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -970,18 +1138,6 @@
     "latitude": "55.954581",
     "longitude": "-3.149138",
     "reference": "Ref. No: 25/01506/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STDL4FEWMC200&activeTab=summary",
-    "address": "455 Lanark Road Juniper Green EH14 5BA",
-    "postcode": "EH14 5BA",
-    "received": "Received: Wed 19 Mar 2025",
-    "validated": "Validated: Fri 21 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.907185",
-    "longitude": "-3.274489",
-    "reference": "Ref. No: 25/01445/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
@@ -1009,16 +1165,16 @@
     "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST9O3IEWLZ500&activeTab=summary",
-    "address": "20 Jameson Place Leith Edinburgh EH6 8PB",
-    "postcode": "EH6 8PB",
-    "received": "Received: Mon 17 Mar 2025",
-    "validated": "Validated: Thu 20 Mar 2025",
+    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=STDL4FEWMC200&activeTab=summary",
+    "address": "455 Lanark Road Juniper Green EH14 5BA",
+    "postcode": "EH14 5BA",
+    "received": "Received: Wed 19 Mar 2025",
+    "validated": "Validated: Fri 21 Mar 2025",
     "status": "Status: Awaiting Assessment",
-    "latitude": "55.965546",
-    "longitude": "-3.175077",
-    "reference": "Ref. No: 25/01417/FULSTL",
-    "title": "Change of use of premises to short term let accommodation."
+    "latitude": "55.907185",
+    "longitude": "-3.274489",
+    "reference": "Ref. No: 25/01445/FULSTL",
+    "title": "Retrospective change of use of premises to short term let accommodation."
   },
   {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST9ECTEWLUX00&activeTab=summary",
@@ -1033,66 +1189,6 @@
     "title": "Retrospective change of use from residential to short term let."
   },
   {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST9O19EWLXC00&activeTab=summary",
-    "address": "3F2 74 Elm Row Broughton Edinburgh EH7 4AQ",
-    "postcode": "EH7 4AQ",
-    "received": "Received: Mon 17 Mar 2025",
-    "validated": "Validated: Wed 26 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.960445",
-    "longitude": "-3.181426",
-    "reference": "Ref. No: 25/01397/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST9O1LEWLXG00&activeTab=summary",
-    "address": "2F3 4 Torphichen Place West End Edinburgh EH3 8DU",
-    "postcode": "EH3 8DU",
-    "received": "Received: Mon 17 Mar 2025",
-    "validated": "Validated: Wed 02 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.946546",
-    "longitude": "-3.214485",
-    "reference": "Ref. No: 25/01398/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST9O2VEWLYL00&activeTab=summary",
-    "address": "5 High Street Queensferry South Queensferry EH30 9PP",
-    "postcode": "EH30 9PP",
-    "received": "Received: Mon 17 Mar 2025",
-    "validated": "Validated: Wed 02 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.990253",
-    "longitude": "-3.396282",
-    "reference": "Ref. No: 25/01411/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST9O2FEWLY400&activeTab=summary",
-    "address": "9 Milton Street Abbeyhill Edinburgh EH8 8EZ",
-    "postcode": "EH8 8EZ",
-    "received": "Received: Mon 17 Mar 2025",
-    "validated": "Validated: Fri 21 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.955006",
-    "longitude": "-3.167583",
-    "reference": "Ref. No: 25/01406/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST9O2CEWLY100&activeTab=summary",
-    "address": "2F1 6 Brunton Terrace Edinburgh EH7 5EQ",
-    "postcode": "EH7 5EQ",
-    "received": "Received: Mon 17 Mar 2025",
-    "validated": "Validated: Mon 24 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.958333",
-    "longitude": "-3.173962",
-    "reference": "Ref. No: 25/01405/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
     "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST9O31EWLYT00&activeTab=summary",
     "address": "Flat 29 12 Simpson Loan Edinburgh EH3 9GP",
     "postcode": "EH3 9GP",
@@ -1102,90 +1198,6 @@
     "latitude": "55.943242",
     "longitude": "-3.19496",
     "reference": "Ref. No: 25/01413/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST4B09EWLQE00&activeTab=summary",
-    "address": "2 Comely Bank Place Mews Stockbridge Edinburgh EH4 1EB",
-    "postcode": "EH4 1EB",
-    "received": "Received: Fri 14 Mar 2025",
-    "validated": "Validated: Wed 02 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.958904",
-    "longitude": "-3.216042",
-    "reference": "Ref. No: 25/01370/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST443WEWLP500&activeTab=summary",
-    "address": "2F3 41A Broughton Street Broughton Edinburgh EH1 3JU",
-    "postcode": "EH1 3JU",
-    "received": "Received: Fri 14 Mar 2025",
-    "validated": "Validated: Thu 03 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.957517",
-    "longitude": "-3.188226",
-    "reference": "Ref. No: 25/01363/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST1ZO1EWLEY00&activeTab=summary",
-    "address": "24 Warrender Park Road Marchmont Edinburgh EH9 1JG",
-    "postcode": "EH9 1JG",
-    "received": "Received: Thu 13 Mar 2025",
-    "validated": "Validated: Fri 21 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.937929",
-    "longitude": "-3.192459",
-    "reference": "Ref. No: 25/01318/FULSTL",
-    "title": "Change of use of residential flat to short term let."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST29FBEWLHV00&activeTab=summary",
-    "address": "Flat 1 1 Fleshmarket Close 199 High Street Edinburgh EH1 1QA",
-    "postcode": "EH1 1QA",
-    "received": "Received: Thu 13 Mar 2025",
-    "validated": "Validated: Wed 02 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.950249",
-    "longitude": "-3.18861",
-    "reference": "Ref. No: 25/01336/CLESTL",
-    "title": "Application for the issue of a Certificate of Lawfulness confirming its existing use and a short term let visitor accommodation for a period over 10 years."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=ST0500EWL7A00&activeTab=summary",
-    "address": "1F1 25B Thistle Street New Town Edinburgh EH2 1DX",
-    "postcode": "EH2 1DX",
-    "received": "Received: Wed 12 Mar 2025",
-    "validated": "Validated: Fri 28 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.954253",
-    "longitude": "-3.198246",
-    "reference": "Ref. No: 25/01293/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation"
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SSYACEEWL0400&activeTab=summary",
-    "address": "1F 3 William Street New Town Edinburgh EH3 7NG",
-    "postcode": "EH3 7NG",
-    "received": "Received: Tue 11 Mar 2025",
-    "validated": "Validated: Wed 02 Apr 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.94962",
-    "longitude": "-3.212148",
-    "reference": "Ref. No: 25/01265/FULSTL",
-    "title": "Retrospective change of use of premises to short term let accommodation."
-  },
-  {
-    "link": "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/applicationDetails.do?keyVal=SSYK5REWL2R00&activeTab=summary",
-    "address": "Flat 5 19A Brunswick Road Hillside Edinburgh EH7 5FN",
-    "postcode": "EH7 5FN",
-    "received": "Received: Tue 11 Mar 2025",
-    "validated": "Validated: Tue 18 Mar 2025",
-    "status": "Status: Awaiting Assessment",
-    "latitude": "55.960179",
-    "longitude": "-3.17764",
-    "reference": "Ref. No: 25/01277/FULSTL",
     "title": "Retrospective change of use of premises to short term let accommodation."
   }
 ];
