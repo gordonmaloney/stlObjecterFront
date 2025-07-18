@@ -4,7 +4,6 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Map from "./Map";
 import { Header } from "./Header";
 import { Home } from "./Home";
-import Object from "./ObjectNew";
 import ObjectPlanning from "./ObjectPlanning";
 import axios from "axios";
 
@@ -61,15 +60,7 @@ const App = () => {
               </div>
             }
           />
-          <Route
-            path="/object/:postcode"
-            element={
-              <div className="outerContainer">
-                <Header />
-                <Object />
-              </div>
-            }
-          />
+
 
           <Route
             path="/planningobjection/:postcode"

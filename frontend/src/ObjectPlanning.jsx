@@ -9,7 +9,6 @@ import { Loading } from "react-loading-dot/lib";
 import React, { useEffect, useState } from "react";
 import { Button, RadioGroup, Radio } from "@mui/material";
 import SmallMap from "./smallMap";
-import { Councillors } from "./Councillors";
 import { BtnStyleSmall, RadioStyle } from "./Shared";
 import { useNavigate, useParams } from "react-router-dom";
 import { BtnStyle, CheckBoxStyle } from "./Shared";
@@ -25,8 +24,7 @@ import { PlanningApps } from "./NewData";
 
 //tooltip
 import { Tooltip, tooltipClasses } from "@mui/material";
-import { styled } from '@mui/material/styles';
-
+import { styled } from "@mui/material/styles";
 
 //modal imports
 import Box from "@mui/material/Box";
@@ -59,16 +57,16 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   [`& .${tooltipClasses.arrow}`]: {
     color: theme.palette.common.white,
     "&::before": {
-        backgroundColor: '#f5f5f9',
-        border: "1px solid darkgreen"
-      }
+      backgroundColor: "#f5f5f9",
+      border: "1px solid darkgreen",
+    },
   },
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#f5f5f9',
-    color: 'rgba(0, 0, 0, 0.87)',
+    backgroundColor: "#f5f5f9",
+    color: "rgba(0, 0, 0, 0.87)",
     maxWidth: 220,
     fontSize: theme.typography.pxToRem(13),
-    border: '1px solid darkgreen',
+    border: "1px solid darkgreen",
   },
 }));
 
@@ -94,7 +92,7 @@ const ObjectPlanning = () => {
 
   const params = useParams();
 
-  console.log(params.postcode)
+  console.log(params.postcode);
 
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
@@ -106,12 +104,13 @@ const ObjectPlanning = () => {
   const [cc, setCC] = useState("");
 
   useEffect(() => {
-   
-    let newSelected = PlanningApps.filter(app => app["reference"].replace('\/', '-').replace('\/', '-') == params.postcode)[0]
+    let newSelected = PlanningApps.filter(
+      (app) =>
+        app["reference"].replace("/", "-").replace("/", "-") == params.postcode
+    )[0];
 
     setSelected(newSelected);
   }, []);
-
 
   const [late, setLate] = useState(false);
   //Check if date is more than 28 days ago
@@ -130,13 +129,14 @@ const ObjectPlanning = () => {
     }
   }, [selected]);
 
-  console.log(selected)
-
+  console.log(selected);
 
   useEffect(() => {
     if (selected) {
       setBody(
-        `To whom it may concern,\n\nI am writing to comment in opposition to application reference number ${selected["reference"]} at ${selected["address"]}.
+        `To whom it may concern,\n\nI am writing to comment in opposition to application reference number ${
+          selected["reference"]
+        } at ${selected["address"]}.
 
 Our city is in the midst of a catastrophic housing crisis, and I believe that every holiday let is one less home for ordinary residents to live in. This development would exacerbate the crisis for all residents of the city, displacing people from their communities, driving up rents, and further reducing the desperately needed numbers of homes in the city. Planning decisions should first and foremost cater for the needs and interests of the city’s residents, and this proposed development runs counter to that.
 
@@ -157,9 +157,7 @@ I strongly maintain that this development would have detrimental effects on the 
             : ""
         }`
       );
-      setSubject(
-        `Objecting to STL application ${selected["reference"]}`
-      );
+      setSubject(`Objecting to STL application ${selected["reference"]}`);
       fetchData(selected.postcode);
     }
   }, [selected, late]);
@@ -171,9 +169,25 @@ I strongly maintain that this development would have detrimental effects on the 
       );
       const data = await response.json();
 
+      //EDINBURGH COUNCILLORS
+      fetch(
+        `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/edinburgh-councillors.json`
+      )
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to fetch councillors");
+          return res.json();
+        })
+        .then((data) => {
+          setCouncillors(
+            data.filter((clr) => clr.ward == data.result.admin_ward)
+          );
+        });
+      /*
+      MOVED TO CENTRAL DATA SOURCE
       setCouncillors(
         Councillors.filter((clr) => clr.ward == data.result.admin_ward)
       );
+      */
       setCoords({
         lat: data.result.latitude,
         long: data.result.longitude,
@@ -256,9 +270,7 @@ I strongly maintain that this development would have detrimental effects on the 
     }
   };
 
-
-  console.log(optIn)
-
+  console.log(optIn);
 
   const containsNumber = (string) => {
     if (
@@ -457,7 +469,12 @@ I strongly maintain that this development would have detrimental effects on the 
                       {selected["reference"]}
                     </li>
                     <li>
-                      <b>Link: </b> <u><a href={selected["link"]} target="_blank">Click here</a></u>
+                      <b>Link: </b>{" "}
+                      <u>
+                        <a href={selected["link"]} target="_blank">
+                          Click here
+                        </a>
+                      </u>
                     </li>
                   </ul>
                 ) : (
@@ -513,7 +530,12 @@ I strongly maintain that this development would have detrimental effects on the 
 
                 <HtmlTooltip
                   disableHoverListener
-                  title={<>Make sure you <u>include your address</u> so they know you're an Edinburgh resident!</>}
+                  title={
+                    <>
+                      Make sure you <u>include your address</u> so they know
+                      you're an Edinburgh resident!
+                    </>
+                  }
                   placement="top"
                   arrow
                 >
@@ -568,7 +590,7 @@ I strongly maintain that this development would have detrimental effects on the 
                   name="radio-buttons-group"
                   required
                   onChange={(e) => setOptIn(e.target.value === "true")}
-                  >
+                >
                   <FormControlLabel
                     value={true}
                     control={<Radio sx={RadioStyle} size="small" />}

@@ -54,7 +54,7 @@ body {
 }
 
 body {
-  background-image: url('/src/bg.jpeg');
+  background-image: url('./imgs/bg.jpeg');
   background-attachment: fixed;
   height: 100vh;
   background-size: cover;

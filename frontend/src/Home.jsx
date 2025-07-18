@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { BtnStyle } from "./Shared";
 
-import LRlogo from './LRlogo.jpeg'
+import LRlogo from './imgs/LRlogo.jpeg'
 
 //redux imports
 import { useSelector, useDispatch } from "react-redux";

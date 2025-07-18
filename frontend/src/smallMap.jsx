@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import Object from "./Object-Old";
 import { Button } from "@mui/material";
-import mapImg from "./map.png";
+import mapImg from "./imgs/map.png";
 import L from "leaflet";
-import marker from "./icon.png";
+import marker from "./imgs/icon.png";
 
 const myIcon = new L.Icon({
   iconUrl: marker,
