@@ -47,6 +47,7 @@ if (newApplications.length) {
   // Correct the path to the frontend folder
   const frontendPath = path.join(__dirname, "../../frontend/src/");
 
+
   // Ensure the components directory exists
   await fs.promises.mkdir(frontendPath, { recursive: true });
 

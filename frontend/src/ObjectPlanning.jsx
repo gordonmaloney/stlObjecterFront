@@ -85,14 +85,31 @@ const ObjectPlanning = () => {
     };
   }, []);
 
+
+
+  //Set selected application
   const [selected, setSelected] = useState();
-  const [coords, setCoords] = useState(0, 0);
 
   const navigate = useNavigate();
 
   const params = useParams();
 
-  console.log(params.postcode);
+    useEffect(() => {
+      let newSelected = PlanningApps.filter(
+        (app) =>
+          app["reference"].replace("/", "-").replace("/", "-") ==
+          params.postcode
+      )[0];
+
+      setSelected(newSelected);
+    }, []);
+
+
+
+
+  const [coords, setCoords] = useState(0, 0);
+
+
 
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
@@ -103,14 +120,7 @@ const ObjectPlanning = () => {
   const [councillors, setCouncillors] = useState([]);
   const [cc, setCC] = useState("");
 
-  useEffect(() => {
-    let newSelected = PlanningApps.filter(
-      (app) =>
-        app["reference"].replace("/", "-").replace("/", "-") == params.postcode
-    )[0];
 
-    setSelected(newSelected);
-  }, []);
 
   const [late, setLate] = useState(false);
   //Check if date is more than 28 days ago
@@ -129,7 +139,6 @@ const ObjectPlanning = () => {
     }
   }, [selected]);
 
-  console.log(selected);
 
   useEffect(() => {
     if (selected) {
@@ -163,11 +172,12 @@ I strongly maintain that this development would have detrimental effects on the 
   }, [selected, late]);
 
   const fetchData = async (postcode) => {
-    if (postcode) {
+    if (selected && postcode) {
       const response = await fetch(
         `https://api.postcodes.io/postcodes/${postcode}`
       );
-      const data = await response.json();
+      const postcodeData = await response.json();
+      const adminWard = postcodeData.result.admin_ward
 
       //EDINBURGH COUNCILLORS
       fetch(
@@ -178,9 +188,8 @@ I strongly maintain that this development would have detrimental effects on the 
           return res.json();
         })
         .then((data) => {
-          setCouncillors(
-            data.filter((clr) => clr.ward == data.result.admin_ward)
-          );
+
+          setCouncillors(data.filter((clr) => clr.ward == adminWard));
         });
       /*
       MOVED TO CENTRAL DATA SOURCE
@@ -189,8 +198,8 @@ I strongly maintain that this development would have detrimental effects on the 
       );
       */
       setCoords({
-        lat: data.result.latitude,
-        long: data.result.longitude,
+        lat: postcodeData.result.latitude,
+        long: postcodeData.result.longitude,
       });
     }
   };
@@ -246,7 +255,6 @@ I strongly maintain that this development would have detrimental effects on the 
   }, []);
 
   const handleTracker = async () => {
-    console.log("tracking...");
 
     const body = {
       source: window.location.host.toString(),
@@ -270,7 +278,6 @@ I strongly maintain that this development would have detrimental effects on the 
     }
   };
 
-  console.log(optIn);
 
   const containsNumber = (string) => {
     if (
@@ -294,6 +301,9 @@ I strongly maintain that this development would have detrimental effects on the 
     email == "" ||
     signOff == "Regards,\n" ||
     !containsNumber(signOff.split(""));
+
+
+
 
   return (
     <>

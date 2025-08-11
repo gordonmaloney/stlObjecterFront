@@ -1,11 +1,18 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from "cypress";
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      on("task", {
+        log(output) {
+          console.log('setting up node events')
+          console.log(output);
+          return null;
+        },
+      });
     },
-    specPattern: 'cypress/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}', // Ensure this pattern matches your test files
-
   },
+  defaultCommandTimeout: 10000,
+  screenshotOnRunFailure: false,
+  watchForFileChanges: false,
 });
