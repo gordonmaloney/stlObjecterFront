@@ -95,22 +95,17 @@ const ObjectPlanning = () => {
   // decode once
   const decodedRef = useMemo(() => (ref ? decodeURIComponent(ref) : ""), [ref]);
 
-  console.log(decodedRef);
+
+  const norm = (string) => (string ?? "").trim().toLowerCase().replaceAll("/", "-"); // if you must keep the dash-for-slash convention
 
   useEffect(() => {
     if (!decodedRef) return;
-
-    setSelected(
-      PlanningApps.filter(
-        (app) =>
-          app["reference"].replace("/", "-").replace("/", "-") ==
-          decodedRef
-      )[0]
-    ?? null);
-
+    const app = PlanningApps.find(
+      (a) => norm(a.reference) === norm(decodedRef)
+    );
+    setSelected(app ?? null);
   }, [decodedRef]);
 
-  console.log(selected);
 
   const [coords, setCoords] = useState(0, 0);
 
