@@ -5,42 +5,12 @@ import Map from "./Map";
 import { Header } from "./Header";
 import { Home } from "./Home";
 import ObjectPlanning from "./ObjectPlanning";
-import axios from "axios";
 
 
 const App = () => {
-  const handleTracker = async () => {
-    const body = {
-      source: window.location.host.toString(),
-      hits: 1,
-    };
-    try {
-      await axios.post(
-        "https://long-ruby-narwhal-sock.cyclic.app/api/tracker/hit",
-        body
-      );
-    } catch {
-      console.log("trackingerror");
-    }
-  };
 
-  useEffect(() => {
-    // handleTracker();
-  }, []);
 
-  //wake up API
-  const fetchData = async () => {
-    const response = await fetch(
-      "https://stls-craper-gordonmaloney.vercel.app/read/"
-    );
 
-    if (response) {
-      console.log("API running)");
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <div className="outerContainer">
@@ -63,7 +33,7 @@ const App = () => {
 
 
           <Route
-            path="/planningobjection/:postcode"
+            path="/planningobjection/:ref"
             element={
               <div className="outerContainer">
                 <Header />

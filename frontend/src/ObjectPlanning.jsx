@@ -6,7 +6,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Loading } from "react-loading-dot/lib";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Button, RadioGroup, Radio } from "@mui/material";
 import SmallMap from "./smallMap";
 import { BtnStyleSmall, RadioStyle } from "./Shared";
@@ -85,31 +85,34 @@ const ObjectPlanning = () => {
     };
   }, []);
 
-
-
   //Set selected application
   const [selected, setSelected] = useState();
 
   const navigate = useNavigate();
 
-  const params = useParams();
+  const { ref } = useParams();
 
-    useEffect(() => {
-      let newSelected = PlanningApps.filter(
+  // decode once
+  const decodedRef = useMemo(() => (ref ? decodeURIComponent(ref) : ""), [ref]);
+
+  console.log(decodedRef);
+
+  useEffect(() => {
+    if (!decodedRef) return;
+
+    setSelected(
+      PlanningApps.filter(
         (app) =>
           app["reference"].replace("/", "-").replace("/", "-") ==
-          params.postcode
-      )[0];
+          decodedRef
+      )[0]
+    ?? null);
 
-      setSelected(newSelected);
-    }, []);
+  }, [decodedRef]);
 
-
-
+  console.log(selected);
 
   const [coords, setCoords] = useState(0, 0);
-
-
 
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
@@ -119,8 +122,6 @@ const ObjectPlanning = () => {
 
   const [councillors, setCouncillors] = useState([]);
   const [cc, setCC] = useState("");
-
-
 
   const [late, setLate] = useState(false);
   //Check if date is more than 28 days ago
@@ -138,7 +139,6 @@ const ObjectPlanning = () => {
       }
     }
   }, [selected]);
-
 
   useEffect(() => {
     if (selected) {
@@ -177,7 +177,7 @@ I strongly maintain that this development would have detrimental effects on the 
         `https://api.postcodes.io/postcodes/${postcode}`
       );
       const postcodeData = await response.json();
-      const adminWard = postcodeData.result.admin_ward
+      const adminWard = postcodeData.result.admin_ward;
 
       //EDINBURGH COUNCILLORS
       fetch(
@@ -188,7 +188,6 @@ I strongly maintain that this development would have detrimental effects on the 
           return res.json();
         })
         .then((data) => {
-
           setCouncillors(data.filter((clr) => clr.ward == adminWard));
         });
       /*
@@ -255,7 +254,6 @@ I strongly maintain that this development would have detrimental effects on the 
   }, []);
 
   const handleTracker = async () => {
-
     const body = {
       source: window.location.host.toString(),
       campaign: window.location["href"].toString(),
@@ -277,7 +275,6 @@ I strongly maintain that this development would have detrimental effects on the 
       console.log("something's gone wrong");
     }
   };
-
 
   const containsNumber = (string) => {
     if (
@@ -301,9 +298,6 @@ I strongly maintain that this development would have detrimental effects on the 
     email == "" ||
     signOff == "Regards,\n" ||
     !containsNumber(signOff.split(""));
-
-
-
 
   return (
     <>

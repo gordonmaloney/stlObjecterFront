@@ -371,7 +371,11 @@ export default function Map() {
                                           <Button
                                             onClick={() =>
                                               navigate(
-                                                `../object/${latlong["Application reference number"]}`
+                                                `../object/${encodeURIComponent(
+                                                  latlong[
+                                                    "Application reference number"
+                                                  ]
+                                                )}`
                                               )
                                             }
                                             variant="contained"
@@ -429,7 +433,7 @@ export default function Map() {
           >
             <div
               className="email"
-              style={{ padding: "10px", borderRadius: "2px", display: 'block' }}
+              style={{ padding: "10px", borderRadius: "2px", display: "block" }}
             >
               <FormLabel>
                 Or enter your postcode to find the closest application to you:
