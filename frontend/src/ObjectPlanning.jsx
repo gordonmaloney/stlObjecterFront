@@ -20,7 +20,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import moment from "moment";
 
-import { PlanningApps } from "./NewData";
+//import { PlanningApps } from "./NewData";
 
 //tooltip
 import { Tooltip, tooltipClasses } from "@mui/material";
@@ -71,6 +71,20 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 }));
 
 const ObjectPlanning = () => {
+
+
+  const [fetchedApps, setFetchedApps] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json"
+    )
+      .then((res) => res.json())
+      .then((data) => setFetchedApps(data));
+  }, []);
+
+
+
   //Scroll Position
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
@@ -100,11 +114,13 @@ const ObjectPlanning = () => {
 
   useEffect(() => {
     if (!decodedRef) return;
-    const app = PlanningApps.find(
+    const app = fetchedApps.find(
       (a) => norm(a.reference) === norm(decodedRef)
     );
     setSelected(app ?? null);
-  }, [decodedRef]);
+  }, [decodedRef, fetchedApps]);
+
+
 
 
   const [coords, setCoords] = useState(0, 0);

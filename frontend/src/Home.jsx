@@ -5,26 +5,13 @@ import { BtnStyle } from "./Shared";
 
 import LRlogo from './imgs/LRlogo.jpeg'
 
-//redux imports
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getApplications,
-  reset,
-  isError,
-  isLoading,
-} from "./Redux/Slice";
+
 
 export const Home = () => {
   const [h1Show, setH1Show] = useState(false);
   const [h2Show, setH2Show] = useState(false);
   const [parShow, setParShow] = useState(false);
 
-//redux handling
-  const dispatch = useDispatch();
-  useEffect(() => {
-   dispatch(getApplications());
-  }, []);
-  const state = useSelector((state) => state);
 
 
   useEffect(() => {

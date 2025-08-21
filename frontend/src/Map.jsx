@@ -3,8 +3,6 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 //import Object from "./Object-Old";
 import { Button, ButtonBase, TextField, FormLabel } from "@mui/material";
-import mapImg from "./imgs/map.png";
-import SmallMap from "./smallMap";
 import L from "leaflet";
 import marker from "./imgs/icon.png";
 import markerRed from "./imgs/iconred.png";
@@ -15,14 +13,9 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import moment from "moment";
 
-//import { PlanningApps } from "./PlanningApplications";
-import { PlanningApps } from "./NewData";
+//import { PlanningApps } from "./NewData";
 
 
-//redux imports
-import { useSelector, useDispatch } from "react-redux";
-import { getApplications, reset, isError, isLoading } from "./Redux/Slice";
-import { DashboardCustomizeSharp } from "@mui/icons-material";
 
 const myIcon = new L.Icon({
   iconUrl: marker,
@@ -46,126 +39,35 @@ const youIcon = new L.Icon({
 });
 
 export default function Map() {
+  const [fetchedApps, setFetchedApps] = useState([]);
 
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json"
+    )
+      .then((res) => res.json())
+      .then((data) => setFetchedApps(data));
+  }, []);
+
+  console.log("fetched apps: ", fetchedApps);
 
   const [Postcodes, setPostcodes] = useState([]);
-  const [applications, setApplications] = useState([]);
   const [selected, setSelected] = useState(0);
   const navigate = useNavigate();
 
-  //redux handling
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state);
 
+
+  const [latlongs, setLatlongs] = useState([]);
   useEffect(() => {
-    dispatch(getApplications());
-  }, []);
-
-  useEffect(() => {
-    setApplications(state.applications.applications);
-  }, [state.applications]);
-
-  useEffect(() => {
-    setPostcodes(applications.map((app) => app.Postcode));
-  }, [applications]);
-
-  const [latlongs, setLatlongs] = useState([...applications]);
-  const [index, setIndex] = useState(0);
+    setLatlongs(fetchedApps);
+  }, [fetchedApps]);
 
   const [mapClass, setMapClass] = useState("mapBig");
-
-  const toggleMap = () => {
-    mapClass == "mapBig" ? setMapClass("mapSmall") : setMapClass("mapBig");
-  };
 
   const [selectedCoords, setSelectedCoords] = useState({
     lat: "55.95005",
     long: "-3.21494",
   });
-
-  const selectLicense = (postcode, coords) => {
-    setSelected(applications.filter((app) => app.Postcode == postcode));
-    setSelectedCoords(coords);
-    setMapClass("mapSmall");
-  };
-
-  let newApps = [...applications];
-
-  const processApps = () => {
-    for (let i = 0; i < applications.length - 1; i++) {
-      newApps[i] = { ...applications[i] };
-      const processApp = async (i) => {
-        const response = await fetch(
-          `https://api.postcodes.io/postcodes/${applications[i].Postcode}`
-        );
-        const data = await response.json();
-        newApps[i].latitude = data.result.latitude;
-        newApps[i].longitude = data.result.longitude;
-        newApps[i].TYPE = "licensing";
-
-        setLatlongs((existingItems) => {
-          return [
-            ...existingItems.slice(0, i),
-            newApps[i],
-            ...existingItems.slice(i + 1),
-          ];
-        });
-      };
-      processApp(i);
-
-      setLatlongs(newApps);
-    }
-  };
-
-  useEffect(() => {
-    //no longer processing LICENSING applications
-    //processApps();
-  }, [applications.length]);
-
-  const [planningAppsProcessed, setPlanningappsProcessed] = useState([]);
-  let newPlanningApps = [...PlanningApps];
-
-  const processPlanningApps = () => {
-    for (let i = 0; i < PlanningApps.length - 1; i++) {
-      newPlanningApps[i] = { ...PlanningApps[i] };
-      const processPlanningApps = async (i) => {
-        try {
-          const response = await fetch(
-            `https://api.postcodes.io/postcodes/${PlanningApps[i].postcode}`
-          );
-          const data = await response.json();
-          if (newPlanningApps[i]?.latitude)
-            newPlanningApps[i].latitude = data.result.latitude;
-          if (newPlanningApps[i]?.longitude)
-            newPlanningApps[i].longitude = data.result.longitude;
-          newPlanningApps[i].TYPE = "planning";
-
-          setPlanningappsProcessed((existingItems) => {
-            return [
-              ...existingItems.slice(0, i),
-              newPlanningApps[i],
-              ...existingItems.slice(i + 1),
-            ];
-          });
-        } catch {
-          setPlanningappsProcessed((existingItems) => {
-            return [
-              ...existingItems.slice(0, i),
-              newPlanningApps[i],
-              ...existingItems.slice(i + 1),
-            ];
-          });
-        }
-      };
-      //processPlanningApps(i);
-
-      setPlanningappsProcessed(PlanningApps);
-    }
-  };
-
-  useEffect(() => {
-    processPlanningApps();
-  }, []);
 
   //search by postcode logic
   const [userPostcode, setUserPostcode] = useState("");
@@ -184,7 +86,7 @@ export default function Map() {
 
     setUserLatLong([data.result.latitude, data.result.longitude]);
 
-    let distanceArr = PlanningApps
+    let distanceArr = fetchedApps
       .filter((app) => app["Decision Date"] == null)
       .filter((latlong) => latlong.latitude != undefined)
       .map((latlong) => {
@@ -233,10 +135,8 @@ export default function Map() {
                 onClick={() =>
                   navigate(
                     `../planningobjection/${closest["reference"]
-                    .replace("/", "-")
-                    .replace("/", "-")
-                  
-                  }`
+                      .replace("/", "-")
+                      .replace("/", "-")}`
                   )
                 }
                 variant="contained"
@@ -276,44 +176,51 @@ export default function Map() {
               <div className={mapClass}>
                 {mapClass == "mapBig" ? (
                   <center>
-                    {
-                      //state.applications.isLoading ||
-                      planningAppsProcessed.length == 0 ? (
-                        <div className="loading">
-                          <Loading
-                            size={"1rem"}
-                            dots={3}
-                            background={"rgb(255,255,255)"}
-                          />
+                    {fetchedApps.length == 0 ? (
+                      <div className="loading">
+                        <Loading
+                          size={"1rem"}
+                          dots={3}
+                          background={"rgb(255,255,255)"}
+                        />
 
-                          <h1 className="bebas header header3">
-                            Loading - this may take a few seconds
-                          </h1>
-                        </div>
-                      ) : (
-                        <>
-                          <MapContainer
-                            ref={setMap}
-                            center={
-                              userLatLong.length > 0
-                                ? userLatLong
-                                : [55.95005, -3.21494]
-                            }
-                            zoom={11}
-                            style={{
-                              width: `100%`,
-                              height: `320px`,
-                              margin: "0 auto",
-                            }}
-                          >
-                            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                        <h1 className="bebas header header3">
+                          Loading - this may take a few seconds
+                        </h1>
+                      </div>
+                    ) : (
+                      <>
+                        <MapContainer
+                          ref={setMap}
+                          center={
+                            userLatLong.length > 0
+                              ? userLatLong
+                              : [55.95005, -3.21494]
+                          }
+                          zoom={11}
+                          style={{
+                            width: `100%`,
+                            height: `320px`,
+                            margin: "0 auto",
+                          }}
+                        >
+                          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-                            {!closest &&
-                              planningAppsProcessed.map((app) => (
+                          {!closest &&
+                            fetchedApps.length > 0 &&
+                            fetchedApps
+                              .filter(
+                                (app) =>
+                                  app.latitude !== undefined &&
+                                  app.longitude !== undefined
+                              )
+                              .map((app) => (
                                 <Marker
                                   position={[app.latitude, app.longitude]}
                                   icon={myIcon}
                                 >
+                                  {console.log(app)}
+
                                   <Popup>
                                     <div style={{ maxWidth: "100px" }}>
                                       {app["address"]}
@@ -342,77 +249,68 @@ export default function Map() {
                                 </Marker>
                               ))}
 
-                            {!closest ? (
-                              latlongs
-                                .filter((app) => app["Decision Date"] == null)
-                                .filter(
-                                  (latlong) =>
-                                    latlong.latitude && latlong.longitude
-                                )
-                                .map((latlong) => (
-                                  <Marker
-                                    position={[
-                                      latlong.latitude,
-                                      latlong.longitude,
-                                    ]}
-                                    icon={myIcon}
-                                  >
-                                    <Popup>
-                                      <div style={{ maxWidth: "100px" }}>
-                                        {latlong["Premises address"]}
-                                        <br />
-                                        <br />
+                          {!closest ? (
+                            latlongs
+                              .filter((app) => app["Decision Date"] == null)
+                              .filter(
+                                (latlong) =>
+                                  latlong.latitude && latlong.longitude
+                              )
+                              .map((latlong) => (
+                                <Marker
+                                  position={[
+                                    latlong.latitude,
+                                    latlong.longitude,
+                                  ]}
+                                  icon={myIcon}
+                                >
+                                  <Popup>
+                                    <div style={{ maxWidth: "100px" }}>
+                                      {latlong["address"]}
+                                      <br />
+                                      <br />
 
-                                        {
-                                          //new Date(moment.unix((latlong["Date Received"] - 25569) * 86400)._i).toDateString()
-                                        }
+                                      {
+                                        //new Date(moment.unix((latlong["Date Received"] - 25569) * 86400)._i).toDateString()
+                                      }
 
-                                        <center>
-                                          <Button
-                                            onClick={() =>
-                                              navigate(
-                                                `../object/${encodeURIComponent(
-                                                  latlong[
-                                                    "Application reference number"
-                                                  ]
-                                                )}`
-                                              )
-                                            }
-                                            variant="contained"
-                                            style={BtnStyle}
-                                          >
-                                            Object
-                                          </Button>
-                                        </center>
-                                      </div>
-                                    </Popup>
-                                  </Marker>
-                                ))
-                            ) : (
-                              <CustomMarker
-                                isActive
-                                map={map}
-                                data={{
-                                  position: [
-                                    closest.latitude,
-                                    closest.longitude,
-                                  ],
-                                }}
-                              />
-                            )}
+                                      <center>
+                                        <Button
+                                          onClick={() =>
+                                            navigate(
+                                              `../planningobjection/${encodeURIComponent(
+                                                latlong["reference"]
+                                              )}`
+                                            )
+                                          }
+                                          variant="contained"
+                                          style={BtnStyle}
+                                        >
+                                          Object
+                                        </Button>
+                                      </center>
+                                    </div>
+                                  </Popup>
+                                </Marker>
+                              ))
+                          ) : (
+                            <CustomMarker
+                              isActive
+                              map={map}
+                              data={{
+                                position: [closest.latitude, closest.longitude],
+                              }}
+                            />
+                          )}
 
-                            {userLatLong.length > 1 && (
-                              <Marker
-                                position={[...userLatLong]}
-                                icon={youIcon}
-                              >
-                                <Popup>Your location</Popup>
-                              </Marker>
-                            )}
-                          </MapContainer>
-                        </>
-                      )
-                    }
+                          {userLatLong.length > 1 && (
+                            <Marker position={[...userLatLong]} icon={youIcon}>
+                              <Popup>Your location</Popup>
+                            </Marker>
+                          )}
+                        </MapContainer>
+                      </>
+                    )}
                   </center>
                 ) : (
                   <></>
