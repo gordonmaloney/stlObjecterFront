@@ -36,49 +36,18 @@ const youIcon = new L.Icon({
   iconSize: [30, 40],
 });
 
-export default function Map({ forceRegion }) {
-  const [region, setRegion] = useState("edinburgh");
+export default function Highlands() {
   const [fetchedApps, setFetchedApps] = useState([]);
 
-  const [baseLink, setBaseLink] = useState("/");
-
   useEffect(() => {
-    if (forceRegion == "highlands") {
-      setRegion("highlands");
-    }
-    if (forceRegion == "edinburgh") {
-      setRegion("edinburgh");
-    }
-  }, [forceRegion]);
+    fetch(
+      "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/HL_NewData.json"
+    )
+      .then((res) => res.json())
+      .then((data) => setFetchedApps(data));
+  }, []);
 
-  console.log(region);
-
-  useEffect(() => {
-    //fetch link
-    const edinburghLink =
-      "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json";
-    const highlandsLink =
-      "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/HL_NewData.json";
-
-    //base link
-    const edinburghBaseLink = "../planningobjection";
-    const highlandsBaseLink = "../highlands/planningobjection";
-
-    if (region == "edinburgh") {
-      fetch(edinburghLink)
-        .then((res) => res.json())
-        .then((data) => setFetchedApps(data));
-
-      setBaseLink(edinburghBaseLink);
-    }
-    if (region == "highlands") {
-      fetch(highlandsLink)
-        .then((res) => res.json())
-        .then((data) => setFetchedApps(data));
-
-      setBaseLink(highlandsBaseLink);
-    }
-  }, [region]);
+  console.log("fetched apps: ", fetchedApps);
 
   const [Postcodes, setPostcodes] = useState([]);
   const [selected, setSelected] = useState(0);
@@ -91,18 +60,10 @@ export default function Map({ forceRegion }) {
 
   const [mapClass, setMapClass] = useState("mapBig");
 
-  const [centerCoords, setCenterCoords] = useState({
+  const [selectedCoords, setSelectedCoords] = useState({
     lat: "55.95005",
     long: "-3.21494",
   });
-  useEffect(() => {
-    if (region == "edinburgh") {
-      setCenterCoords([55.95005, -3.21494]);
-    }
-    if (region == "highlands") {
-      setCenterCoords([57.5005, -5]);
-    }
-  }, [region]);
 
   //search by postcode logic
   const [userPostcode, setUserPostcode] = useState("");
@@ -142,30 +103,6 @@ export default function Map({ forceRegion }) {
   };
 
   const [map, setMap] = useState(null);
-
-  function RecenterOnRegion({ region, userLatLong }) {
-    const map = useMap();
-
-    useEffect(() => {
-      if (!map) return;
-
-      // If user searched a postcode, centre there
-      if (Array.isArray(userLatLong) && userLatLong.length === 2) {
-        const zoom = region === "edinburgh" ? 11 : 6;
-        map.flyTo(userLatLong, zoom);
-        return;
-      }
-
-      // Otherwise centre on the selected region defaults
-      const center =
-        region === "edinburgh" ? [55.95005, -3.21494] : [57.5005, -5];
-      const zoom = region === "edinburgh" ? 11 : 6;
-
-      map.flyTo(center, zoom, { duration: 0.5 });
-    }, [map, region, userLatLong]);
-
-    return null;
-  }
 
   const CustomMarker = ({ isActive, data, map }) => {
     const [refReady, setRefReady] = useState(false);
@@ -252,17 +189,9 @@ export default function Map({ forceRegion }) {
                         <MapContainer
                           ref={setMap}
                           center={
-                            userLatLong.length > 0
-                              ? userLatLong
-                              : region == "edinburgh"
-                              ? [55.95005, -3.21494]
-                              : region == "highlands" && [57.5005, -5]
+                            userLatLong.length > 0 ? userLatLong : [57.5005, -5]
                           }
-                          zoom={
-                            region == "edinburgh"
-                              ? 11
-                              : region == "highlands" && 5.5
-                          }
+                          zoom={5.5}
                           style={{
                             width: `100%`,
                             height: `320px`,
@@ -270,10 +199,6 @@ export default function Map({ forceRegion }) {
                           }}
                         >
                           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                          <RecenterOnRegion
-                            region={region}
-                            userLatLong={userLatLong}
-                          />
 
                           {!closest &&
                             fetchedApps.length > 0 &&
@@ -288,6 +213,8 @@ export default function Map({ forceRegion }) {
                                   position={[app.latitude, app.longitude]}
                                   icon={myIcon}
                                 >
+                                  {console.log(app)}
+
                                   <Popup>
                                     <div style={{ maxWidth: "100px" }}>
                                       {app["address"]}
@@ -298,7 +225,9 @@ export default function Map({ forceRegion }) {
                                         <Button
                                           onClick={() =>
                                             navigate(
-                                              `${baseLink}/${app["reference"]
+                                              `../highlands/planningobjection/${app[
+                                                "reference"
+                                              ]
                                                 .replace("/", "-")
                                                 .replace("/", "-")}`
                                             )
@@ -343,7 +272,7 @@ export default function Map({ forceRegion }) {
                                         <Button
                                           onClick={() =>
                                             navigate(
-                                              `${baseLink}/${encodeURIComponent(
+                                              `../highlands/planningobjection/${encodeURIComponent(
                                                 latlong["reference"]
                                               )}`
                                             )
@@ -381,22 +310,6 @@ export default function Map({ forceRegion }) {
                   <></>
                 )}
               </div>
-            </div>
-            <div style={{maxWidth: '800px', width: '90%'}}>
-              <Button
-                onClick={() => {
-                  region == "edinburgh"
-                    ? setRegion("highlands")
-                    : region == "highlands" && setRegion("edinburgh");
-
-                  setCenterCoords([57.5005, -5]);
-                }}
-                sx={{ ...BtnStyleSmall, float: 'right' }}
-              >
-                {region == "edinburgh"
-                  ? "Highlands"
-                  : region == "highlands" && "Edinburgh"}
-              </Button>
             </div>
           </>
         )}

@@ -5,17 +5,11 @@ import Map from "./Map";
 import { Header } from "./Header";
 import { Home } from "./Home";
 import ObjectPlanning from "./ObjectPlanning";
-
+import Highlands from "./Highlands";
 
 const App = () => {
-
-
-
-
   return (
     <div className="outerContainer">
-
-
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Home />} />
@@ -26,18 +20,38 @@ const App = () => {
             element={
               <div className="outerContainer">
                 <Header />
-                <Map />
+                <Map forceRegion="edinburgh" />
               </div>
             }
           />
 
+          <Route
+            path="/highlands"
+            exact
+            element={
+              <div className="outerContainer">
+                <Header />
+                <Map forceRegion="highlands" />
+              </div>
+            }
+          />
 
           <Route
             path="/planningobjection/:ref"
             element={
               <div className="outerContainer">
                 <Header />
-                <ObjectPlanning />
+                <ObjectPlanning region={"edinburgh"} />
+              </div>
+            }
+          />
+
+          <Route
+            path="/highlands/planningobjection/:ref"
+            element={
+              <div className="outerContainer">
+                <Header />
+                <ObjectPlanning region={"highlands"} />
               </div>
             }
           />

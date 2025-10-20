@@ -70,20 +70,39 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   },
 }));
 
-const ObjectPlanning = () => {
 
+
+const edinburghEmail = "planning@edinburgh.gov.uk"
+const highlandsEmail = "eplanning@highland.gov.uk";
+
+
+const ObjectPlanning = ({ region }) => {
+
+
+  const [objectionEmail, setObjectionEmail] = useState('')
 
   const [fetchedApps, setFetchedApps] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json"
-    )
-      .then((res) => res.json())
-      .then((data) => setFetchedApps(data));
-  }, []);
+    if (region == "edinburgh") {
 
+      setObjectionEmail(edinburghEmail)
+      fetch(
+        "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json"
+      )
+        .then((res) => res.json())
+        .then((data) => setFetchedApps(data));
+    }
+    if (region == "highlands") {
+            setObjectionEmail(highlandsEmail);
 
+      fetch(
+        "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/HL_NewData.json"
+      )
+        .then((res) => res.json())
+        .then((data) => setFetchedApps(data));
+    }
+  }, [region]);
 
   //Scroll Position
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -109,19 +128,14 @@ const ObjectPlanning = () => {
   // decode once
   const decodedRef = useMemo(() => (ref ? decodeURIComponent(ref) : ""), [ref]);
 
-
-  const norm = (string) => (string ?? "").trim().toLowerCase().replaceAll("/", "-"); // if you must keep the dash-for-slash convention
+  const norm = (string) =>
+    (string ?? "").trim().toLowerCase().replaceAll("/", "-"); // if you must keep the dash-for-slash convention
 
   useEffect(() => {
     if (!decodedRef) return;
-    const app = fetchedApps.find(
-      (a) => norm(a.reference) === norm(decodedRef)
-    );
+    const app = fetchedApps.find((a) => norm(a.reference) === norm(decodedRef));
     setSelected(app ?? null);
   }, [decodedRef, fetchedApps]);
-
-
-
 
   const [coords, setCoords] = useState(0, 0);
 
@@ -342,7 +356,11 @@ I strongly maintain that this development would have detrimental effects on the 
           size="small"
           variant="contained"
           sx={{ margin: 1 }}
-          onClick={() => navigate("../map")}
+          onClick={() =>
+            region == "edinburgh"
+              ? navigate("../map")
+              : region == "highlands" && navigate("../highlands")
+          }
           style={{ ...BtnStyle, fontSize: "1.4em", marginBottom: "0px" }}
         >
           Back to applications
@@ -548,7 +566,8 @@ I strongly maintain that this development would have detrimental effects on the 
                   title={
                     <>
                       Make sure you <u>include your address</u> so they know
-                      you're an Edinburgh resident!
+                      you're {region == "edinburgh" && "an Edinburgh"}
+                      {region == "highlands" && "a Highlands"} resident!
                     </>
                   }
                   placement="top"
@@ -628,7 +647,7 @@ I strongly maintain that this development would have detrimental effects on the 
                     }}
                   >
                     <Button
-                      href={`mailto:planning@edinburgh.gov.uk?subject=${subject}&cc=${cc}&bcc=${
+                      href={`mailto:${objectionEmail}?subject=${subject}&cc=${cc}&bcc=${
                         optIn
                           ? "stlbjections+OptIn@livingrent.org"
                           : "stlObjections+OptOut@livingrent.org"
@@ -664,7 +683,7 @@ I strongly maintain that this development would have detrimental effects on the 
                       className="hideOnMob"
                       size="large"
                       variant="contained"
-                      href={`https://mail.google.com/mail/?view=cm&fs=1&to= planning@edinburgh.gov.uk&su=${subject}&cc=${cc}&bcc=${
+                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=${objectionEmail}&su=${subject}&cc=${cc}&bcc=${
                         optIn
                           ? "stlbjections%2BOptIn@livingrent.org"
                           : "stlObjections%2BOptOut@livingrent.org"
