@@ -70,23 +70,17 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   },
 }));
 
-
-
-const edinburghEmail = "planning@edinburgh.gov.uk"
+const edinburghEmail = "planning@edinburgh.gov.uk";
 const highlandsEmail = "eplanning@highland.gov.uk";
 
-
 const ObjectPlanning = ({ region }) => {
-
-
-  const [objectionEmail, setObjectionEmail] = useState('')
+  const [objectionEmail, setObjectionEmail] = useState("");
 
   const [fetchedApps, setFetchedApps] = useState([]);
 
   useEffect(() => {
     if (region == "edinburgh") {
-
-      setObjectionEmail(edinburghEmail)
+      setObjectionEmail(edinburghEmail);
       fetch(
         "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json"
       )
@@ -94,7 +88,7 @@ const ObjectPlanning = ({ region }) => {
         .then((data) => setFetchedApps(data));
     }
     if (region == "highlands") {
-            setObjectionEmail(highlandsEmail);
+      setObjectionEmail(highlandsEmail);
 
       fetch(
         "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/HL_NewData.json"
@@ -204,17 +198,32 @@ I strongly maintain that this development would have detrimental effects on the 
       const postcodeData = await response.json();
       const adminWard = postcodeData.result.admin_ward;
 
-      //EDINBURGH COUNCILLORS
-      fetch(
-        `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/edinburgh-councillors.json`
-      )
-        .then((res) => {
-          if (!res.ok) throw new Error("Failed to fetch councillors");
-          return res.json();
-        })
-        .then((data) => {
-          setCouncillors(data.filter((clr) => clr.ward == adminWard));
-        });
+      if (region == "edinburgh") {
+        //EDINBURGH COUNCILLORS
+        fetch(
+          `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/edinburgh-councillors.json`
+        )
+          .then((res) => {
+            if (!res.ok) throw new Error("Failed to fetch councillors");
+            return res.json();
+          })
+          .then((data) => {
+            setCouncillors(data.filter((clr) => clr.ward == adminWard));
+          });
+      }
+      if (region == "highlands") {
+        //highlands COUNCILLORS
+        fetch(
+          `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/highland-councillors.json`
+        )
+          .then((res) => {
+            if (!res.ok) throw new Error("Failed to fetch councillors");
+            return res.json();
+          })
+          .then((data) => {
+            setCouncillors(data.filter((clr) => clr.ward == adminWard));
+          });
+      }
       /*
       MOVED TO CENTRAL DATA SOURCE
       setCouncillors(
