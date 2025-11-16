@@ -382,7 +382,7 @@ export default function Map({ forceRegion }) {
                 )}
               </div>
             </div>
-            <div style={{maxWidth: '800px', width: '90%'}}>
+            <div style={{display: "none", maxWidth: '800px', width: '90%'}}>
               <Button
                 onClick={() => {
                   region == "edinburgh"
