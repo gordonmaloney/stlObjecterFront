@@ -5,7 +5,6 @@ import Map from "./Map";
 import { Header } from "./Header";
 import { Home } from "./Home";
 import ObjectPlanning from "./ObjectPlanning";
-import Highlands from "./Highlands";
 
 const App = () => {
   return (
@@ -52,6 +51,16 @@ const App = () => {
               <div className="outerContainer">
                 <Header />
                 <ObjectPlanning region={"highlands"} />
+              </div>
+            }
+          />
+
+          <Route
+            path="/islands/planningobjection/:ref"
+            element={
+              <div className="outerContainer">
+                <Header />
+                <ObjectPlanning region={"islands"} />
               </div>
             }
           />

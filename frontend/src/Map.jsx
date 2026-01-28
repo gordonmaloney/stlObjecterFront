@@ -13,8 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import moment from "moment";
 
-//import { PlanningApps } from "./NewData";
-
 const myIcon = new L.Icon({
   iconUrl: marker,
   iconRetinaUrl: marker,
@@ -37,7 +35,7 @@ const youIcon = new L.Icon({
 });
 
 export default function Map({ forceRegion }) {
-  const [region, setRegion] = useState("edinburgh");
+  const [region, setRegion] = useState("");
   const [fetchedApps, setFetchedApps] = useState([]);
 
   const [baseLink, setBaseLink] = useState("/");
@@ -51,7 +49,9 @@ export default function Map({ forceRegion }) {
     }
   }, [forceRegion]);
 
-  console.log(region);
+  const edinburghBaseLink = "../planningobjection";
+  const highlandsBaseLink = "../highlands/planningobjection";
+  const islandsBaseLink = "../islands/planningobjection";
 
   useEffect(() => {
     //fetch link
@@ -59,11 +59,39 @@ export default function Map({ forceRegion }) {
       "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json";
     const highlandsLink =
       "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/HL_NewData.json";
+    const islandsLink =
+            "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/CnE_NewData.json";
 
-    //base link
-    const edinburghBaseLink = "../planningobjection";
-    const highlandsBaseLink = "../highlands/planningobjection";
+    async function fetchAllData() {
+      try {
+        const [edinburghRes, highlandsRes, islandsRes] = await Promise.all([
+          fetch(edinburghLink),
+          fetch(highlandsLink),
+          fetch(islandsLink),
+        ]);
 
+        const [edinburghData, highlandsData, islandsData] = await Promise.all([
+          edinburghRes.json(),
+          highlandsRes.json(),
+          islandsRes.json(),
+        ]);
+
+        // Combine all results (assuming they’re arrays)
+        const combinedData = [
+          ...edinburghData,
+          ...highlandsData,
+          ...islandsData,
+        ];
+
+        setFetchedApps(combinedData);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    }
+
+    fetchAllData();
+
+    /*
     if (region == "edinburgh") {
       fetch(edinburghLink)
         .then((res) => res.json())
@@ -71,14 +99,15 @@ export default function Map({ forceRegion }) {
 
       setBaseLink(edinburghBaseLink);
     }
+
     if (region == "highlands") {
       fetch(highlandsLink)
         .then((res) => res.json())
         .then((data) => setFetchedApps(data));
 
       setBaseLink(highlandsBaseLink);
-    }
-  }, [region]);
+    }*/
+  }, [region, forceRegion]);
 
   const [Postcodes, setPostcodes] = useState([]);
   const [selected, setSelected] = useState(0);
@@ -193,7 +222,15 @@ export default function Map({ forceRegion }) {
               <Button
                 onClick={() =>
                   navigate(
-                    `../planningobjection/${closest["reference"]
+                    `${
+                      closest.council == "Edinburgh"
+                        ? edinburghBaseLink
+                        : closest.council == "Highlands"
+                        ? highlandsBaseLink
+                        : closest.council == "CnE"
+                        ? islandsBaseLink
+                        : ""
+                    }/${closest["reference"]
                       .replace("/", "-")
                       .replace("/", "-")}`
                   )
@@ -275,45 +312,6 @@ export default function Map({ forceRegion }) {
                             userLatLong={userLatLong}
                           />
 
-                          {!closest &&
-                            fetchedApps.length > 0 &&
-                            fetchedApps
-                              .filter(
-                                (app) =>
-                                  app.latitude !== undefined &&
-                                  app.longitude !== undefined
-                              )
-                              .map((app) => (
-                                <Marker
-                                  position={[app.latitude, app.longitude]}
-                                  icon={myIcon}
-                                >
-                                  <Popup>
-                                    <div style={{ maxWidth: "100px" }}>
-                                      {app["address"]}
-                                      <br />
-                                      <br />
-
-                                      <center>
-                                        <Button
-                                          onClick={() =>
-                                            navigate(
-                                              `${baseLink}/${app["reference"]
-                                                .replace("/", "-")
-                                                .replace("/", "-")}`
-                                            )
-                                          }
-                                          variant="contained"
-                                          style={BtnStyle}
-                                        >
-                                          Object
-                                        </Button>
-                                      </center>
-                                    </div>
-                                  </Popup>
-                                </Marker>
-                              ))}
-
                           {!closest ? (
                             latlongs
                               .filter((app) => app["Decision Date"] == null)
@@ -343,7 +341,16 @@ export default function Map({ forceRegion }) {
                                         <Button
                                           onClick={() =>
                                             navigate(
-                                              `${baseLink}/${encodeURIComponent(
+                                              `${
+                                                latlong.council == "Edinburgh"
+                                                  ? edinburghBaseLink
+                                                  : latlong.council ==
+                                                    "Highlands"
+                                                  ? highlandsBaseLink
+                                                  : latlong.council == "CnE"
+                                                  ? islandsBaseLink
+                                                  : ""
+                                              }/${encodeURIComponent(
                                                 latlong["reference"]
                                               )}`
                                             )
@@ -382,7 +389,7 @@ export default function Map({ forceRegion }) {
                 )}
               </div>
             </div>
-            <div style={{maxWidth: '800px', width: '90%'}}>
+            <div style={{ maxWidth: "800px", width: "90%" }}>
               <Button
                 onClick={() => {
                   region == "edinburgh"
@@ -391,7 +398,7 @@ export default function Map({ forceRegion }) {
 
                   setCenterCoords([57.5005, -5]);
                 }}
-                sx={{ ...BtnStyleSmall, float: 'right' }}
+                sx={{ ...BtnStyleSmall, float: "right" }}
               >
                 {region == "edinburgh"
                   ? "Highlands"

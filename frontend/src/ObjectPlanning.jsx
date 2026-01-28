@@ -35,6 +35,12 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {
+  EDINBURGH_TEMPLATE,
+  HIGHLANDS_TEMPLATE,
+  ISLANDS_TEMPLATE,
+  BADENOCH_STRATHSPEY_TEMPLATE,
+} from "./Templates";
 
 //modal style
 const style = {
@@ -73,19 +79,27 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 const edinburghEmail = "planning@edinburgh.gov.uk";
 const highlandsEmail = "eplanning@highland.gov.uk";
 
+const islandsEmail = "stl@cne-siar.gov.uk";
+
 const ObjectPlanning = ({ region }) => {
   const [objectionEmail, setObjectionEmail] = useState("");
 
   const [fetchedApps, setFetchedApps] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     if (region == "edinburgh") {
       setObjectionEmail(edinburghEmail);
       fetch(
         "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json"
       )
         .then((res) => res.json())
-        .then((data) => setFetchedApps(data));
+        .then((data) => {
+          setFetchedApps(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
     }
     if (region == "highlands") {
       setObjectionEmail(highlandsEmail);
@@ -94,7 +108,24 @@ const ObjectPlanning = ({ region }) => {
         "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/HL_NewData.json"
       )
         .then((res) => res.json())
-        .then((data) => setFetchedApps(data));
+        .then((data) => {
+          setFetchedApps(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    }
+    if (region == "islands") {
+      setObjectionEmail(islandsEmail);
+
+      fetch(
+        "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/CnE_NewData.json"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setFetchedApps(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
     }
   }, [region]);
 
@@ -126,10 +157,10 @@ const ObjectPlanning = ({ region }) => {
     (string ?? "").trim().toLowerCase().replaceAll("/", "-"); // if you must keep the dash-for-slash convention
 
   useEffect(() => {
-    if (!decodedRef) return;
+    if (!decodedRef || loading) return;
     const app = fetchedApps.find((a) => norm(a.reference) === norm(decodedRef));
     setSelected(app ?? null);
-  }, [decodedRef, fetchedApps]);
+  }, [decodedRef, fetchedApps, loading]);
 
   const [coords, setCoords] = useState(0, 0);
 
@@ -159,6 +190,9 @@ const ObjectPlanning = ({ region }) => {
     }
   }, [selected]);
 
+
+  const [adminWard, setAdminWard] = useState("");
+
   useEffect(() => {
     if (selected) {
       setBody(
@@ -166,20 +200,7 @@ const ObjectPlanning = ({ region }) => {
           selected["reference"]
         } at ${selected["address"]}.
 
-Our city is in the midst of a catastrophic housing crisis, and I believe that every holiday let is one less home for ordinary residents to live in. This development would exacerbate the crisis for all residents of the city, displacing people from their communities, driving up rents, and further reducing the desperately needed numbers of homes in the city. Planning decisions should first and foremost cater for the needs and interests of the city’s residents, and this proposed development runs counter to that.
-
-Moreover, I believe that this development is incompatible with planning and development policies at both a local and national level.
-
-The Edinburgh City Plan 2030 states that “[p]roposals which would result in the loss of residential dwellings through demolition or a change of use will not be permitted”. Every proposed holiday let could be a residential dwelling, and I do not believe that granting this application is in keeping with the policies outlined in the City Plan.
-
-The plan goes on to state that “[d]evelopments, including change of use which would have a materially detrimental effect on the living conditions of nearby residents, will not be permitted.” The impact of high concentrations of holiday lets on nearby rent levels is well documented, and I believe that granting this application will exacerbate the hardship faced by tenants in the community, and therefore is not in keeping with the City Plan.
-
-The Scottish Government's National Planning Framework 4 states:
-“Development proposals for the reuse of existing buildings for short term holiday letting should not be supported if it would result in:
-• an unacceptable impact on the local amenity or character of a neighbourhood or area; or
-• the loss of residential accommodation where such loss is not outweighed by local economic benefits.”
-
-I strongly maintain that this development would have detrimental effects on the local amenity and character of the area, by removing what should be residential accommodation from local supply. I see no evidence that any local economic benefits outweigh this loss. It also seems clear to me that this development will place a significant burden on local services such as rubbish collection and public transport, negatively impacting all local residents within the community.${
+${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWard == "Badenoch and Strathspey") ? BADENOCH_STRATHSPEY_TEMPLATE : region == "highlands" ? HIGHLANDS_TEMPLATE : region == "islands" && ISLANDS_TEMPLATE}${
           late
             ? "\n\nFinally, I understand that this objection is being lodged more than 28 days after the application was received by the council. The reason for this is because the information is not well advertised or easily accessible and I have only just been made aware of the application. I trust that my objection will be considered regardless."
             : ""
@@ -188,7 +209,7 @@ I strongly maintain that this development would have detrimental effects on the 
       setSubject(`Objecting to STL application ${selected["reference"]}`);
       fetchData(selected.postcode);
     }
-  }, [selected, late]);
+  }, [selected, late, adminWard]);
 
   const fetchData = async (postcode) => {
     if (selected && postcode) {
@@ -196,7 +217,7 @@ I strongly maintain that this development would have detrimental effects on the 
         `https://api.postcodes.io/postcodes/${postcode}`
       );
       const postcodeData = await response.json();
-      const adminWard = postcodeData.result.admin_ward;
+      setAdminWard(postcodeData.result.admin_ward);
 
       if (region == "edinburgh") {
         //EDINBURGH COUNCILLORS
@@ -212,6 +233,8 @@ I strongly maintain that this development would have detrimental effects on the 
           });
       }
       if (region == "highlands") {
+
+
         //highlands COUNCILLORS
         fetch(
           `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/highland-councillors.json`
@@ -224,12 +247,21 @@ I strongly maintain that this development would have detrimental effects on the 
             setCouncillors(data.filter((clr) => clr.ward == adminWard));
           });
       }
-      /*
-      MOVED TO CENTRAL DATA SOURCE
-      setCouncillors(
-        Councillors.filter((clr) => clr.ward == data.result.admin_ward)
-      );
-      */
+
+      //Islands councillors
+      if (region == "islands") {
+        fetch(
+          `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/islands-councillors.json`
+        )
+          .then((res) => {
+            if (!res.ok) throw new Error("Failed to fetch councillors");
+            return res.json();
+          })
+          .then((data) => {
+            setCouncillors(data.filter((clr) => clr.ward == adminWard));
+          });
+      }
+
       setCoords({
         lat: postcodeData.result.latitude,
         long: postcodeData.result.longitude,
@@ -333,6 +365,61 @@ I strongly maintain that this development would have detrimental effects on the 
     signOff == "Regards,\n" ||
     !containsNumber(signOff.split(""));
 
+  if (!loading && selected === null) {
+    return (
+      <div className="objectCont">
+        <br />
+        <br />
+        <div
+          style={{
+            textAlign: "center",
+            padding: "40px",
+            backgroundColor: "rgba(255,255,255,0.9)",
+            border: "2px solid green",
+            borderRadius: "5px",
+            marginTop: "20px",
+          }}
+        >
+          <h2 className="bebas header3" style={{ color: "black", fontSize: "2em" }}>
+            Something has gone wrong
+          </h2>
+          <p style={{ fontSize: "1em", color: "black" }}>
+            If you think this is a mistake,{" "}
+            <a
+              href="mailto:contact@livingrent.org?subject=Problem with STL app"
+              style={{ color: "green", textDecoration: "underline" }}
+            >
+              get in touch
+            </a>
+            .
+          </p>
+          <br />
+          <Button
+            size="small"
+            variant="contained"
+            sx={{ margin: 1 }}
+            onClick={() =>
+              region == "edinburgh"
+                ? navigate("../map")
+                : navigate("../highlands")
+            }
+            style={{ ...BtnStyle, fontSize: "1.4em", marginBottom: "0px" }}
+          >
+            Back to applications
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "100px" }}>
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <>
       <div
@@ -368,7 +455,7 @@ I strongly maintain that this development would have detrimental effects on the 
           onClick={() =>
             region == "edinburgh"
               ? navigate("../map")
-              : region == "highlands" && navigate("../highlands")
+              : navigate("../highlands")
           }
           style={{ ...BtnStyle, fontSize: "1.4em", marginBottom: "0px" }}
         >
