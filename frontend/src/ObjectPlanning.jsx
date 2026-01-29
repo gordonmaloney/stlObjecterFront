@@ -743,15 +743,15 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
                     }}
                   >
                     <Button
-                      href={`mailto:${objectionEmail}?subject=${subject}&cc=${cc}&bcc=${
+                      href={`mailto:${objectionEmail}?subject=${encodeURIComponent(
+                        subject
+                      )}&cc=${encodeURIComponent(cc)}&bcc=${encodeURIComponent(
                         optIn
                           ? "stlbjections+OptIn@livingrent.org"
                           : "stlObjections+OptOut@livingrent.org"
-                      }&body=${
-                        body.replace(/\n/g, "%0A") +
-                        "%0A%0A" +
-                        signOff.replace(/\n/g, "%0A")
-                      }`}
+                      )}&body=${encodeURIComponent(
+                        body + "\n\n" + signOff
+                      )}`}
                       disabled={incomplete}
                       size="large"
                       variant="contained"
@@ -779,15 +779,15 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
                       className="hideOnMob"
                       size="large"
                       variant="contained"
-                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=${objectionEmail}&su=${subject}&cc=${cc}&bcc=${
+                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=${objectionEmail}&su=${encodeURIComponent(
+                        subject
+                      )}&cc=${encodeURIComponent(cc)}&bcc=${encodeURIComponent(
                         optIn
-                          ? "stlbjections%2BOptIn@livingrent.org"
-                          : "stlObjections%2BOptOut@livingrent.org"
-                      }&body=${
-                        body.replace(/\n/g, "%0A") +
-                        "%0A%0A" +
-                        signOff.replace(/\n/g, "%0A")
-                      }`}
+                          ? "stlbjections+OptIn@livingrent.org"
+                          : "stlObjections+OptOut@livingrent.org"
+                      )}&body=${encodeURIComponent(
+                        body + "\n\n" + signOff
+                      )}`}
                       target="_blank"
                       onClick={() => {
                         openModal();
