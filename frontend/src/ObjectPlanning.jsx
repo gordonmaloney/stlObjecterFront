@@ -92,7 +92,7 @@ const ObjectPlanning = ({ region }) => {
     if (region == "edinburgh") {
       setObjectionEmail(edinburghEmail);
       fetch(
-        "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json"
+        "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/NewData.json",
       )
         .then((res) => res.json())
         .then((data) => {
@@ -105,7 +105,7 @@ const ObjectPlanning = ({ region }) => {
       setObjectionEmail(highlandsEmail);
 
       fetch(
-        "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/HL_NewData.json"
+        "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/HL_NewData.json",
       )
         .then((res) => res.json())
         .then((data) => {
@@ -118,7 +118,7 @@ const ObjectPlanning = ({ region }) => {
       setObjectionEmail(islandsEmail);
 
       fetch(
-        "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/CnE_NewData.json"
+        "https://raw.githubusercontent.com/gordonmaloney/STLPlanningScraper/refs/heads/main/data/CnE_NewData.json",
       )
         .then((res) => res.json())
         .then((data) => {
@@ -181,7 +181,7 @@ const ObjectPlanning = ({ region }) => {
       let checkDate = new Date(moment.unix((dateToCheck - 25569) * 86400)._i);
       let today = new Date();
       let monthAgo = new Date(
-        new Date(new Date().setDate(today.getDate() - 28))
+        new Date(new Date().setDate(today.getDate() - 28)),
       );
 
       if (checkDate < monthAgo) {
@@ -189,7 +189,6 @@ const ObjectPlanning = ({ region }) => {
       }
     }
   }, [selected]);
-
 
   const [adminWard, setAdminWard] = useState("");
 
@@ -200,11 +199,11 @@ const ObjectPlanning = ({ region }) => {
           selected["reference"]
         } at ${selected["address"]}.
 
-${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWard == "Badenoch and Strathspey") ? BADENOCH_STRATHSPEY_TEMPLATE : region == "highlands" ? HIGHLANDS_TEMPLATE : region == "islands" && ISLANDS_TEMPLATE}${
+${region == "edinburgh" ? EDINBURGH_TEMPLATE : region == "highlands" && adminWard == "Badenoch and Strathspey" ? BADENOCH_STRATHSPEY_TEMPLATE : region == "highlands" ? HIGHLANDS_TEMPLATE : region == "islands" && ISLANDS_TEMPLATE}${
           late
             ? "\n\nFinally, I understand that this objection is being lodged more than 28 days after the application was received by the council. The reason for this is because the information is not well advertised or easily accessible and I have only just been made aware of the application. I trust that my objection will be considered regardless."
             : ""
-        }`
+        }`,
       );
       setSubject(`Objecting to STL application ${selected["reference"]}`);
       fetchData(selected.postcode);
@@ -214,7 +213,7 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
   const fetchData = async (postcode) => {
     if (selected && postcode) {
       const response = await fetch(
-        `https://api.postcodes.io/postcodes/${postcode}`
+        `https://api.postcodes.io/postcodes/${postcode}`,
       );
       const postcodeData = await response.json();
       setAdminWard(postcodeData.result.admin_ward);
@@ -222,7 +221,7 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
       if (region == "edinburgh") {
         //EDINBURGH COUNCILLORS
         fetch(
-          `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/edinburgh-councillors.json`
+          `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/edinburgh-councillors.json`,
         )
           .then((res) => {
             if (!res.ok) throw new Error("Failed to fetch councillors");
@@ -233,11 +232,9 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
           });
       }
       if (region == "highlands") {
-
-
         //highlands COUNCILLORS
         fetch(
-          `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/highland-councillors.json`
+          `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/highland-councillors.json`,
         )
           .then((res) => {
             if (!res.ok) throw new Error("Failed to fetch councillors");
@@ -251,7 +248,7 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
       //Islands councillors
       if (region == "islands") {
         fetch(
-          `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/islands-councillors.json`
+          `https://raw.githubusercontent.com/gordonmaloney/rep-data/main/islands-councillors.json`,
         )
           .then((res) => {
             if (!res.ok) throw new Error("Failed to fetch councillors");
@@ -289,58 +286,6 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
   };
 
   const [highlight, setHighlight] = useState(false);
-
-  const handleOptin = async () => {
-    if (optIn) {
-      const body = {
-        email: email,
-        msg: "Are you happy for Living Rent to contact you by email about this campaign and others like it? - Yes",
-        source: window.location["href"].toString(),
-      };
-
-      const response = await axios.post(
-        "https://long-ruby-narwhal-sock.cyclic.app/api/optin",
-        body
-      );
-    } else {
-      console.log("not opted in");
-    }
-  };
-
-  //creating IP state
-  const [ip, setIP] = useState("");
-  //creating function to load ip address from the API
-  const getIp = async () => {
-    const res = await axios.get("https://geolocation-db.com/json/");
-    setIP(res.data.IPv4);
-  };
-  useEffect(() => {
-    //passing getData method to the lifecycle method
-    getIp();
-  }, []);
-
-  const handleTracker = async () => {
-    const body = {
-      source: window.location.host.toString(),
-      campaign: window.location["href"].toString(),
-      hits: 1,
-      uniqueHits: ip,
-      details: {
-        channel: "email",
-        targets: cc.concat([",licensing@edinburgh.gov.uk"]),
-      },
-      optins: optIn,
-    };
-
-    try {
-      await axios.post(
-        "https://long-ruby-narwhal-sock.cyclic.app/api/tracker",
-        body
-      );
-    } catch {
-      console.log("something's gone wrong");
-    }
-  };
 
   const containsNumber = (string) => {
     if (
@@ -380,7 +325,10 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
             marginTop: "20px",
           }}
         >
-          <h2 className="bebas header3" style={{ color: "black", fontSize: "2em" }}>
+          <h2
+            className="bebas header3"
+            style={{ color: "black", fontSize: "2em" }}
+          >
             Something has gone wrong
           </h2>
           <p style={{ fontSize: "1em", color: "black" }}>
@@ -532,7 +480,7 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
                     sx={{ margin: 1 }}
                     onClick={() =>
                       setBody(
-                        (body) => body + "\n\nDraft paragraph about noise."
+                        (body) => body + "\n\nDraft paragraph about noise.",
                       )
                     }
                     style={BtnStyleSmall}
@@ -544,7 +492,7 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
                     sx={{ margin: 1 }}
                     onClick={() =>
                       setBody(
-                        (body) => body + "\n\nDraft paragraph about amenities."
+                        (body) => body + "\n\nDraft paragraph about amenities.",
                       )
                     }
                     style={BtnStyleSmall}
@@ -556,7 +504,7 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
                     sx={{ margin: 1 }}
                     onClick={() =>
                       setBody(
-                        (body) => body + "\n\nDraft paragraph about supply."
+                        (body) => body + "\n\nDraft paragraph about supply.",
                       )
                     }
                     style={BtnStyleSmall}
@@ -712,7 +660,12 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
                   sx={{ color: "black !important", fontSize: "small" }}
                 >
                   * Are you happy for Living Rent to contact you by email about
-                  this campaign and others like it?
+                  this campaign and others like it? We aim to delete this
+                  information after 12 months but you can ask us to delete it
+                  sooner at any time by emailing privacy@livingrent.org.{" "}
+                  <a href="https://www.livingrent.org/privacy" target="_blank">
+                    Privacy Policy
+                  </a>
                 </FormLabel>
                 <RadioGroup
                   row
@@ -744,22 +697,18 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
                   >
                     <Button
                       href={`mailto:${objectionEmail}?subject=${encodeURIComponent(
-                        subject
-                      )}&cc=${encodeURIComponent(cc)}&bcc=${encodeURIComponent(
+                        subject,
+                      )}&cc=${encodeURIComponent(cc)}${
                         optIn
-                          ? "stlbjections+OptIn@livingrent.org"
-                          : "stlObjections+OptOut@livingrent.org"
-                      )}&body=${encodeURIComponent(
-                        body + "\n\n" + signOff
-                      )}`}
+                          ? `&bcc=${encodeURIComponent("stlobjections@livingrent.org")}`
+                          : ""
+                      }&body=${encodeURIComponent(body + "\n\n" + signOff)}`}
                       disabled={incomplete}
                       size="large"
                       variant="contained"
                       style={{ ...BtnStyleSmall, margin: 2 }}
                       onClick={() => {
                         openModal();
-                        handleOptin();
-                        handleTracker();
                       }}
                     >
                       Send your objection
@@ -780,19 +729,15 @@ ${region == "edinburgh" ? EDINBURGH_TEMPLATE : (region == "highlands" && adminWa
                       size="large"
                       variant="contained"
                       href={`https://mail.google.com/mail/?view=cm&fs=1&to=${objectionEmail}&su=${encodeURIComponent(
-                        subject
-                      )}&cc=${encodeURIComponent(cc)}&bcc=${encodeURIComponent(
+                        subject,
+                      )}&cc=${encodeURIComponent(cc)}${
                         optIn
-                          ? "stlbjections+OptIn@livingrent.org"
-                          : "stlObjections+OptOut@livingrent.org"
-                      )}&body=${encodeURIComponent(
-                        body + "\n\n" + signOff
-                      )}`}
+                          ? `&bcc=${encodeURIComponent("stlobjections@livingrent.org")}`
+                          : ""
+                      }&body=${encodeURIComponent(body + "\n\n" + signOff)}`}
                       target="_blank"
                       onClick={() => {
                         openModal();
-                        handleOptin();
-                        handleTracker();
                       }}
                       disabled={incomplete}
                       style={{ ...BtnStyleSmall, margin: 2 }}
