@@ -83,7 +83,16 @@ export default function Map({ forceRegion }) {
           ...islandsData,
         ];
 
-        setFetchedApps(combinedData);
+        // Filter out duplicate applications based on their unique reference
+        const seenRefs = new Set();
+        const uniqueData = combinedData.filter((app) => {
+          if (!app.reference) return true;
+          if (seenRefs.has(app.reference)) return false;
+          seenRefs.add(app.reference);
+          return true;
+        });
+
+        setFetchedApps(uniqueData);
       } catch (err) {
         console.error("Error fetching data:", err);
       }
@@ -313,58 +322,78 @@ export default function Map({ forceRegion }) {
                           />
 
                           {!closest ? (
-                            latlongs
-                              .filter((app) => app["Decision Date"] == null)
-                              .filter(
-                                (latlong) =>
-                                  latlong.latitude && latlong.longitude
-                              )
-                              .map((latlong) => (
-                                <Marker
-                                  position={[
-                                    latlong.latitude,
-                                    latlong.longitude,
-                                  ]}
-                                  icon={myIcon}
-                                >
-                                  <Popup>
-                                    <div style={{ maxWidth: "100px" }}>
-                                      {latlong["address"]}
-                                      <br />
-                                      <br />
+                            (() => {
+                              const seenCoords = {};
+                              return latlongs
+                                .filter((app) => app["Decision Date"] == null)
+                                .filter(
+                                  (latlong) =>
+                                    latlong.latitude && latlong.longitude
+                                )
+                                .map((latlong) => {
+                                  const lat = parseFloat(latlong.latitude);
+                                  const lng = parseFloat(latlong.longitude);
+                                  const key = `${lat.toFixed(6)}_${lng.toFixed(6)}`;
+                                  let displayLat = lat;
+                                  let displayLng = lng;
 
-                                      {
-                                        //new Date(moment.unix((latlong["Date Received"] - 25569) * 86400)._i).toDateString()
-                                      }
+                                  if (seenCoords[key] === undefined) {
+                                    seenCoords[key] = 0;
+                                  } else {
+                                    seenCoords[key] += 1;
+                                    const count = seenCoords[key];
+                                    const angle = count * 2.39996; // Golden angle in radians
+                                    const distance = 0.00015 * Math.sqrt(count);
+                                    displayLat = lat + Math.sin(angle) * distance;
+                                    displayLng = lng + Math.cos(angle) * distance;
+                                  }
 
-                                      <center>
-                                        <Button
-                                          onClick={() =>
-                                            navigate(
-                                              `${
-                                                latlong.council == "Edinburgh"
-                                                  ? edinburghBaseLink
-                                                  : latlong.council ==
-                                                    "Highlands"
-                                                  ? highlandsBaseLink
-                                                  : latlong.council == "CnE"
-                                                  ? islandsBaseLink
-                                                  : ""
-                                              }/${encodeURIComponent(
-                                                latlong["reference"]
-                                              )}`
-                                            )
+                                  return (
+                                    <Marker
+                                      key={latlong.reference || `${lat}_${lng}_${seenCoords[key]}`}
+                                      position={[displayLat, displayLng]}
+                                      icon={myIcon}
+                                    >
+                                      <Popup>
+                                        <div style={{ maxWidth: "100px" }}>
+                                          {latlong["address"]}
+                                          <br />
+                                          <br />
+
+                                          {
+                                            //new Date(moment.unix((latlong["Date Received"] - 25569) * 86400)._i).toDateString()
                                           }
-                                          variant="contained"
-                                          style={BtnStyle}
-                                        >
-                                          Object
-                                        </Button>
-                                      </center>
-                                    </div>
-                                  </Popup>
-                                </Marker>
-                              ))
+
+                                          <center>
+                                            <Button
+                                              onClick={() =>
+                                                navigate(
+                                                  `${
+                                                    latlong.council == "Edinburgh"
+                                                      ? edinburghBaseLink
+                                                      : latlong.council ==
+                                                        "Highlands"
+                                                      ? highlandsBaseLink
+                                                      : latlong.council == "CnE"
+                                                      ? islandsBaseLink
+                                                      : ""
+                                                  }/${encodeURIComponent(
+                                                    latlong["reference"]
+                                                  )}`
+                                                )
+                                              }
+                                              variant="contained"
+                                              style={BtnStyle}
+                                            >
+                                              Object
+                                            </Button>
+                                          </center>
+                                        </div>
+                                      </Popup>
+                                    </Marker>
+                                  );
+                                });
+                            })()
                           ) : (
                             <CustomMarker
                               isActive
